@@ -1,5 +1,8 @@
 import { createApp } from 'vue'
-import './style.css'
+import './style.scss'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+//Importo le rotte
+import { router } from './router';
+
+createApp(App).use(router).mount('#app');
