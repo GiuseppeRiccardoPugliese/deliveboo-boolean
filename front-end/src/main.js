@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 // Importa l'array di rotte dal file route.js
-import routes from './route.js' 
+import routes from './router.js' 
 
 // General
 import './style.scss'

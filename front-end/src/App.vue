@@ -5,6 +5,8 @@ import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
 
+import { useRouter } from 'vue-router';
+const router = useRouter()
 export default {
   components: {
     AppHeader,

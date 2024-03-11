@@ -7,9 +7,20 @@ export default {
 </script>
 
 <template>
-    <div>
+    <div class="aaa">
         FOOTER
     </div>
 </template>
 
-<style lang="scss"></style>
+<style scoped lang="scss">
+    .aaa {
+        border: 1px solid black;
+        border-radius:  3px;
+        height: 300px;
+        width: 80%;
+        margin: 0 auto;
+
+    }
+
+
+</style>

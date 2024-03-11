@@ -12,4 +12,11 @@ export default {
     </div>
 </template>
 
-<style lang="scss"></style>
+<style scoped lang="scss">
+    div{
+        height: 30px;
+        background-color: pink;
+    }
+
+
+</style>
