@@ -18,7 +18,9 @@ export default {
                 <div class="advanced-input">
                     <input type="text" placeholder="Inserisci la tua città..">
                     <!-- La rotta che tramite il cerca porta ai ristoranti -->
-                    <router-link :to="{ name: 'Restaurants' }" class="cerca"> <a>  <button type="button"> Cerca </button> </a> </router-link>
+                    <router-link :to="{ name: 'Restaurants' }" class="cerca">
+                        <a> <button type="button"> Cerca </button> </a> 
+                    </router-link>
                 </div>
             </div>
 
