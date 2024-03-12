@@ -32,7 +32,7 @@ export default {
     .container-fluid {
        width: 100%;
        height: 500px;
-       background-image: url(../../public/img/jumbotron2.jpg);
+       background-image: url(../../public/jumbotronHD.webp);
        background-size: cover;
 
        .jumbotron {
@@ -51,6 +51,7 @@ export default {
             span {
                 color: white;
                 font-size: 80px;
+                font-weight: 600;
             }
 
             .advanced-search {
