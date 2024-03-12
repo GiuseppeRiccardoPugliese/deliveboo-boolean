@@ -68,6 +68,8 @@ export default {
 </template>
 
 <style scoped lang="scss">
+@use '../style/partials/variables' as *;
+
 //NAV SETUP 
 
 .navbar {
@@ -87,7 +89,7 @@ export default {
   transition: max-width 0.3s ease;
 
   .btn-primary {
-    background-color: #00ccbc;
+    background-color: $btn_color;
     border-color: grey;
   }
 
