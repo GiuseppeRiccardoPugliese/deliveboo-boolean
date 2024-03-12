@@ -38,6 +38,8 @@ export default {
 </template>
 
 <style scoped lang="scss">
+@use '../style/partials/variables' as *;
+
 //NAV SETUP 
 .navbar {
   display: flex;
@@ -47,7 +49,7 @@ export default {
   padding: 10px 20px;
 
   .btn-primary {
-    background-color: #00ccbc;
+    background-color: $btn_color;
     border-color: grey;
   }
 
