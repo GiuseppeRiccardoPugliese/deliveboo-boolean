@@ -1,3 +1,4 @@
+export default
 [
     {
         "nome": "Pizzeria Bella Napoli",
