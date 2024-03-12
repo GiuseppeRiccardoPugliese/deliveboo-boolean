@@ -9,11 +9,11 @@ export default {
 <template>
     <div class="container-fluid">
         <div class="jumbotron">
-            <div class="jumbo-title">
+            <div class="col-6 jumbo-title">
                 <span> I PIATTI CHE AMI DOVE E QUANDO VUOI </span>
             </div>
-            <div class="advanced-search">
-                <div class="input-group">
+            <div class="col-6 advanced-search">
+                <div class="advanced-input">
                     <input type="text" placeholder="Inserisci la tua città..">
                     <button type="button"> Cerca </button>
                 </div>
@@ -27,21 +27,54 @@ export default {
     .container-fluid {
        width: 100%;
        height: 500px;
-       background-image: url(../../public/img/jumbotron1.jpg);
+       background-image: url(../../public/img/jumbotron2.jpg);
        background-size: cover;
 
        .jumbotron {
 
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 30px;
+
+            .jumbo-title {
+                display: flex;
+                justify-content: center;
+            }
+
             span {
                 color: white;
-                font-size: 30px;
+                font-size: 80px;
             }
 
             .advanced-search {
 
-                button {
-                    border-radius: 100px;
-                    padding: 16px 40px;
+                .advanced-input {
+
+                    display: flex;
+                    justify-content: center;
+              
+                    input {
+                        border-radius: 100px;
+                        width: 400px;
+                        padding-left: 30px;
+                        height: 50px;
+                        margin: 0;
+                        font-size: 16px;
+                        margin-right: 10px;
+                    }
+
+                    button {
+                        border-radius: 100px;
+                        padding: 12px 37px;
+                        color: #fff;
+                        background: #00ccbc;
+                        border: none;
+                        font-weight: 400;
+
+                    }
+
                 }
             }
        }
