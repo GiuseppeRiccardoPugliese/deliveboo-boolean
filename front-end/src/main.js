@@ -8,6 +8,9 @@ import routes from './router.js'
 import './style.scss'
 import App from './App.vue'
 
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 // Routes
 const router = createRouter({
     history: createWebHistory(),
