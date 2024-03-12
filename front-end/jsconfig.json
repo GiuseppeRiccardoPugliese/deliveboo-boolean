@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "checkJs": true
+    },
+    "include": [
+        "./src",
+        "./lib",
+        "./components"
+    ]    
+  }
+  
