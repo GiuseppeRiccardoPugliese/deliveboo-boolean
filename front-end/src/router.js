@@ -7,4 +7,5 @@ import Restaurants from './components/Restaurants.vue'
 export default [
     { path: '/', component: Home },
     { path: '/restaurants', component: Restaurants, name:'Restaurants'},
+    { path: '/details', component: Details, name: 'Details' }
 ]
