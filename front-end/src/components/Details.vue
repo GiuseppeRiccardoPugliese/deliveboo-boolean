@@ -1,18 +1,13 @@
 <script>
-
 export default {
-  name: 'Details',
-}
-
+    name: "Details",
+};
 </script>
 
-
 <template>
-  <div>
-      CARD RESTAURANT
-  </div>
+    <div>
+        CARD RESTAURANT
+    </div>
 </template>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
