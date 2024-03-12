@@ -2,6 +2,27 @@
 
 export default {
   name: 'AppHeader',
+  data() {
+    return {
+      isWide: false // Inizialmente impostato su false
+    };
+  },
+  watch: {
+    // Osserva il cambio di rotta
+    '$route'() {
+      this.verificaCambioRotta();
+    }
+  },
+  methods: {
+    verificaCambioRotta() {
+      // Verifica la rotta corrente e imposta isWide in base ad essa
+      this.isWide = this.$route.name === 'Restaurants';
+    }
+  },
+  mounted() {
+    // Esegui la funzione handleRouteChange al caricamento della pagina
+    this.verificaCambioRotta();
+  }
 }
 
 </script>
@@ -9,17 +30,26 @@ export default {
 
 <template>
   <header>
-    <nav class="navbar">
-      <!-- Rotta per la Home & Logo a sinistra -->
-      <router-link :to="{ name: 'Home' }">
-        <div class="navbar-logo">
-          <img src="../../public/Deliveboo.png" alt="Logo">
-        </div>
-      </router-link>
-      <!-- Pulsante Account -->
-      <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight">Accedi</button>
-    </nav>
+    <transition name="nav-transition">
+      <nav class="navbar">
+        <section class="nav-section" :style="{ maxWidth: isWide ? '1320px' : '100%' }">
+
+          <!-- Rotta per la Home & Logo a sinistra -->
+          <router-link :to="{ name: 'Home' }">
+            <div class="navbar-logo"></div>
+          </router-link>
+    
+          <!-- Pulsante Account -->
+          <div>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+              aria-controls="offcanvasRight">
+              Accedi
+            </button>
+          </div>
+
+        </section>
+      </nav>
+    </transition>
   </header>
 
   <!-- Off-canvas -->
@@ -41,12 +71,22 @@ export default {
 @use '../style/partials/variables' as *;
 
 //NAV SETUP 
+
 .navbar {
+  background-color: #FAFAFF;
+  width: 100%;
+}
+
+.nav-section {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #FAFAFF;
-  padding: 10px 20px;
+  padding: 5px 20px;
+  margin: 0 auto;
+  /* velocità animazione NavBar*/
+  transition: max-width 0.3s ease;
 
   .btn-primary {
     background-color: $btn_color;
@@ -54,14 +94,13 @@ export default {
   }
 
   .navbar-logo {
-    color: white;
-    width: 125px;
+    height: 70px;
+    width: 230px;
     text-decoration: none;
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
+    background-image: url('../../public/Deliveboo1.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
 
