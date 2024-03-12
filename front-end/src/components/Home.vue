@@ -7,9 +7,7 @@ export default {
 </script>
 
 <template>
-    <div>
-        Sono la HOME
-    </div>
+    
 </template>
 
 <style scoped lang="scss">
