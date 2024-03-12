@@ -8,3 +8,19 @@
     // Font
     font-family: 'Comfortaa Variable', system-ui;
 }
+
+body {
+    height: calc(100vh - 60px); /* Altezza del viewport meno l'altezza dell'header */
+    // overflow: hidden; /* Impedisci lo scrolling della pagina */
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+
+}
+
+/* Main content */
+.main-content {
+    flex-grow: 1; 
+    overflow-y: auto; 
+
+}

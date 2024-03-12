@@ -1,3 +1,7 @@
+section {
+    padding-top: 35px;
+}
+
 .arrow-container {
     padding-left: 1rem;
     // vertical-align: baseline;
@@ -26,9 +30,12 @@
 }
 
 .my-card-container{
+    // position: relative;
     display: flex;
     flex-wrap: wrap;
     padding: 0.5rem;
+    z-index: 1000;
+    // margin-top: 80px;
 }
 
 .router-link {
@@ -70,26 +77,24 @@
 h6 {
     font-size: 1.1rem;
     display: block;
-    margin-top: 10px;
+    margin-top: 15px;
     margin-bottom: 5px;
     padding-left: 0.5rem;
 }
 
 p {
-display: block;
-
+    display: block;
+    margin-bottom: 0;
 }
 
 .open-status {
-color: green;
-padding-left: 0.5rem;
-
+    color: green;
+    padding-left: 0.5rem;
 }
 
 .closed-status {
-color: red;
-padding-left: 0.5rem;
-
+    color: red;
+    padding-left: 0.5rem;
 }
   
 

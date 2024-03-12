@@ -44,8 +44,10 @@ export default {
 <template>
   <div>
     <AppHeader />
-    <router-view></router-view>
-    <AppFooter />
+    <div class="main-content">
+      <router-view></router-view>
+      <AppFooter />
+    </div>
   </div>
 
   <!-- Freccia che compare quando scrolli di 100px -->
@@ -61,7 +63,7 @@ export default {
 /* Stili per la freccia */
 .scroll-top-arrow {
   position: fixed;
-  bottom: 20px;
+  bottom: 100px;
   right: 20px;
   font-size: 30px;
   cursor: pointer;

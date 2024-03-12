@@ -29,7 +29,7 @@ export default {
 
 
 <template>
-  <header>
+  <header class="fixed-header">
     <transition name="nav-transition">
       <nav class="navbar">
         <section class="nav-section" :style="{ maxWidth: isWide ? '1320px' : '100%' }">
@@ -70,6 +70,13 @@ export default {
 <style scoped lang="scss">
 @use '../style/partials/variables' as *;
 
+.fixed-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
 //NAV SETUP 
 
 .navbar {
@@ -94,7 +101,7 @@ export default {
   }
 
   .navbar-logo {
-    height: 70px;
+    height: 60px;
     width: 230px;
     text-decoration: none;
     background-image: url('../../public/Deliveboo1.png');
