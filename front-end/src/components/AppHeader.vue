@@ -21,22 +21,6 @@ export default {
         aria-controls="offcanvasRight">Accedi</button>
     </nav>
   </header>
-
-  <!-- Off-canvas -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header border-bottom border-1">
-      <img class="login-logo" src="../../public/Deliveboo.png" alt="Logo">
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <!-- Rotta per la Login page -->
-      <router-link :to="{ name: 'Login' }">
-        <h5 class="offcanvas-title" id="offcanvasRightLabel">Accedi o Registrati!</h5>
-      </router-link>
-    </div>
-  </div>
-
-
   <div class="aaa">
     HEADER
     <router-link :to="{ name: 'Restaurants' }" class="cerca"> <a>cerca</a> </router-link>

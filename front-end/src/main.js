@@ -5,7 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import routes from './router.js'
 
 // General
-import './style.scss'
+import './style/style.scss';
 import App from './App.vue'
 
 import 'bootstrap';
