@@ -35,12 +35,6 @@ export default {
       </router-link>
     </div>
   </div>
-
-
-  <div class="aaa">
-    HEADER
-    <router-link :to="{ name: 'Restaurants' }" class="cerca"> <a>cerca</a> </router-link>
-  </div>
 </template>
 
 <style scoped lang="scss">
