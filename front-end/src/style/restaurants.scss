@@ -1,3 +1,18 @@
+.arrow-container {
+    padding-left: 1rem;
+    // vertical-align: baseline;
+}
+
+.back-arrow {
+    padding-left: 16px;
+    font-size: 2rem;
+}
+
+.restaurants-zone {
+    padding-left: 1rem;
+    font-size: 1.5rem;
+}
+
 .my-container {
     max-width: 1320px;
     min-width: 375px;
@@ -6,8 +21,8 @@
     padding: 0.5rem;
 
     // DEBUG
-    border: 1px solid black;
-    min-height: 300px;
+    // border: 1px solid black;
+    // min-height: 300px;
 }
 
 .my-card-container{
@@ -16,25 +31,65 @@
     padding: 0.5rem;
 }
 
-.my-card{
-    // min-width: 270px;
-    // width: calc((100% / 4) - 16px);
+.router-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.my-card {
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
-    border-radius: 5px;
+    border-radius: 8px;
     margin: 0.5rem;
+    background-color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
-    // DEBUG
-    min-height: 180px;
-    border: 1px solid black;
-    background-color: pink;
+.my-card:hover {
+    transform: scale(1.05);
+}
+
+.restaurant-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 0.3s ease;
+}
+
+.restaurant-image:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
 }
 
 
-@media (max-width: 575px) {
-    /* Stili da applicare quando la larghezza dello schermo è <= 768px */
-    /* Ad esempio, modifiche al layout per dispositivi mobili */
+h6 {
+    font-size: 1.1rem;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-left: 0.5rem;
+}
+
+p {
+display: block;
+
+}
+
+.open-status {
+color: green;
+padding-left: 0.5rem;
+
+}
+
+.closed-status {
+color: red;
+padding-left: 0.5rem;
+
 }
   
 
@@ -47,7 +102,6 @@
 
 @media (min-width: 1025px) and (max-width: 1320px) {
     .my-card{
-        // min-width: 270px;
         width: calc((100% / 3) - 16px);
     }
 }
