@@ -7,7 +7,7 @@ export default {
 </script>
 
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <div class="footer">
             <div class="icone-social">
                 <a href="https://www.facebook.com/?locale=it_IT"> <i class="fa-brands fa-facebook"></i> </a>
@@ -25,7 +25,7 @@ export default {
 
 <style scoped lang="scss">
 
-.container {
+.container-fluid {
     width: 100%;
     height: 80px;
     background-color: #2e3333;
