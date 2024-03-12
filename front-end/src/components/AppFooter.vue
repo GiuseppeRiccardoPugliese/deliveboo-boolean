@@ -17,7 +17,7 @@ export default {
             </div>
 
             <span>
-                    © 2024 Deliveboo
+                © 2024 Deliveboo
             </span>
         </div>
     </div>

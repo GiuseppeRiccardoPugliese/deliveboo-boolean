@@ -7,6 +7,8 @@ export default {
 </script>
 
 <template>
+
+    <!-- sezione dedicata al jumbotron -->
     <div class="container-fluid">
         <div class="jumbotron">
             <div class="col-6 jumbo-title">
@@ -15,7 +17,8 @@ export default {
             <div class="col-6 advanced-search">
                 <div class="advanced-input">
                     <input type="text" placeholder="Inserisci la tua città..">
-                    <button type="button"> Cerca </button>
+                    <!-- La rotta che tramite il cerca porta ai ristoranti -->
+                    <router-link :to="{ name: 'Restaurants' }" class="cerca"> <a>  <button type="button"> Cerca </button> </a> </router-link>
                 </div>
             </div>
 
@@ -63,6 +66,7 @@ export default {
                         margin: 0;
                         font-size: 16px;
                         margin-right: 10px;
+                        border: none;
                     }
 
                     button {
@@ -72,7 +76,6 @@ export default {
                         background: #00ccbc;
                         border: none;
                         font-weight: 400;
-
                     }
 
                 }
