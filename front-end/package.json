@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/comfortaa": "^5.0.19",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "bootstrap-vue": "^2.23.1",

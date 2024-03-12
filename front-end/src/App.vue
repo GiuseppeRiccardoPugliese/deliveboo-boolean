@@ -55,6 +55,7 @@ export default {
 </template>
 
 <style lang="scss">
+@use './style/style.scss' as *;
 @use './style/partials/variables' as *;
 
 /* Stili per la freccia */
