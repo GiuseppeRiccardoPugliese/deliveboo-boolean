@@ -12,7 +12,7 @@ export default {
     <div class="container-fluid">
         <div class="jumbotron">
             <div class="col-6 jumbo-title">
-                <span> I PIATTI CHE AMI DOVE E QUANDO VUOI </span>
+                <span> I piatti che ami dove e quando vuoi </span>
             </div>
             <div class="col-6 advanced-search">
                 <div class="advanced-input">
@@ -41,17 +41,19 @@ export default {
             height: 100%;
             display: flex;
             align-items: center;
-            padding: 30px;
+            padding: 50px;
 
             .jumbo-title {
                 display: flex;
                 justify-content: center;
+                background-color: rgba(0, 0, 0, 0);
             }
 
             span {
                 color: white;
-                font-size: 80px;
+                font-size: 90px;
                 font-weight: 600;
+                text-shadow: 5px 5px 200px black;
             }
 
             .advanced-search {
