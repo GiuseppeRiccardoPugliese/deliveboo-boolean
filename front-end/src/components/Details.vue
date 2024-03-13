@@ -31,11 +31,11 @@ export default {
 </script>
 
 <template>
-    <div class="row m-3" v-if="restaurants">
+    <div class="row m-3" v-if="restaurants[this.$route.params.index]">
         <div
             class="col-12 col-md-6 d-flex justify-content-center align-items-center"
         >
-            <img :src="restaurants[this.$route.params.index].immagine" alt="" class="img_product" />
+            <img :src="restaurants[this.$route.params.index].immagine" alt="" class="img_product"/>
         </div>
         <div class="col-12 col-md-6 text-center text-md-start">
             <h1>{{ restaurants[this.$route.params.index].nome }}</h1>
