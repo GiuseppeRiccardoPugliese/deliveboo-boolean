@@ -1,43 +1,63 @@
 <script>
-
-import data from '../../public/server.json';
-
 export default {
     name: "Details",
-    data(){
-        return{
-            oggetti: data
-        }
-    }
+    data() {
+        return {
+            restaurants: [],
+        };
+
+    },
+    mounted() {
+        // Chiamata per recuperare i dati dei ristoranti
+        this.fetchData();
+        console.log(this.$route.params.index);
+        console.log(this.restaurants)
+    },
+    methods: {
+        fetchData() {
+            // Simulazione della chiamata API
+            fetch("/server.json")
+                .then((response) => response.json())
+                .then((data) => {
+                    // Imposta i dati dei ristoranti ottenuti dalla chiamata API
+                    this.restaurants = data;
+                })
+                .catch((error) => {
+                    console.error("Si è verificato un errore:", error);
+                });
+        },
+    },
 };
 </script>
 
 <template>
-    <div class="row m-3">
-        <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
-            <img :src="oggetti[0].immagine" alt="" class="img_product"/>
+    <div class="row m-3" v-if="restaurants">
+        <div
+            class="col-12 col-md-6 d-flex justify-content-center align-items-center"
+        >
+            <img :src="restaurants[3].immagine" alt="" class="img_product" />
         </div>
         <div class="col-12 col-md-6 text-center text-md-start">
-            <h1>{{ oggetti[0].nome }}</h1>
-            <h4 class="text-black-50">{{ oggetti[0].citta }}</h4>
-            <h4 class="text-black-50">{{ oggetti[0].indirizzo }}</h4>
-            <h5 class="text-success" v-if="oggetti[0].aperto === true">APERTO</h5>
+            <h1>{{ restaurants[3].nome }}</h1>
+            <h4 class="text-black-50">{{ restaurants[3].citta }}</h4>
+            <h4 class="text-black-50">{{ restaurants[3].indirizzo }}</h4>
+            <h5 class="text-success" v-if="restaurants[3].aperto === true">
+                APERTO
+            </h5>
             <h5 class="text-danger" v-else>CHIUSO</h5>
         </div>
-    </div>
-    <div class="menu">
-        <h1 class="text-center mt-4">MENU</h1>
-        <h2>ANTIPASTI:</h2>
-        <!-- <div v-for="object in oggetti">
+        <div class="menu">
+            <h1 class="text-center mt-4">MENU</h1>
+            <h2>ANTIPASTI:</h2>
+            <!-- <div v-for="object in oggetti">
             <h3></h3>
         </div> -->
+        </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-
-.img_product{
+.img_product {
     width: 100%;
 }
-
 </style>
