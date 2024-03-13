@@ -35,7 +35,7 @@ export default {
         <section class="nav-section" :style="{ maxWidth: isWide ? '1320px' : '100%' }">
 
           <!-- Rotta per la Home & Logo a sinistra -->
-          <router-link :to="{ name: 'Home' }">
+          <router-link :to="{ name: 'Carousel' }">
             <div class="navbar-logo">
               <img src="../../public/Deliveboo1.png" alt="Deliveboo Logo">
             </div>
