@@ -4,11 +4,16 @@
 import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
+import Home from './components/Home.vue';
+import Carousel from './components/Carousel.vue';
+
 
 export default {
   components: {
     AppHeader,
     AppFooter,
+    Home,
+    Carousel,
   },
   data() {
     return {
@@ -45,6 +50,7 @@ export default {
   <div>
     <AppHeader />
     <div class="main-content">
+      <Home />
       <router-view></router-view>
       <AppFooter />
     </div>
