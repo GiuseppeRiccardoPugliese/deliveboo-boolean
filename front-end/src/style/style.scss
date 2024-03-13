@@ -8,3 +8,15 @@
     // Font
     font-family: 'Comfortaa Variable', system-ui;
 }
+
+body {
+    // height: calc(100vh - 60px);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content */
+.main-content {
+    flex-grow: 1; 
+}

@@ -1,10 +1,11 @@
 .arrow-container {
+    display: flex;
+    align-items: center;
     padding-left: 1rem;
-    // vertical-align: baseline;
 }
 
 .back-arrow {
-    padding-left: 16px;
+    padding-left: 1rem;
     font-size: 2rem;
 }
 
@@ -18,7 +19,7 @@
     min-width: 375px;
     border-radius: 5px;
     margin: 0 auto;
-    padding: 0.5rem;
+    padding: 1rem 0.5rem 10rem 0.5rem;
 
     // DEBUG
     // border: 1px solid black;
@@ -70,26 +71,24 @@
 h6 {
     font-size: 1.1rem;
     display: block;
-    margin-top: 10px;
+    margin-top: 15px;
     margin-bottom: 5px;
     padding-left: 0.5rem;
 }
 
 p {
-display: block;
-
+    display: block;
+    margin-bottom: 0;
 }
 
 .open-status {
-color: green;
-padding-left: 0.5rem;
-
+    color: green;
+    padding-left: 0.5rem;
 }
 
 .closed-status {
-color: red;
-padding-left: 0.5rem;
-
+    color: red;
+    padding-left: 0.5rem;
 }
   
 

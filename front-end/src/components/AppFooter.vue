@@ -27,18 +27,16 @@ export default {
 
 .container-fluid {
     width: 100%;
-    height: 80px;
     background-color: #2e3333;
 
     .footer {
         width: 80%;
+        height: 60px;
         margin: 0 auto;
-        height: 80px;
         display: flex;
         color: white;
         justify-content: space-between;
         align-items: center;
-        // padding: 0 0px;
 
         i {
             padding: 5px;

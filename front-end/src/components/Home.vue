@@ -37,6 +37,7 @@ export default {
     background-image: url(../../public/img/jumbotron2.jpg);
     background-size: cover;
 
+
     .jumbotron {
 
         width: 100%;

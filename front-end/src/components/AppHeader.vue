@@ -29,14 +29,16 @@ export default {
 
 
 <template>
-  <header>
+  <header class="fixed-header">
     <transition name="nav-transition">
       <nav class="navbar">
         <section class="nav-section" :style="{ maxWidth: isWide ? '1320px' : '100%' }">
 
           <!-- Rotta per la Home & Logo a sinistra -->
           <router-link :to="{ name: 'Home' }">
-            <div class="navbar-logo"></div>
+            <div class="navbar-logo">
+              <img src="../../public/Deliveboo1.png" alt="Deliveboo Logo">
+            </div>
           </router-link>
     
           <!-- Pulsante Account -->
@@ -70,11 +72,19 @@ export default {
 <style scoped lang="scss">
 @use '../style/partials/variables' as *;
 
+.fixed-header {
+  // position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
 //NAV SETUP 
 
 .navbar {
   background-color: #FAFAFF;
   width: 100%;
+  padding: 0;
 }
 
 .nav-section {
@@ -83,7 +93,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   background-color: #FAFAFF;
-  padding: 5px 20px;
+  padding: 0 20px;
   margin: 0 auto;
   /* velocità animazione NavBar*/
   transition: max-width 0.3s ease;
@@ -94,14 +104,20 @@ export default {
   }
 
   .navbar-logo {
-    height: 70px;
-    width: 230px;
+    height: 60px;
+    // width: 230px;
     text-decoration: none;
-    background-image: url('../../public/Deliveboo1.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+    // background-image: url('../../public/Deliveboo1.png');
+    // background-size: contain;
+    // background-position: center;
+    // background-repeat: no-repeat;
+    padding: 0.5rem 0;
   }
+
+  img {
+    height: 40px;
+  }
+
 }
 
 //OFF CANVAS 

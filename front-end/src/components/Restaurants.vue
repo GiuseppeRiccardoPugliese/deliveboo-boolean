@@ -4,14 +4,18 @@ export default {
   data() {
     return {
       // Array per memorizzare i dati dei ristoranti
-      ristoranti: [] 
+      ristoranti: [],
     };
   },
+
   mounted() {
     // Chiamata per recuperare i dati dei ristoranti
     this.fetchData(); 
+    
   },
+  
   methods: {
+
     fetchData() {
       // Simulazione della chiamata API
       fetch('/server.json')
@@ -24,10 +28,12 @@ export default {
           console.error('Si è verificato un errore:', error);
         });
     },
+
     goBack() {
       // Funzione per tornare alla pagina precedente
       this.$router.go(-1);
-    }
+    },
+    
   }
 };
 </script>
