@@ -13,7 +13,6 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
-        "@fontsource-variable/comfortaa": "^5.0.19",
         "@popperjs/core": "^2.11.6",
         "bootstrap": "^5.3.3"
     }
