@@ -37,13 +37,13 @@ export default {
     <div class="arrow-container">
         <span class="back-arrow">
             <!-- Evento click per tornare indietro -->
-            <i @click="goBack" class="fa-solid fa-circle-left"></i>
+            <i @click="goBack" class="fa-solid fa-circle-left my-4 ms-3"></i>
         </span>
         <span class="restaurants-zone">
             <strong>Ristoranti</strong>
         </span>
     </div>
-    <div class="row m-3" v-if="restaurants[this.$route.params.index]">
+    <div class="row mx-3 mb-3" v-if="restaurants[this.$route.params.index]">
         <div
             class="col-12 col-md-6 d-flex justify-content-center align-items-center"
         >
