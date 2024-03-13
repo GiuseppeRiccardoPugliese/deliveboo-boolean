@@ -4,7 +4,6 @@ export default {
   data() {
     return {
       login: true,
-      registrazione: true,
       registraAzienda: true,
     }
   },
@@ -13,14 +12,9 @@ export default {
       this.login = false
     },
 
-    registerCompany() {
-      this.registrazione = false
-    },
-
     log() {
 
       this.login = true
-      this.registrazione = true
       this.registraAzienda = true
     }
   }
@@ -49,7 +43,7 @@ export default {
   </form>
 
   <!-- Registra Utente -->
-  <form action="#" class="login" v-if="registrazione === true && login === false">
+  <!-- <form action="#" class="login" v-if="registrazione === true && login === false">
     <h2>Registrati</h2>
     <div class="input">
       <label class="label" for="name">Nome</label>
@@ -73,29 +67,33 @@ export default {
     </div>
     <div>Vuoi registrarti come ristoratore?<a href="#" @click="registerCompany">Registra Azienda</a></div>
 
-  </form>
+  </form>-->
 
 
-  <!-- Registra Azienda -->
-  <form action="#" class="login" v-if="registrazione === false && login === false && registraAzienda === true">
-    <h2>Registra azienda</h2>
+  <!-- Registra Ristorante -->
+  <form action="#" class="login" v-if="login === false && registraAzienda === true">
+    <h2>Registra ristorante</h2>
     <div class="input">
-      <label class="label" for="name">Nome Azienda</label>
+      <label class="label" for="name">Nome ristorante: </label>
       <input type="text" name="name" class="p-2">
     </div>
     <div class="input">
-      <label class="label" for="email">Indirizzo email</label>
-      <input type="text" name="email" placeholder="es:name@example.com" class="p-2">
+      <label class="label" for="email">Indirizzo email: </label>
+      <input type="text" name="email" placeholder="es: name@example.com" class="p-2">
     </div>
     <div class="input">
-      <label class="label" for="password">Password</label>
+      <label class="label" for="address">Indirizzo ristorante: </label>
+      <input type="text" name="address" placeholder="es: Via Milano 1, 20100" class="p-2">
+    </div>
+    <div class="input">
+      <label class="label" for="password">Password: </label>
       <input type="password" name="password" placeholder="password" class="p-2">
     </div>
     <div class="input">
       <label class="label" for="piva">PIVA</label>
-      <input type="text" name="piva" class="p-2">
+      <input type="text" name="piva" placeholder="12345678901" class="p-2">
     </div>
-    <label for="tipo">Tipo di Azienza</label>
+    <label for="tipo">Tipologia ristorante: </label>
     <select name="tipo" id="tipo" class="my-3 ms-3">
       <option value="#">Sushi</option>
       <option value="#">Pizzeria</option>

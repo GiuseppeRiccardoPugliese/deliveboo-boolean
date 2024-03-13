@@ -8,6 +8,9 @@ import routes from './router.js';
 import './style/style.scss';
 import App from './App.vue';
 
+// Importo lo swiper
+import 'swiper/swiper-bundle.css';
+
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';

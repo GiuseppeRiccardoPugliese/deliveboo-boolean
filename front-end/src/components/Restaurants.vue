@@ -56,7 +56,7 @@ export default {
         <!-- Utilizza v-for per iterare sui ristoranti e mostrare i dati -->
         <div class="my-card" v-for="(ristorante, index) in ristoranti" :key="index">
 
-          <router-link :to="{ name: 'Details' }" class="router-link">
+          <router-link :to="{ name: 'Details', params: {index: index} }" class="router-link">
             <div class="restaurant-image" :style="{ backgroundImage: 'url(' + ristorante.immagine + ')' }"></div>
             <h6>{{ ristorante.nome }}</h6>
             <p v-if="ristorante.aperto" class="open-status">Aperto</p>
@@ -73,4 +73,12 @@ export default {
 
 <style scoped lang="scss">
   @import '../style/restaurants.scss';
+
+  .back-arrow{
+
+    i:hover{
+      cursor: pointer;
+    }
+
+  }
 </style>
