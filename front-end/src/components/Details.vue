@@ -45,7 +45,7 @@ export default {
     </div>
     <div class="row mx-3 mb-3" v-if="restaurants[this.$route.params.index]">
         <div
-            class="col-12 col-md-6 d-flex justify-content-center align-items-center"
+            class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-4"
         >
             <img
                 :src="restaurants[this.$route.params.index].immagine"
@@ -53,7 +53,7 @@ export default {
                 class="img_product"
             />
         </div>
-        <div class="col-12 col-md-6 text-center text-md-start">
+        <div class="col-12 col-md-6 text-center text-md-start mb-4">
             <h1>{{ restaurants[this.$route.params.index].nome }}</h1>
             <h4 class="text-black-50">
                 {{ restaurants[this.$route.params.index].citta }}
@@ -69,12 +69,50 @@ export default {
             </h5>
             <h5 class="text-danger" v-else>CHIUSO</h5>
         </div>
-        <div class="menu">
-            <h1 class="text-center mt-4">MENU</h1>
-            <h2>ANTIPASTI:</h2>
-            <!-- <div v-for="object in oggetti">
-            <h3></h3>
-        </div> -->
+        <div class="menu text-center border-top">
+            <h1 class="mt-4">MENU</h1>
+            <h2 v-if="restaurants[this.$route.params.index].menu.Antipasti" class="mt-5">ANTIPASTI:</h2>
+            <div v-for="(plate,i) in restaurants[this.$route.params.index].menu.Antipasti" :key="i" class="mt-4 d-flex flex-column">
+                <h5>{{ plate.nome }}</h5>
+                <span>{{ plate.descrizione }}</span>
+                <strong>{{ plate.prezzo }}€</strong>
+            </div>
+            <h2 v-if="restaurants[this.$route.params.index].menu.PrimiPiatti" class="mt-5">PRIMI PIATTI:</h2>
+            <div v-for="(plate,i) in restaurants[this.$route.params.index].menu.PrimiPiatti" :key="i" class="mt-4 d-flex flex-column">
+                <h5>{{ plate.nome }}</h5>
+                <span>{{ plate.descrizione }}</span>
+                <strong>{{ plate.prezzo }}€</strong>
+            </div>
+            <h2 v-if="restaurants[this.$route.params.index].menu.SecondiPiatti" class="mt-5">SECONDI PIATTI:</h2>
+            <div v-for="(plate,i) in restaurants[this.$route.params.index].menu.SecondiPiatti" :key="i" class="mt-4 d-flex flex-column">
+                <h5>{{ plate.nome }}</h5>
+                <span>{{ plate.descrizione }}</span>
+                <strong>{{ plate.prezzo }}€</strong>
+            </div>
+            <h2 v-if="restaurants[this.$route.params.index].menu.Pizze" class="mt-5">PIZZE:</h2>
+            <div v-for="(plate,i) in restaurants[this.$route.params.index].menu.Pizze" :key="i" class="mt-4 d-flex flex-column">
+                <h5>{{ plate.nome }}</h5>
+                <span>{{ plate.descrizione }}</span>
+                <strong>{{ plate.prezzo }}€</strong>
+            </div>
+            <h2 v-if="restaurants[this.$route.params.index].menu.SushiESashimi" class="mt-5">SUSHI:</h2>
+            <div v-for="(plate,i) in restaurants[this.$route.params.index].menu.SushiESashimi" :key="i" class="mt-4 d-flex flex-column">
+                <h5>{{ plate.nome }}</h5>
+                <span>{{ plate.descrizione }}</span>
+                <strong>{{ plate.prezzo }}€</strong>
+            </div>
+            <h2 v-if="restaurants[this.$route.params.index].menu.Dolci" class="mt-5">DOLCI:</h2>
+            <div v-for="(plate,i) in restaurants[this.$route.params.index].menu.Dolci" :key="i" class="mt-4 d-flex flex-column">
+                <h5>{{ plate.nome }}</h5>
+                <span>{{ plate.descrizione }}</span>
+                <strong>{{ plate.prezzo }}€</strong>
+            </div>
+            <h2 v-if="restaurants[this.$route.params.index].menu.Bevande" class="mt-5">BEVANDE:</h2>
+            <div v-for="(plate,i) in restaurants[this.$route.params.index].menu.Bevande" :key="i" class="mt-4 d-flex flex-column">
+                <h5>{{ plate.nome }}</h5>
+                <span>{{ plate.descrizione }}</span>
+                <strong>{{ plate.prezzo }}€</strong>
+            </div>
         </div>
     </div>
 </template>

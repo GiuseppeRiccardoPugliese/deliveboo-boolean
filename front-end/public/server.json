@@ -79,7 +79,7 @@
             "prezzo": 7.0
             }
         ],
-        "Primi Piatti": [
+        "PrimiPiatti": [
             {
             "nome": "Pasta alla carbonara",
             "descrizione": "Spaghetti con uovo, pancetta, pecorino e pepe nero",
@@ -91,7 +91,7 @@
             "prezzo": 12.0
             }
         ],
-        "Secondi Piatti": [
+        "SecondiPiatti": [
             {
             "nome": "Filetto di branzino al forno",
             "descrizione": "Filetto di branzino cotto al forno con patate e olive",
@@ -152,7 +152,7 @@
             "prezzo": 5.0
             }
         ],
-        "Sushi e Sashimi": [
+        "SushiESashimi": [
             {
             "nome": "Sushi assortito",
             "descrizione": "Selezione di sushi misto",
@@ -225,7 +225,7 @@
               "prezzo": 10.0
             }
           ],
-          "Primi Piatti": [
+          "PrimiPiatti": [
             {
               "nome": "Risotto ai Funghi Porcini",
               "descrizione": "Risotto cremoso con funghi porcini freschi",
@@ -237,7 +237,7 @@
               "prezzo": 12.0
             }
           ],
-          "Secondi Piatti": [
+          "SecondiPiatti": [
             {
               "nome": "Tagliata di Manzo",
               "descrizione": "Fettine di manzo grigliate servite con rucola e grana",
@@ -298,7 +298,7 @@
               "prezzo": 8.0
             }
           ],
-          "Primi Piatti": [
+          "PrimiPiatti": [
             {
               "nome": "Risotto ai Frutti di Mare",
               "descrizione": "Risotto cremoso con gamberi, cozze e vongole",
@@ -310,7 +310,7 @@
               "prezzo": 12.0
             }
           ],
-          "Secondi Piatti": [
+          "SecondiPiatti": [
             {
               "nome": "Saltimbocca alla Romana",
               "descrizione": "Fettine di vitello con prosciutto crudo e salvia",
@@ -371,7 +371,7 @@
               "prezzo": 14.0
             }
           ],
-          "Primi Piatti": [
+          "PrimiPiatti": [
             {
               "nome": "Spaghetti alle Vongole",
               "descrizione": "Spaghetti con vongole veraci, aglio, olio e peperoncino",
@@ -383,7 +383,7 @@
               "prezzo": 13.0
             }
           ],
-          "Secondi Piatti": [
+          "SecondiPiatti": [
             {
               "nome": "Frittura di Pesce",
               "descrizione": "Assortimento di pesce fritto (gamberi, calamari, triglie)",
@@ -444,7 +444,7 @@
               "prezzo": 10.0
             }
           ],
-          "Primi Piatti": [
+          "PrimiPiatti": [
             {
               "nome": "Risotto al Nero di Seppia",
               "descrizione": "Risotto con calamari e nero di seppia",
@@ -456,7 +456,7 @@
               "prezzo": 12.0
             }
           ],
-          "Secondi Piatti": [
+          "SecondiPiatti": [
             {
               "nome": "Cotoletta alla Milanese",
               "descrizione": "Cotoletta di vitello impanata e fritta",
@@ -517,7 +517,7 @@
               "prezzo": 9.0
             }
           ],
-          "Primi Piatti": [
+          "PrimiPiatti": [
             {
               "nome": "Pasta e Patate",
               "descrizione": "Pasta con patate, pomodoro e basilico",
@@ -529,7 +529,7 @@
               "prezzo": 12.0
             }
           ],
-          "Secondi Piatti": [
+          "SecondiPiatti": [
             {
               "nome": "Parmigiana di Melanzane",
               "descrizione": "Melanzane fritte con salsa di pomodoro e mozzarella",
@@ -590,7 +590,7 @@
               "prezzo": 12.0
             }
           ],
-          "Primi Piatti": [
+          "PrimiPiatti": [
             {
               "nome": "Linguine allo Scoglio",
               "descrizione": "Linguine con frutti di mare",
@@ -602,7 +602,7 @@
               "prezzo": 18.0
             }
           ],
-          "Secondi Piatti": [
+          "SecondiPiatti": [
             {
               "nome": "Frittura di Pesce",
               "descrizione": "Assortimento di pesce fritto (calamari, gamberi, triglie)",
@@ -663,7 +663,7 @@
               "prezzo": 10.0
             }
           ],
-          "Primi Piatti": [
+          "PrimiPiatti": [
             {
               "nome": "Penne all'Arrabbiata",
               "descrizione": "Penne con salsa di pomodoro e peperoncino",
@@ -675,7 +675,7 @@
               "prezzo": 15.0
             }
           ],
-          "Secondi Piatti": [
+          "SecondiPiatti": [
             {
               "nome": "Tagliata di Manzo",
               "descrizione": "Fettine di manzo grigliate con rucola e grana",
@@ -736,7 +736,7 @@
               "prezzo": 10.0
             }
           ],
-          "Primi Piatti": [
+          "PrimiPiatti": [
             {
               "nome": "Spaghetti alle Vongole",
               "descrizione": "Spaghetti con vongole veraci, aglio, olio e peperoncino",
@@ -748,7 +748,7 @@
               "prezzo": 18.0
             }
           ],
-          "Secondi Piatti": [
+          "SecondiPiatti": [
             {
               "nome": "Grigliata Mista di Pesce",
               "descrizione": "Assortimento di pesce alla griglia (spada, gamberi, branzino)",
@@ -809,7 +809,7 @@
               "prezzo": 8.0
             }
           ],
-          "Primi Piatti": [
+          "PrimiPiatti": [
             {
               "nome": "Gnocchi al Gorgonzola",
               "descrizione": "Gnocchi con salsa al gorgonzola e noci",
@@ -821,7 +821,7 @@
               "prezzo": 11.0
             }
           ],
-          "Secondi Piatti": [
+          "SecondiPiatti": [
             {
               "nome": "Bistecca alla Fiorentina",
               "descrizione": "Bistecca di manzo alla griglia",
@@ -882,7 +882,7 @@
               "prezzo": 14.0
             }
           ],
-          "Primi Piatti": [
+          "PrimiPiatti": [
             {
               "nome": "Risotto ai Funghi Porcini",
               "descrizione": "Risotto cremoso con funghi porcini freschi",
@@ -894,7 +894,7 @@
               "prezzo": 18.0
             }
           ],
-          "Secondi Piatti": [
+          "SecondiPiatti": [
             {
               "nome": "Grigliata Mista di Pesce",
               "descrizione": "Assortimento di pesce alla griglia (spada, gamberi, branzino)",
@@ -955,7 +955,7 @@
               "prezzo": 6.0
             }
           ],
-          "Primi Piatti": [
+          "PrimiPiatti": [
             {
               "nome": "Ramen",
               "descrizione": "Zuppa di noodles giapponese con carne o pesce",
@@ -967,7 +967,7 @@
               "prezzo": 14.0
             }
           ],
-          "Secondi Piatti": [
+          "SecondiPiatti": [
             {
               "nome": "Teriyaki di Pollo",
               "descrizione": "Pollo cotto alla griglia con salsa teriyaki",
@@ -1028,7 +1028,7 @@
               "prezzo": 10.0
             }
           ],
-          "Primi Piatti": [
+          "PrimiPiatti": [
             {
               "nome": "Pasta alla Puttanesca",
               "descrizione": "Pasta con pomodoro, olive, capperi e acciughe",
@@ -1040,7 +1040,7 @@
               "prezzo": 14.0
             }
           ],
-          "Secondi Piatti": [
+          "SecondiPiatti": [
             {
               "nome": "Grigliata Mista di Pesce",
               "descrizione": "Assortimento di pesce alla griglia (spada, gamberi, branzino)",
