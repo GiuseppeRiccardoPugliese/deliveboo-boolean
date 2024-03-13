@@ -35,13 +35,13 @@ export default {
         <div
             class="col-12 col-md-6 d-flex justify-content-center align-items-center"
         >
-            <img :src="restaurants[3].immagine" alt="" class="img_product" />
+            <img :src="restaurants[this.$route.params.index].immagine" alt="" class="img_product" />
         </div>
         <div class="col-12 col-md-6 text-center text-md-start">
-            <h1>{{ restaurants[3].nome }}</h1>
-            <h4 class="text-black-50">{{ restaurants[3].citta }}</h4>
-            <h4 class="text-black-50">{{ restaurants[3].indirizzo }}</h4>
-            <h5 class="text-success" v-if="restaurants[3].aperto === true">
+            <h1>{{ restaurants[this.$route.params.index].nome }}</h1>
+            <h4 class="text-black-50">{{ restaurants[this.$route.params.index].citta }}</h4>
+            <h4 class="text-black-50">{{ restaurants[this.$route.params.index].indirizzo }}</h4>
+            <h5 class="text-success" v-if="restaurants[this.$route.params.index].aperto === true">
                 APERTO
             </h5>
             <h5 class="text-danger" v-else>CHIUSO</h5>
