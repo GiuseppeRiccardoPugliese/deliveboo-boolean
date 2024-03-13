@@ -10,17 +10,13 @@
 }
 
 body {
-    height: calc(100vh - 60px); /* Altezza del viewport meno l'altezza dell'header */
-    // overflow: hidden; /* Impedisci lo scrolling della pagina */
+    // height: calc(100vh - 60px);
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-top: 60px;
-
 }
 
 /* Main content */
 .main-content {
     flex-grow: 1; 
-    overflow-y: auto; 
-
 }

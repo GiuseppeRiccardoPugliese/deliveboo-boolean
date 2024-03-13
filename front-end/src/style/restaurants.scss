@@ -1,14 +1,11 @@
-section {
-    padding-top: 35px;
-}
-
 .arrow-container {
+    display: flex;
+    align-items: center;
     padding-left: 1rem;
-    // vertical-align: baseline;
 }
 
 .back-arrow {
-    padding-left: 16px;
+    padding-left: 1rem;
     font-size: 2rem;
 }
 
@@ -22,7 +19,7 @@ section {
     min-width: 375px;
     border-radius: 5px;
     margin: 0 auto;
-    padding: 0.5rem;
+    padding: 1rem 0.5rem 10rem 0.5rem;
 
     // DEBUG
     // border: 1px solid black;
@@ -30,12 +27,9 @@ section {
 }
 
 .my-card-container{
-    // position: relative;
     display: flex;
     flex-wrap: wrap;
     padding: 0.5rem;
-    z-index: 1000;
-    // margin-top: 80px;
 }
 
 .router-link {
