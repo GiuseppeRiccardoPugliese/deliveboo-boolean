@@ -73,4 +73,12 @@ export default {
 
 <style scoped lang="scss">
   @import '../style/restaurants.scss';
+
+  .back-arrow{
+
+    i:hover{
+      cursor: pointer;
+    }
+
+  }
 </style>
