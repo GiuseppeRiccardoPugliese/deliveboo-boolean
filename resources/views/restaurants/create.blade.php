@@ -1,18 +1,39 @@
 @extends('layouts.app')
 @section('content')
     <h2>Crea ristorante</h2>
+
+    @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
     <form action="{{ route('restaurant.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('POST')
+
+        <select name="user_id" id="user_id">
+            @foreach ($users as $user)
+                <option value="{{ $user->id }}">
+                    {{ $user->name }}
+                </option>
+            @endforeach
+        </select>
 
         <div class="input">
             <label class="label" for="name">Nome ristorante: </label>
             <input type="text" name="name" class="p-2">
         </div>
+
         <div class="input">
             <label class="label" for="address">Indirizzo ristorante: </label>
             <input type="text" name="address" placeholder="es: Via Milano 1, 20100" class="p-2">
         </div>
+
         <div class="input">
             <label class="label" for="piva">PIVA</label>
             <input type="text" name="piva" placeholder="12345678901" class="p-2">

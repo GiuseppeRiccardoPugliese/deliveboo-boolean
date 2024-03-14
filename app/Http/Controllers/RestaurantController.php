@@ -64,7 +64,7 @@ class RestaurantController extends Controller
 
         $restaurant->save();
 
-        return redirect()->route('restaurants.index');
+        return redirect()->route('restaurant.index');
     }
 
     /**
