@@ -28,11 +28,11 @@ export default {
     <h2>Accedi</h2>
     <div class="input">
       <label class="label" for="email">Indirizzo email</label>
-      <input type="text" name="email" placeholder="es:name@example.com" class="p-2">
+      <input type="text" name="email" placeholder="es:name@example.com" class="p-2" required>
     </div>
     <div class="input">
       <label class="label" for="password">Password</label>
-      <input type="password" name="password" placeholder="password" class="p-2">
+      <input type="password" name="password" placeholder="password" class="p-2" required>
     </div>
 
     <div class="button">
@@ -75,26 +75,26 @@ export default {
     <h2>Registra ristorante</h2>
     <div class="input">
       <label class="label" for="name">Nome ristorante: </label>
-      <input type="text" name="name" class="p-2">
+      <input type="text" name="name" class="p-2" required>
     </div>
     <div class="input">
       <label class="label" for="email">Indirizzo email: </label>
-      <input type="text" name="email" placeholder="es: name@example.com" class="p-2">
+      <input type="text" name="email" placeholder="es: name@example.com" class="p-2" required>
     </div>
     <div class="input">
       <label class="label" for="address">Indirizzo ristorante: </label>
-      <input type="text" name="address" placeholder="es: Via Milano 1, 20100" class="p-2">
+      <input type="text" name="address" placeholder="es: Via Milano 1, 20100" class="p-2" required>
     </div>
     <div class="input">
       <label class="label" for="password">Password: </label>
-      <input type="password" name="password" placeholder="password" class="p-2">
+      <input type="password" name="password" placeholder="password" class="p-2" required>
     </div>
     <div class="input">
       <label class="label" for="piva">PIVA</label>
-      <input type="text" name="piva" placeholder="12345678901" class="p-2">
+      <input type="text" name="piva" placeholder="12345678901" class="p-2" required>
     </div>
     <label for="tipo">Tipologia ristorante: </label>
-    <select name="tipo" id="tipo" class="my-3 ms-3">
+    <select name="tipo" id="tipo" class="my-3 ms-3" required>
       <option value="#">Sushi</option>
       <option value="#">Pizzeria</option>
       <option value="#">Kebab</option>
