@@ -20,6 +20,14 @@
             Ciao {{ Auth::user()->name }}
         </h2>
 
+        <select name="user_id" id="user_id">
+            @foreach ($users as $user)
+                <option value="{{ Auth::user()->name }}">
+                    {{ $user->name }}
+                </option>
+            @endforeach
+        </select>
+
         <div class="input">
             <label class="label" for="name">Nome ristorante: </label>
             <input type="text" name="name" class="p-2">
