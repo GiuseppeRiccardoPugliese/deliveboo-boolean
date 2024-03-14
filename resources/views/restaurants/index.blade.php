@@ -1,10 +1,14 @@
 @extends('layouts.app')
 @section('content')
-    <h1>Il mio ristorante: </h1>
+    @unless (Auth::check())
+        <h1>Ecco la lista di tutti i ristoranti: </h1>
+    @endunless
 
-    {{-- CREATE --}}
     @auth
         @if (!$restaurants->where('user_id', Auth::id())->count())
+            <h1>Crea il tuo ristorante da sogno!</h1>
+
+            {{-- CREATE --}}
             <a href="{{ route('restaurant.create') }}">CREATE</a>
         @endif
     @endauth

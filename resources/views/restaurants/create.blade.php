@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('content')
-    <h1 class="text-center">Crea ristorante</h1>
+
+
+    <h2 class="text-center">
+        Ciao {{ Auth::user()->name }}!
+    </h2>
+
+    <h1 class="text-center">Crea il tuo ristorante</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -18,9 +24,6 @@
         @csrf
         @method('PUT')
 
-        <h2>
-            Ciao {{ Auth::user()->name }}
-        </h2>
 
         {{-- <select name="user_id" id="user_id">
             @foreach ($users as $user)
