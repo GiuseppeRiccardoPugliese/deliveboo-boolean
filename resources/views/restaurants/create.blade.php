@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <h2>Crea ristorante</h2>
+    <h1 class="text-center">Crea ristorante</h1>
 
     @if ($errors->any())
             <div class="alert alert-danger">
@@ -12,17 +12,13 @@
             </div>
         @endif
 
-    <form action="{{ route('restaurant.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('restaurant.store') }}" method="POST" enctype="multipart/form-data" class="mt-4 d-flex flex-column justify-content-center align-items-center">
         @csrf
         @method('POST')
 
-        <select name="user_id" id="user_id">
-            @foreach ($users as $user)
-                <option value="{{ $user->id }}">
-                    {{ $user->name }}
-                </option>
-            @endforeach
-        </select>
+        <h2>
+            Ciao {{ Auth::user()->name }}
+        </h2>
 
         <div class="input">
             <label class="label" for="name">Nome ristorante: </label>
@@ -42,10 +38,14 @@
         <label class="label" for="visible">Visibilit&agrave;: </label>
         <input type="checkbox" name="visible" value="1">
 
-        <label for="image">Image</label>
-        <input type="file" name="image" id="image" accept="image/png">
-
-        <input type="submit" value="CREATE">
+        <div>
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image" accept="image/png">
+        </div>
+        <div class="mt-4">
+            <input type="submit" value="CREATE">
+        </div>
+        
     </form>
 @endsection
 

@@ -18,11 +18,7 @@ use Illuminate\Support\Facades\Route;
 //Rotta in Index RISTORANTI
 Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurant.index');
 
-//Rotta CREATE RISTORANTI
-Route::get('/restaurants/create', [RestaurantController::class, 'create'])->name('restaurant.create');
 
-//Rotta STORE RISTORANTI
-Route::post('/restaurants/create', [RestaurantController::class, 'store'])->name('restaurant.store');
 
 
 
@@ -36,6 +32,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    //Rotta CREATE RISTORANTI
+    Route::get('/restaurants/create', [RestaurantController::class, 'create'])->name('restaurant.create');
+
+    //Rotta STORE RISTORANTI
+    Route::post('/restaurants/create', [RestaurantController::class, 'store'])->name('restaurant.store');
 });
 
 require __DIR__ . '/auth.php';
