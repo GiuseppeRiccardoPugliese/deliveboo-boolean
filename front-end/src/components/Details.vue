@@ -63,9 +63,9 @@ export default {
         </div>
         <div class="col-12 col-md-6 text-center text-md-start mb-4">
             <h1>{{ restaurants[this.$route.params.index].name }}</h1>
-            <h4 class="text-black-50">
+            <!-- <h4 class="text-black-50">
                 {{ restaurants[this.$route.params.index].citta }}
-            </h4>
+            </h4> -->
             <h4 class="text-black-50">
                 {{ restaurants[this.$route.params.index].address }}
             </h4>
