@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Restaurant;
+use App\Models\Tipology;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
@@ -13,7 +18,9 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        //
+        $restaurants = Restaurant::all();
+
+        return view('restaurants.index', compact('restaurants'));
     }
 
     /**
@@ -23,7 +30,10 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        // $tipologies = Tipology::all();
+        $users = User::all();
+
+        return view('restaurants.create', compact('users'));
     }
 
     /**
@@ -34,7 +44,27 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        //Gestione IMG
+        $img = $data['image'];
+        $img_path = Storage::disk('public')->put('images', $img);
+
+        //Prendo l'ID dello USER
+        $user = User::find($data['user_id']);
+
+        $restaurant = new Restaurant();
+        $restaurant->name = $data['name'];
+        $restaurant->piva = $data['piva'];
+        $restaurant->image = $img_path;
+        $restaurant->address = $data['address'];
+        $restaurant->visible = isset($data['visible']) ? true : false;
+
+        $restaurant->user()->associate($user);
+
+        $restaurant->save();
+
+        return redirect()->route('restaurants.index');
     }
 
     /**

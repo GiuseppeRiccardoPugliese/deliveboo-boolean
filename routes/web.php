@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Rotta in Index RISTORANTI
+Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurant.index');
+
+//Rotta CREATE RISTORANTI
+Route::get('/restaurants/create', [RestaurantController::class, 'create'])->name('restaurant.create');
+
+//Rotta STORE RISTORANTI
+Route::post('/restaurants/create', [RestaurantController::class, 'store'])->name('restaurant.store');
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -28,4 +38,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
