@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Rotta in Index RISTORANTI
-Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurant.index');
+Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');
 
 
 
@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/restaurants/create', [RestaurantController::class, 'create'])->name('restaurant.create');
 
     //Rotta STORE RISTORANTI
-    Route::post('/restaurants/create', [RestaurantController::class, 'store'])->name('restaurant.store');
+    Route::put('/restaurants/create/{id}', [RestaurantController::class, 'store'])->name('restaurant.store');
 });
 
 require __DIR__ . '/auth.php';

@@ -3,18 +3,20 @@
     <h1 class="text-center">Crea ristorante</h1>
 
     @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-    <form action="{{ route('restaurant.store') }}" method="POST" enctype="multipart/form-data" class="mt-4 d-flex flex-column justify-content-center align-items-center">
+
+    <form action="{{ route('restaurant.store', Auth::user()->id) }}" method="POST" enctype="multipart/form-data"
+        class="mt-4 d-flex flex-column justify-content-center align-items-center">
         @csrf
-        @method('POST')
+        @method('PUT')
 
         <h2>
             Ciao {{ Auth::user()->name }}
@@ -45,7 +47,7 @@
         <div class="mt-4">
             <input type="submit" value="CREATE">
         </div>
-        
+
     </form>
 @endsection
 

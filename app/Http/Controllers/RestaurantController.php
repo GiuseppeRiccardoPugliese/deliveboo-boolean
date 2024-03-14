@@ -42,7 +42,7 @@ class RestaurantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $data = $request->all();
 
@@ -51,7 +51,7 @@ class RestaurantController extends Controller
         $img_path = Storage::disk('public')->put('images', $img);
 
         //Prendo l'ID dello USER
-        $user = User::find($data['user_id']);
+        $user = User::find($id);
 
         $restaurant = new Restaurant();
         $restaurant->name = $data['name'];
