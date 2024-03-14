@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+
+            $table->string('number_order')->unique();
+            $table->decimal('price', $precision = 6, $scale = 2);
+            $table->string('guest_name');
+            $table->string('guest_address');
+            $table->string('guest_email')->unique();
+
             $table->timestamps();
         });
     }

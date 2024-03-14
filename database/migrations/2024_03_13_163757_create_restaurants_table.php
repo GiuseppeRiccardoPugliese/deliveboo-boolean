@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
+
+            $table->string('piva')->unique();
+            $table->string('address');
+            $table->string('image');
+            $table->boolean('visible');
+
             $table->timestamps();
         });
     }

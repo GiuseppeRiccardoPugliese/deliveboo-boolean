@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('tipologies', function (Blueprint $table) {
             $table->id();
+
+            $table->string('name')->notNullable();
+
             $table->timestamps();
         });
     }
