@@ -32,11 +32,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     //Rotta CREATE RISTORANTI
     Route::get('/restaurants/create', [RestaurantController::class, 'create'])->name('restaurant.create');
 
     //Rotta STORE RISTORANTI
     Route::put('/restaurants/create/{id}', [RestaurantController::class, 'store'])->name('restaurant.store');
+
+    //Rotta DELETE RISTORANti
+    Route::delete('/restaurants/{id}', [RestaurantController::class, 'destroy'])->name('restaurants.destroy');
+
+    //Rotta INDEX 
 });
 
 require __DIR__ . '/auth.php';

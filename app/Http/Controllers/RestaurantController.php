@@ -109,6 +109,19 @@ class RestaurantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Trova il ristorante da eliminare
+        $restaurant = Restaurant::find($id);
+
+        // Verifica se il ristorante esiste
+        if ($restaurant) {
+            // Elimina il ristorante
+            $restaurant->delete();
+
+            // Ritorna alla pagina precedente con un messaggio di successo
+            return redirect()->back()->with('success', 'Ristorante eliminato con successo.');
+        } else {
+            // Se il ristorante non esiste, ritorna alla pagina precedente con un messaggio di errore
+            return redirect()->back()->with('error', 'Impossibile trovare il ristorante da eliminare.');
+        }
     }
 }
