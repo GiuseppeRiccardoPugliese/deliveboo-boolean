@@ -20,4 +20,15 @@ class ProfileUpdateRequest extends FormRequest
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
         ];
     }
+
+    // public function messages()
+    // {
+    //     return [
+    //         'name.string' => 'Il nome deve essere una stringa.',
+    //         'name.max' => 'Il nome non può superare i 255 caratteri.',
+    //         'email.email' => 'L\'indirizzo email non è valido.',
+    //         'email.max' => 'L\'indirizzo email non può superare i 255 caratteri.',
+    //         'email.unique' => 'Questo indirizzo email è già stato utilizzato.',
+    //     ];
+    // }
 }

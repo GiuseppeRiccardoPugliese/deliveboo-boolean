@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\RestaurantRequest;
 use App\Models\Restaurant;
 use App\Models\Tipology;
 use App\Models\User;
@@ -42,7 +43,7 @@ class RestaurantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(RestaurantRequest $request, $id)
     {
         $data = $request->all();
 

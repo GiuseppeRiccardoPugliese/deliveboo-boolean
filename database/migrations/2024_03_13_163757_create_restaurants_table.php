@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('piva')->unique();
             $table->string('address');
             $table->string('image');
-            $table->boolean('visible');
+            $table->boolean('visible')->default(true);
 
             $table->timestamps();
         });

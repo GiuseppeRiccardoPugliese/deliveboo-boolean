@@ -7,6 +7,7 @@ use App\Models\Dish;
 use App\Models\Restaurant;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\DishRequest;
 use Illuminate\Support\Facades\Auth;
 
 class DishController extends Controller
@@ -39,7 +40,7 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DishRequest $request)
     {
 
         $data = $request->all();
@@ -96,7 +97,7 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DishRequest $request, $id)
     {
         $data = $request->all();
 

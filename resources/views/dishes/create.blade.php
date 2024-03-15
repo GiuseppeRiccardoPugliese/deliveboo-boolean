@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+    {{-- VALIDATION REQUEST --}}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{ route('dish.store') }}" method="POST" enctype="multipart/form-data"
         class="mt-4 d-flex flex-column justify-content-center align-items-center">
         @csrf
