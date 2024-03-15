@@ -21,18 +21,6 @@ export default {
             });
     },
     methods: {
-        /* fetchData() {
-            // Simulazione della chiamata API
-            fetch("/server.json")
-                .then((response) => response.json())
-                .then((data) => {
-                    // Imposta i dati dei ristoranti ottenuti dalla chiamata API
-                    this.restaurants = data;
-                })
-                .catch((error) => {
-                    console.error("Si è verificato un errore:", error);
-                });
-        }, */
         goBack() {
             // Funzione per tornare alla pagina precedente
             this.$router.go(-1);
