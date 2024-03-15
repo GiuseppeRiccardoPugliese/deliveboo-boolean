@@ -29,7 +29,7 @@ class DishTableSeeder extends Seeder
                 'description' => 'Pasta lunga condita con uovo, pancetta, pepe nero e formaggio Parmigiano.',
                 'price' => 12.75,
                 'image' => 'spaghetti_carbonara.jpg',
-                'visible' => true,
+                'visible' => false,
             ],
             [
                 'name' => 'Risotto ai Funghi Porcini',

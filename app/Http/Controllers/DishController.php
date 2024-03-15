@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+use App\Models\Dish;
+use App\Models\Restaurant;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DishController extends Controller
 {
@@ -13,7 +18,8 @@ class DishController extends Controller
      */
     public function index()
     {
-        //
+        $dishes = Dish::all();
+        return view('dishes.index', compact('dishes'));
     }
 
     /**
@@ -23,7 +29,8 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        $dishes = Dish::all();
+        return view('dishes.create', compact('dishes'));
     }
 
     /**
@@ -34,7 +41,28 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $data = $request->all();
+
+        //Gestione IMG
+        $img = $data['image'];
+        $img_path = Storage::disk('public')->put('images', $img);
+
+        $user = Auth::user();
+        $restaurant_id = $user->restaurant->id;
+
+        $dish = new Dish();
+
+        $dish->name = $data['name'];
+        $dish->description = $data['description'];
+        $dish->price = $data['price'];
+        $dish->image = $img_path; //CREO LA IMG
+        $dish->visible = isset($data['visible']) ? true : false;
+
+        $dish->restaurant_id = $restaurant_id;
+        $dish->save();
+
+        return redirect()->route('dish.index');
     }
 
     /**
@@ -45,7 +73,8 @@ class DishController extends Controller
      */
     public function show($id)
     {
-        //
+        $dish = Dish::find($id);
+        return view('dishes.show', compact('dish'));
     }
 
     /**
@@ -56,7 +85,8 @@ class DishController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dish = Dish::find($id);
+        return view('dishes.edit', compact('dish'));
     }
 
     /**
@@ -68,7 +98,27 @@ class DishController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        //Gestione IMG
+        $img = $data['image'];
+        $img_path = Storage::disk('public')->put('images', $img);
+
+        $user = Auth::user();
+        $restaurant_id = $user->restaurant->id;
+
+        $dish = Dish::find($id);
+
+        $dish->name = $data['name'];
+        $dish->description = $data['description'];
+        $dish->price = $data['price'];
+        $dish->image = $img_path; //CREO LA IMG
+        $dish->visible = isset($data['visible']) ? true : false;
+
+        $dish->restaurant_id = $restaurant_id;
+        $dish->save();
+
+        return redirect()->route('dish.index');
     }
 
     /**
@@ -79,6 +129,9 @@ class DishController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dish = Dish::find($id);
+        $dish->delete();
+
+        return redirect()->route('dish.index');
     }
 }
