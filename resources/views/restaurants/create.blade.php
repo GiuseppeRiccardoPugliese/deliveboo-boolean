@@ -19,7 +19,7 @@
     @endif
 
 
-    <form action="{{ route('restaurant.store', Auth::user()->id) }}" method="POST" enctype="multipart/form-data"
+    <form id="myForm" action="{{ route('restaurant.store', Auth::user()->id) }}" method="POST" enctype="multipart/form-data"
         class="mt-4 d-flex flex-column justify-content-center align-items-center">
         @csrf
         @method('PUT')
@@ -35,33 +35,123 @@
 
         <div class="input">
             <label class="label" for="name">Nome ristorante: </label>
-            <input type="text" name="name" class="p-2">
+            <input type="text" id="name" name="name" class="p-2">
+            <div id="nameError" style="color: red; display: none;"></div>
         </div>
 
         <div class="input">
             <label class="label" for="address">Indirizzo ristorante: </label>
-            <input type="text" name="address" placeholder="es: Via Milano 1, 20100" class="p-2">
+            <input id="address" type="text" name="address" placeholder="es: Via Milano 1, 20100" class="p-2">
+            <div id="addressError" style="color: red; display: none;"></div>
         </div>
 
         <div class="input">
             <label class="label" for="piva">PIVA</label>
-            <input type="text" name="piva" placeholder="12345678901" class="p-2">
+            <input type="text" id="piva" name="piva" placeholder="12345678901" class="p-2">
+            <div id="pivaError" style="color: red; display: none;"></div>
         </div>
 
         <label class="label" for="visible">Visibilit&agrave;: </label>
         <input type="checkbox" name="visible" value="1">
 
-        <div>
+        <div class="mt-2">
+            <span class="d-block">Tipo di file (jpg, png, jpeg): </span>
             <label for="image">Image</label>
-            <input type="file" name="image" id="image" accept="image/png">
+            <input type="file" name="image" id="image">
+            <div id="imageError" style="color: red; display: none;"></div>
         </div>
         <div class="mt-4">
             <input type="submit" value="CREATE">
         </div>
 
     </form>
-@endsection
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Previeni l'invio del modulo predefinito
 
+            let counter = 0;
+
+            // Recupera il valore di input della PIVA
+            let pivaValue = document.getElementById("piva").value;
+            let restaurantName = document.getElementById("name").value;
+            let restaurantAddress = document.getElementById("address").value;
+            let img = document.getElementById("image");
+
+            counter = counter + checkPiva(pivaValue, counter);
+            counter = counter + checkName(restaurantName, counter);
+            counter = counter + checkAddress(restaurantAddress, counter);
+            counter = counter + checkImage(img, counter);
+            console.log(counter);
+
+            if (counter === 4) {
+                this.submit();
+            }
+        });
+
+        function checkPiva(pivaValue, counter) {
+            counter = 0;
+            if (pivaValue.length === 0) {
+                document.getElementById("pivaError").style.display = "block";
+                document.getElementById("pivaError").innerHTML = "Compilare questo campo";
+            } else if (!isNaN(pivaValue) && pivaValue.length === 11) {
+                document.getElementById("pivaError").style.display = "none";
+                counter++;
+            } else {
+                document.getElementById("pivaError").style.display = "block";
+                document.getElementById("pivaError").innerHTML = "La P.IVA deve essere composta da 11 cifre numeriche.";
+            }
+            return counter;
+        }
+
+        function checkName(restaurantName, counter) {
+            counter = 0;
+            if (restaurantName.length === 0) {
+                document.getElementById("nameError").style.display = "block";
+                document.getElementById("nameError").innerHTML = "Compilare questo campo";
+            } else {
+                document.getElementById("nameError").style.display = "none";
+                counter++;
+            }
+            return counter;
+        }
+
+        function checkAddress(restaurantAddress, counter) {
+            counter = 0;
+            if (restaurantAddress.length === 0) {
+                document.getElementById("addressError").style.display = "block";
+                document.getElementById("addressError").innerHTML = "Compilare questo campo";
+            } else {
+                document.getElementById("addressError").style.display = "none";
+                counter++;
+            }
+            return counter;
+        }
+
+        function checkImage(img, counter) {
+            counter = 0;
+
+            // Ottieni il file selezionato dall'utente
+            let file = img.files[0];
+
+            // Verifica se un file è stato selezionato
+            if (file) {
+                // Verifica se il tipo del file è tra quelli consentiti
+                if (file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes(
+                        'image/jpg')) {
+                    document.getElementById("imageError").style.display = "none";
+                    counter++;
+                } else {
+                    document.getElementById("imageError").style.display = "block";
+                    document.getElementById("imageError").innerHTML = "Formato non supportato";
+                }
+            } else {
+                console.log('Nessun file selezionato');
+            }
+
+            return counter;
+        }
+    </script>
+@endsection
 
 
 <style lang="scss" scoped>
