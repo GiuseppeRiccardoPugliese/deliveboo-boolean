@@ -65,6 +65,9 @@
         </div>
 
     </form>
+
+
+    {{-- VALIDATION CLIENT-SIDE --}}
     <script>
         document.getElementById("myForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Previeni l'invio del modulo predefinito
@@ -145,7 +148,8 @@
                     document.getElementById("imageError").innerHTML = "Formato non supportato";
                 }
             } else {
-                console.log('Nessun file selezionato');
+                document.getElementById("imageError").style.display = "block";
+                document.getElementById("imageError").innerHTML = "Immagine non caricata";
             }
 
             return counter;

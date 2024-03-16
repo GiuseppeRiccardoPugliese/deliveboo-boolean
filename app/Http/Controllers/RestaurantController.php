@@ -112,6 +112,7 @@ class RestaurantController extends Controller
     {
         // Trova il ristorante da eliminare
         $restaurant = Restaurant::find($id);
+        $restaurant->dishes()->delete();
         $restaurant->delete();
 
         return redirect()->route('restaurant.index');

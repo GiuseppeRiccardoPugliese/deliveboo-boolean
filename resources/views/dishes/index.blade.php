@@ -14,7 +14,7 @@
     <ul>
         @foreach ($dishes as $dish)
             @if (Auth::check())
-                @if (Auth::user()->id == $dish->restaurant_id)
+                @if (Auth::user()->id == $dish->restaurant->user_id)
                     <li>
                         {{-- SHOW --}}
                         <a href="{{ route('dish.show', $dish->id) }}">
