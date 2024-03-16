@@ -8,6 +8,7 @@ use App\Models\Restaurant;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\DishRequest;
+use App\Http\Requests\EditDishRequest;
 use Illuminate\Support\Facades\Auth;
 
 class DishController extends Controller
@@ -97,13 +98,13 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(DishRequest $request, $id)
+    public function update(EditDishRequest $request, $id)
     {
         $data = $request->all();
 
         //Gestione IMG
-        $img = $data['image'];
-        $img_path = Storage::disk('public')->put('images', $img);
+        // $img = $data['image'];
+        // $img_path = Storage::disk('public')->put('images', $img);
 
         $user = Auth::user();
         $restaurant_id = $user->restaurant->id;
@@ -113,7 +114,16 @@ class DishController extends Controller
         $dish->name = $data['name'];
         $dish->description = $data['description'];
         $dish->price = $data['price'];
-        $dish->image = $img_path; //CREO LA IMG
+
+        if ($request->hasFile('image')) {
+            // Carica l'immagine e salva il percorso
+            $img_path = $request->file('image')->store('images', 'public');
+
+            // Aggiorna il percorso dell'immagine nel modello dell'insegnante
+            $dish->image = $img_path;
+        }
+
+        // $dish->image = $img_path; //CREO LA IMG
         $dish->visible = isset($data['visible']) ? true : false;
 
         $dish->restaurant_id = $restaurant_id;
