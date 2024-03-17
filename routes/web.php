@@ -19,12 +19,6 @@ use Illuminate\Support\Facades\Route;
 //Rotta in Index RISTORANTI
 Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index');
 
-//Rotta INDEX PIATTI
-Route::get('/dishes', [DishController::class, 'index'])->name('dish.index');
-
-
-
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -35,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    //Rotta INDEX PIATTI
+    Route::get('/dishes', [DishController::class, 'index'])->name('dish.index');
 
     //Rotta CREATE RISTORANTI
     Route::get('/restaurants/create', [RestaurantController::class, 'create'])->name('restaurant.create');
@@ -45,7 +41,8 @@ Route::middleware('auth')->group(function () {
     //Rotta DELETE RISTORANTI
     Route::delete('/restaurants/{id}', [RestaurantController::class, 'destroy'])->name('restaurants.destroy');
 
-
+    //Rotta SHOW RISTORANTI
+    Route::get('/restaurant{id}', [RestaurantController::class, 'show'])->name('restaurant.show');
 
     //Rotta CREATE DISH
     Route::get('/dishes/create', [DishController::class, 'create'])->name('dish.create');

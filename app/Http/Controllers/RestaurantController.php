@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\RestaurantRequest;
 use App\Models\Restaurant;
+use App\Models\Dish;
 use App\Models\Tipology;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -76,7 +77,9 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        //
+        $dishes = Dish::all();
+        $restaurant = Restaurant::find($id);
+        return view('dishes.index', compact('restaurant', 'dishes'));
     }
 
     /**
