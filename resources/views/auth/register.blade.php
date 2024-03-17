@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Registrati') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" id="myForm">
                             @csrf
 
                             <div class="mb-4 row">
@@ -78,45 +78,145 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Nome ristorante') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="restaurant_name" type="name" class="form-control" name="restaurant_name"
-                                        required autocomplete="restaurant_name">
+                                    <input id="restaurant_name" type="name"
+                                        class="form-control @error('restaurant_name') is-invalid @enderror"
+                                        name="restaurant_name" required autocomplete="restaurant_name">
+
+                                    @error('restaurant_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             {{-- INDIRIZZO RISTORANTE --}}
                             <div class="mb-4 row">
-                                <label class="label" for="address">Indirizzo ristorante: </label>
-                                <input id="address" type="text" name="address" placeholder="es: Via Milano 1, 20100"
-                                    class="p-2">
-                                <div id="addressError" style="color: red; display: none;"></div>
+                                <label for="restaurant_address"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo ristorante') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="restaurant_address" type="name"
+                                        class="form-control @error('restaurant_address') is-invalid @enderror"
+                                        name="restaurant_address" required autocomplete="restaurant_address">
+
+                                    @error('restaurant_address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
 
-                            {{-- P.IVA RISTORANTE --}}
+                            {{-- PIVA RISTORANTE --}}
                             <div class="mb-4 row">
-                                <label class="label" for="piva">PIVA</label>
-                                <input type="text" id="piva" name="piva" placeholder="12345678901"
-                                    class="p-2">
-                                <div id="pivaError" style="color: red; display: none;"></div>
+                                <label for="piva"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('P.IVA') }}</label>
+                                <div class="col-md-6">
+                                    <input id="piva" type="text"
+                                        class="form-control @error('piva') is-invalid @enderror" name="piva" required
+                                        autocomplete="piva">
+                                    <div id="pivaError" style="color: red; display: none;"></div>
+                                    @error('piva')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                    <div id="pivaError" style="display:none"></div>
+                                </div>
                             </div>
+
+                            <script>
+                                document.getElementById("myForm").addEventListener("submit", function(event) {
+                                    event.preventDefault(); // Previeni l'invio del modulo predefinito
+
+                                    let counter = 0;
+
+                                    let pivaValue = document.getElementById("piva").value;
+                                    let img = document.getElementById("image");
+
+                                    counter = counter + checkPiva(pivaValue, counter);
+                                    counter = counter + checkImage(img, counter);
+                                    if (counter === 2) {
+                                        this.submit();
+                                    }
+                                });
+
+                                function checkPiva(pivaValue, counter) {
+                                    counter = 0;
+                                    if (!isNaN(pivaValue) && pivaValue.length === 11) {
+                                        document.getElementById("pivaError").style.display = "none";
+                                        counter++;
+                                    } else {
+                                        document.getElementById("pivaError").style.display = "block";
+                                        document.getElementById("pivaError").innerHTML = "La P.IVA deve essere composta da 11 cifre numeriche.";
+                                    }
+                                    return counter;
+                                }
+                            </script>
 
                             {{-- VISIBILITA' RISTORANTE --}}
                             <div class="mb-4 row">
-                                <label class="label" for="visible">Visibilit&agrave;: </label>
-                                <input type="checkbox" name="visible" value="1">
+                                <label for="visible"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Visibilità') }}</label>
+                                <div class="offset-md-10 "></div>
+                                <div class="col-md-1">
+                                    <input id="visible" type="checkbox"
+                                        class="form-control @error('visible') is-invalid @enderror" name="visible"
+                                        value="1" autocomplete="visible" checked>
+                                    @error('visible')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
 
-                            {{-- IMAGE RISTORANTE --}}
+
+                            {{-- IMMAGINE DEL RISTORANTE --}}
                             <div class="mb-4 row">
                                 <span class="d-block">Tipo di file (jpg, png, jpeg): </span>
-                                <label for="image">Image</label>
-                                <input type="file" name="image" id="image">
-                                <div id="imageError" style="color: red; display: none;"></div>
+                                <label for="image"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Immagine del Ristorante') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="image" type="file" name="image">
+
+                                    <div id="imageError" style="color: red; display: none;"></div>
+                                </div>
                             </div>
+
+                            <script>
+                                function checkImage(img, counter) {
+                                    counter = 0;
+
+                                    // Ottieni il file selezionato dall'utente
+                                    let file = img.files[0];
+
+                                    // Verifica se un file è stato selezionato
+                                    if (file) {
+                                        // Verifica se il tipo del file è tra quelli consentiti
+                                        if (file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes(
+                                                'image/jpg')) {
+                                            document.getElementById("imageError").style.display = "none";
+                                            counter++;
+                                        } else {
+                                            document.getElementById("imageError").style.display = "block";
+                                            document.getElementById("imageError").innerHTML = "Formato non supportato";
+                                        }
+                                    } else {
+                                        document.getElementById("imageError").style.display = "block";
+                                        document.getElementById("imageError").innerHTML = "Immagine non caricata";
+                                    }
+
+                                    return counter;
+                                }
+                            </script>
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+                                        {{ __('Registrati') }}
                                     </button>
                                 </div>
                             </div>

@@ -54,7 +54,7 @@ class RegisteredUserController extends Controller
         $restaurant->name = $data['restaurant_name'];
         $restaurant->piva = $data['piva'];
         $restaurant->image = $img_path;
-        $restaurant->address = $data['address'];
+        $restaurant->address = $data['restaurant_address'];
         $restaurant->visible = isset($data['visible']) ? true : false;
 
         $restaurant->user()->associate($user);
