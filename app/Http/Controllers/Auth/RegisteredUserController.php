@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Restaurant;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +34,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -41,6 +43,23 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $data = $request->all();
+
+        //Gestione IMG
+        $img = $data['image'];
+        $img_path = Storage::disk('public')->put('images', $img);
+
+        $restaurant = new Restaurant();
+        $restaurant->name = $data['restaurant_name'];
+        $restaurant->piva = $data['piva'];
+        $restaurant->image = $img_path;
+        $restaurant->address = $data['address'];
+        $restaurant->visible = isset($data['visible']) ? true : false;
+
+        $restaurant->user()->associate($user);
+
+        $restaurant->save();
 
         event(new Registered($user));
 
