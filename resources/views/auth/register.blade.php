@@ -13,7 +13,7 @@
 
                             <div class="mb-4 row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome Utente') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -30,7 +30,7 @@
 
                             <div class="mb-4 row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -64,7 +64,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -74,11 +74,14 @@
 
                             {{-- NOME RISTORANTE --}}
                             <div class="mb-4 row">
-                                <label class="label" for="restaurant_name">Nome ristorante: </label>
-                                <input type="text" id="restaurant_name" name="restaurant_name" class="p-2">
-                                <div id="nameError" style="color: red; display: none;"></div>
-                            </div>
+                                <label for="restaurant_name"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome ristorante') }}</label>
 
+                                <div class="col-md-6">
+                                    <input id="restaurant_name" type="name" class="form-control" name="restaurant_name"
+                                        required autocomplete="restaurant_name">
+                                </div>
+                            </div>
 
                             {{-- INDIRIZZO RISTORANTE --}}
                             <div class="mb-4 row">
