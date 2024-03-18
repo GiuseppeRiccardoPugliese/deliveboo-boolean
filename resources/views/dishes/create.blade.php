@@ -42,24 +42,23 @@
                     <div id="imageError" style="color: red; display: none;"></div>
                 </div>
 
-                <div>
+                {{-- <div>
                     <span class="d-block">Tipo di file (jpg, png, jpeg): </span>
                     <label for="image">Image</label>
                     <input type="file" name="image" id="image">
                     <div id="imageError" style="color: red; display: none;"></div>
-                </div>
+                </div> --}}
 
                 {{-- <label class="label" for="visible">Visibilit&agrave;: </label>
                 <input type="checkbox" name="visible" value="1"> --}}
 
-                <div class="mt-4">
+                {{-- <div class="mt-4">
                     <input type="submit" value="CREATE">
-                </div>
-            </form>
+                </div> --}}
 
-            <div class="input-group">
-                <button type="submit" class="btn btn-primary btn-sm">CREATE</button>
-            </div>
+                <div class="input-group">
+                    <button type="submit" class="btn btn-primary btn-sm">CREATE</button>
+                </div>
             </form>
         </div>
     </div>
