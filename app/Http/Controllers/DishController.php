@@ -43,29 +43,37 @@ class DishController extends Controller
      */
     public function store(DishRequest $request)
     {
-
         $data = $request->all();
-
-        //Gestione IMG
-        $img = $data['image'];
-        $img_path = Storage::disk('public')->put('images', $img);
-
+    
+        // Verifico se è stata fornita un'immagine
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Carico l'immagine solo se è stata fornita
+            $img = $request->file('image');
+            $img_path = Storage::disk('public')->put('images', $img);
+    
+            // Assegno il percorso dell'immagine al campo 'image' del piatto
+            $data['image'] = $img_path;
+        } else {
+            // Se l'immagine non è stata fornita, imposto il percorso su null
+            $data['image'] = null;
+        }
+    
         $user = Auth::user();
         $restaurant_id = $user->restaurant->id;
-
+    
         $dish = new Dish();
-
+    
         $dish->name = $data['name'];
         $dish->description = $data['description'];
         $dish->price = $data['price'];
-        $dish->image = $img_path; //CREO LA IMG
-        $dish->visible = isset($data['visible']) ? true : false;
-
+        $dish->image = $data['image'];
+        $dish->visible = true;
         $dish->restaurant_id = $restaurant_id;
         $dish->save();
-
+    
         return redirect()->route('dish.index');
     }
+    
 
     /**
      * Display the specified resource.

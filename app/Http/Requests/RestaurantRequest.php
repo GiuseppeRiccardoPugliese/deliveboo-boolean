@@ -27,7 +27,7 @@ class RestaurantRequest extends FormRequest
             'name' => 'required|string|max:255',
             'piva' => ['required', 'min:11', 'max:11', 'regex:/^[0-9]{11}$/'],
             'address' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'visible' => 'nullable|boolean',
         ];
     }
@@ -45,7 +45,7 @@ class RestaurantRequest extends FormRequest
             'address.required' => 'L\'indirizzo è obbligatorio.',
             'address.string' => 'L\'indirizzo deve essere una stringa.',
             'address.max' => 'L\'indirizzo non può superare i 255 caratteri.',
-            'image.required' => 'L\'immagine è obbligatoria.',
+            // 'image.required' => 'L\'immagine è obbligatoria.',
             'image.image' => 'Il file deve essere un\'immagine.',
             'image.mimes' => 'L\'immagine deve essere un file di tipo: jpeg, png, jpg o gif.',
             'image.max' => 'L\'immagine non può superare i 2048 kilobytes.',
