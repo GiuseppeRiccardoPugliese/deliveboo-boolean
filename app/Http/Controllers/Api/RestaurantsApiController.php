@@ -9,9 +9,10 @@ use App\Models\Restaurant;
 
 class RestaurantsApiController extends Controller
 {
-    public function index() {
+    public function index()
+    {
 
-        $restaurants = Restaurant::all(); 
+        $restaurants = Restaurant::with('tipologies')->get();
 
         return response()->json($restaurants);
     }

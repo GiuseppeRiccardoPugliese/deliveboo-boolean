@@ -10,11 +10,13 @@ export default {
         };
     },
     mounted() {
+
         // Chiamata per recuperare i dati dei ristoranti
         axios
             .get("http://localhost:8000/api/v1/restaurants")
             .then((response) => {
                 this.restaurants = response.data;
+
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
@@ -29,6 +31,7 @@ export default {
             .catch((error) => {
                 console.error("Error fetching data:", error);
             });
+
     },
     methods: {
         goBack() {
@@ -50,17 +53,12 @@ export default {
         </span>
     </div>
     <div class="row mx-3 mb-3" v-if="restaurants[this.$route.params.index]">
-        <div
-            class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-4"
-        >
-            <img
-                :src="restaurants[this.$route.params.index].image"
-                alt=""
-                class="img_product"
-            />
+        <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-4">
+            <img :src="restaurants[this.$route.params.index].image" alt="" class="img_product" />
         </div>
         <div class="col-12 col-md-6 text-center text-md-start mb-4">
             <h1>{{ restaurants[this.$route.params.index].name }}</h1>
+            <h1 v-for=" tipo in restaurants[this.$route.params.index].tipologies">{{ tipo.name }}</h1>
             <!-- <h4 class="text-black-50">
                 {{ restaurants[this.$route.params.index].citta }}
             </h4> -->
@@ -84,6 +82,7 @@ export default {
                     </div>
                 </div>
             </div>
+            <!-- {{ restaurants[this.$route.params.index].tipologies.name }} -->
         </div>
     </div>
 </template>

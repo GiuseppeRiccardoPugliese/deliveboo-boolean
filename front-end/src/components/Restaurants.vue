@@ -37,7 +37,6 @@ export default {
         },
         getImageUrl(ristorante) {
 
-
             return `http://localhost:8000/storage/${ristorante.image}`;
         },
     },
