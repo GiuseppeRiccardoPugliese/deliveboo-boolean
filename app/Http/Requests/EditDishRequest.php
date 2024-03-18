@@ -44,7 +44,7 @@ class EditDishRequest extends FormRequest
             'price.numeric' => 'Il prezzo deve essere un numero.',
             'price.min' => 'Il prezzo minimo consentito è :min.',
             'price.max' => 'Il prezzo massimo consentito è :max.',
-            'image.required' => 'L\'immagine è obbligatoria.',
+            // 'image.required' => 'L\'immagine è obbligatoria.',
             'image.image' => 'Il file caricato deve essere un\'immagine.',
             'image.mimes' => 'Il formato dell\'immagine deve essere JPEG, PNG, JPG o GIF.',
             'image.max' => 'La dimensione massima consentita per l\'immagine è 2MB.',
