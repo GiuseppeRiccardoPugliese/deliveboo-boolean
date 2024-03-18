@@ -37,34 +37,41 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+    
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+    
         $data = $request->all();
-
-        //Gestione IMG
-        $img = $data['image'];
-        $img_path = Storage::disk('public')->put('images', $img);
-
+    
+        // Verifica se è stata fornita un'immagine
+        if ($request->hasFile('image')) {
+            // Carica l'immagine solo se è stata fornita
+            $img = $request->file('image');
+            $img_path = Storage::disk('public')->put('images', $img);
+    
+            // Assegna il percorso dell'immagine al campo 'image' del ristorante
+            $data['image'] = $img_path;
+        }
+    
         $restaurant = new Restaurant();
         $restaurant->name = $data['restaurant_name'];
         $restaurant->piva = $data['piva'];
-        $restaurant->image = $img_path;
+        $restaurant->image = $data['image'] ?? null; // Assegna null se non è stata fornita un'immagine
         $restaurant->address = $data['restaurant_address'];
-        $restaurant->visible = isset($data['visible']) ? true : false;
-
+        // $restaurant->visible = isset($data['visible']) ? true : false;
+    
         $restaurant->user()->associate($user);
-
+    
         $restaurant->save();
-
+    
         event(new Registered($user));
-
+    
         Auth::login($user);
-
+    
         return redirect(RouteServiceProvider::HOME);
     }
+    
 }

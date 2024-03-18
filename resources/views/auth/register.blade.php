@@ -13,7 +13,7 @@
 
                             <div class="mb-4 row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome Utente') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Nome Utente') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -30,7 +30,7 @@
 
                             <div class="mb-4 row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Indirizzo E-Mail') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -47,7 +47,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -64,7 +64,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Conferma Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -75,7 +75,7 @@
                             {{-- NOME RISTORANTE --}}
                             <div class="mb-4 row">
                                 <label for="restaurant_name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome ristorante') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Nome ristorante') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="restaurant_name" type="name"
@@ -93,7 +93,7 @@
                             {{-- INDIRIZZO RISTORANTE --}}
                             <div class="mb-4 row">
                                 <label for="restaurant_address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo ristorante') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Indirizzo ristorante') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="restaurant_address" type="name"
@@ -111,7 +111,7 @@
                             {{-- PIVA RISTORANTE --}}
                             <div class="mb-4 row">
                                 <label for="piva"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('P.IVA') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*P.IVA') }}</label>
                                 <div class="col-md-6">
                                     <input id="piva" type="text"
                                         class="form-control @error('piva') is-invalid @enderror" name="piva" required
@@ -156,7 +156,7 @@
                             </script>
 
                             {{-- VISIBILITA' RISTORANTE --}}
-                            <div class="mb-4 row">
+                            {{-- <div class="mb-4 row">
                                 <label for="visible"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Visibilità') }}</label>
                                 <div class="offset-md-10 "></div>
@@ -170,7 +170,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                             {{-- IMMAGINE DEL RISTORANTE --}}
@@ -188,30 +188,38 @@
 
                             <script>
                                 function checkImage(img, counter) {
-                                    counter = 0;
+                                    // Se seleziono un file
+                                    if (img.files.length > 0) {
+                                        counter = 0;
 
-                                    // Ottieni il file selezionato dall'utente
-                                    let file = img.files[0];
+                                        // File selezionato
+                                        let file = img.files[0];
 
-                                    // Verifica se un file è stato selezionato
-                                    if (file) {
-                                        // Verifica se il tipo del file è tra quelli consentiti
+                                        // Verifica del tipo di file
                                         if (file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes(
                                                 'image/jpg')) {
-                                            document.getElementById("imageError").style.display = "none";
-                                            counter++;
+                                            // Verifica se la dimensione del file è inferiore a 2 MB
+                                            if (file.size <= 2048 * 1024) {
+                                                document.getElementById("imageError").style.display = "none";
+                                                counter++;
+                                            } else {
+                                                document.getElementById("imageError").style.display = "block";
+                                                document.getElementById("imageError").innerHTML = "Dimensione del file superiore a 2MB";
+                                            }
                                         } else {
                                             document.getElementById("imageError").style.display = "block";
                                             document.getElementById("imageError").innerHTML = "Formato non supportato";
                                         }
                                     } else {
-                                        document.getElementById("imageError").style.display = "block";
-                                        document.getElementById("imageError").innerHTML = "Immagine non caricata";
+                                        // Nascondi il messaggio di errore se l'utente non ha selezionato un'immagine
+                                        document.getElementById("imageError").style.display = "none";
                                     }
 
                                     return counter;
                                 }
                             </script>
+
+
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
@@ -220,6 +228,8 @@
                                     </button>
                                 </div>
                             </div>
+
+                            <small>I campi contrassegnati con * sono <b>obbligatori</b>!</small>
                         </form>
                     </div>
                 </div>
