@@ -156,7 +156,7 @@
                             </script>
 
                             {{-- VISIBILITA' RISTORANTE --}}
-                            <div class="mb-4 row">
+                            {{-- <div class="mb-4 row">
                                 <label for="visible"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Visibilità') }}</label>
                                 <div class="offset-md-10 "></div>
@@ -170,7 +170,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                             {{-- IMMAGINE DEL RISTORANTE --}}
@@ -188,16 +188,15 @@
 
                             <script>
                                 function checkImage(img, counter) {
-                                    counter = 0;
-
-                                    // Ottieni il file selezionato dall'utente
-                                    let file = img.files[0];
-
-                                    // Verifica se un file è stato selezionato
-                                    if (file) {
+                                    // Verifica se l'utente ha selezionato un file
+                                    if (img.files.length > 0) {
+                                        counter = 0;
+                            
+                                        // Ottieni il file selezionato dall'utente
+                                        let file = img.files[0];
+                            
                                         // Verifica se il tipo del file è tra quelli consentiti
-                                        if (file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes(
-                                                'image/jpg')) {
+                                        if (file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes('image/jpg')) {
                                             document.getElementById("imageError").style.display = "none";
                                             counter++;
                                         } else {
@@ -205,13 +204,15 @@
                                             document.getElementById("imageError").innerHTML = "Formato non supportato";
                                         }
                                     } else {
-                                        document.getElementById("imageError").style.display = "block";
-                                        document.getElementById("imageError").innerHTML = "Immagine non caricata";
+                                        // Nascondi il messaggio di errore se l'utente non ha selezionato un'immagine
+                                        document.getElementById("imageError").style.display = "none";
                                     }
-
+                            
                                     return counter;
                                 }
                             </script>
+                            
+                            
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
