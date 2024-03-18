@@ -25,7 +25,7 @@
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                <a class="navbar-brand d-flex align-items-center" href="{{ url('/dashboard') }}">
                     <div class="logo_laravel">
                         <img src="{{ asset('deliveboo1.png') }}" alt="Logo" style="height: 40px">
                     </div>
@@ -49,7 +49,7 @@
                     <!-- Ordini -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">{{ __('Ordini') }}</a>
+                            <a class="nav-link" href="{{ url('/dishes') }}">{{ __('Ordini') }}</a>
                         </li>
                     </ul>
 
