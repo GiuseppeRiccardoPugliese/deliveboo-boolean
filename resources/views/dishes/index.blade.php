@@ -11,30 +11,38 @@
             <div class="row mb-3 justify-content-end">
                 <a href="{{ route('dish.create') }}" class="btn-create"><span class="plus">Aggiungi Nuovo Piatto</span></a>
             </div>
-            <div class="row row-cols-md-3">
-                @foreach ($dishes as $dish)
-                    @if (Auth::user()->id == $dish->restaurant->user_id)
-                        <div class="col mb-1">
-                            <div class="card">
-                                <img src="{{ asset('storage/' . $dish->image) }}" style="height: 250px" class="card-img-top"
-                                    alt="Immagine del piatto">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $dish->name }}</h5>
-                                    <p class="card-text">{{ $dish->description }}</p>
-                                    <div class="btn-group" role="group" aria-label="Azioni">
-                                        <a href="{{ route('dish.edit', $dish->id) }}"
-                                            class="btn btn btn-primary btn-sm">MODIFICA</a>
-                                        <form action="{{ route('dish.destroy', $dish->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">ELIMINA</button>
-                                        </form>
+            <div class="row">
+                <ul class="list-group">
+                    @foreach ($dishes as $dish)
+                        @if (Auth::user()->id == $dish->restaurant->user_id)
+                            <li class="list-group-item">
+                                <div class="row align-items-center">
+                                    <div class="col-md-3">
+                                        <img src="{{ asset('storage/' . $dish->image) }}" class="img-thumbnail" alt="Immagine del piatto">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h3>{{ $dish->name }}</h3>
+                                        <p>{{ $dish->description }}</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="btn-group" role="group" aria-label="Azioni">
+                                            <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-primary btn-sm">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <form action="{{ route('dish.destroy', $dish->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
             </div>
         </div>
     @endauth
@@ -46,50 +54,20 @@
 
 
 <style>
-    .card {
-        border: 1px solid #ddd;
-        /* Bordo della card */
-        border-radius: 10px;
-        /* Bordi arrotondati */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        /* Ombra */
-        transition: box-shadow 0.3s ease-in-out;
-        /* Transizione ombra */
-        padding: 10px;
-    }
+.plus {
+    vertical-align: middle;
+}
 
-    .card:hover {
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        /* Ombra leggermente più pronunciata al passaggio del mouse */
-    }
+.img-thumbnail {
+    max-width: 50%;
+    height: auto;
+}
 
-    .card-img-top {
-        border-radius: 10px;
-        /* Bordi arrotondati solo in alto a sinistra */
-        height: 100px;
-        /* Altezza dell'immagine */
-        object-fit: cover;
-        /* Immagine adattata alla dimensione dell'elemento */
-    }
+.list-group-item {
+    margin-bottom: 20px;
+}
 
-    .card-body {
-        padding: 1.25rem;
-        /* Spaziatura interna */
-    }
-
-    .card-title {
-        font-size: 1.25rem;
-        /* Dimensione del titolo */
-        margin-bottom: 0.75rem;
-        /* Margine inferiore */
-    }
-
-    .card-text {
-        margin-bottom: 0.5rem;
-        /* Margine inferiore */
-    }
-
-    .btn-create {
+.btn-create {
         display: inline-block;
         background-color: #13dbe6;
         border-radius: 100px;
@@ -100,23 +78,18 @@
         line-height: 40px;
         font-size: 20px;
         position: relative;
-    }
+        text-decoration: none;
+}
 
-    .btn-group .btn-primary {
-        margin-right: 10px;
-        color: #fff;
-    }
+.btn-group .btn-primary{
+    font-size: 20px;
+    margin-right: 10px;
+}
 
-    .plus {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .card-body .btn-group {
-        margin-top: 20px;
-        /* Regola lo spazio tra i pulsanti Edit e Delete */
-        font-size: 5px;
-    }
+.btn-group .btn-danger{
+    font-size: 20px;
+}
 </style>
+
+<!-- link font-awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
