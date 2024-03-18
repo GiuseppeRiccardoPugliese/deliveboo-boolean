@@ -71,6 +71,9 @@ export default {
                 <div class="my-card" v-for="(ristorante, index) in ristoranti" :key="index">
                     <router-link :to="{ name: 'Details', params: { index: index } }" class="router-link">
                         <div class="restaurant-image" :style="{ 'background-image': 'url(' + ristorante.image + ')' }"></div>
+                        <!-- <div class="restaurant-image"
+                            :style="{ 'background-image': ristorante.image.includes('images/') && ristorante.image.includes('images/') !== null ? 'url(' + getImageUrl(ristorante) + ')' : ' url(' + ristorante.image + ')' }">
+                        </div> -->
                         <h6>{{ ristorante.name }}</h6>
                         <p v-if="ristorante.visible" class="open-status">
                             Aperto
