@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\DishesApiController;
 use App\Http\Controllers\Api\RestaurantsApiController;
+use App\Http\Controllers\Api\TipologiesApiController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +28,8 @@ Route::group(['prefix' => 'v1'], function() {
 
 Route::group(['prefix' => 'v1'], function() {
     Route::get('/details', [DishesApiController::class, 'index']);
+});
+
+Route::group(['prefix' => 'v1'], function() {
+    Route::get('/tipologies', [TipologiesApiController::class, 'index']);
 });

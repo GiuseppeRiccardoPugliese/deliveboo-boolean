@@ -4,6 +4,8 @@ use App\Http\Controllers\DishController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Restaurant;
+ 
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,8 @@ Route::get('/', [RestaurantController::class, 'index'])->name('restaurant.index'
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $restaurants = Restaurant::all();
+    return view('dashboard', compact('restaurants'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -61,6 +64,7 @@ Route::middleware('auth')->group(function () {
 
     //Rotta DELETE DISH
     Route::delete('/dishes/{id}', [DishController::class, 'destroy'])->name('dish.destroy');
+
 });
 
 require __DIR__ . '/auth.php';

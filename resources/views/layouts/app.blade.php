@@ -49,14 +49,14 @@
                     <!-- Ordini -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/') }}">{{ __('Ordini') }}</a>
+                            <a class="nav-link" href="{{url('/') }}">{{ __('Orders') }}</a>
                         </li>
                     </ul>
 
                      <!-- menù -->
                      <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/') }}">{{ __('Menù') }}</a>
+                            <a class="nav-link" href="{{url('/dishes') }}">{{ __('Menù') }}</a>
                         </li>
                     </ul>
 
@@ -79,15 +79,12 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profile') }}</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
+                                <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                    {{ __('Logout') }}
+                                </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -105,5 +102,23 @@
         </main>
     </div>
 </body>
+
+<style scoped lang="scss">
+
+.navbar-nav .nav-link {
+    border-radius: 100px;
+    padding: 12px 50px;
+    color: #fff;
+    background: #13dbe6;
+    border: none;
+    font-size: 12px;
+    font-weight: 400;
+    margin-right: 10px;
+}
+
+
+
+</style>
+
 
 </html>
