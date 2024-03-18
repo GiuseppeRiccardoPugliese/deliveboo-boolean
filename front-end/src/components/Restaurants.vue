@@ -7,6 +7,7 @@ export default {
         return {
             // Array per memorizzare i dati dei ristoranti
             ristoranti: [],
+            tipologie: [],
         };
     },
 
@@ -15,6 +16,15 @@ export default {
             .get("http://localhost:8000/api/v1/restaurants")
             .then((response) => {
                 this.ristoranti = response.data;
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+
+        axios 
+            .get("http://localhost:8000/api/v1/tipologies")
+            .then((response) => {
+                this.tipologie = response.data;
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
@@ -32,6 +42,16 @@ export default {
 
 <template>
     <section>
+
+        <div class="tipology">
+            <div class="tipo-card" v-for="(tipologia, index) in tipologie" :key="index" >
+                <div class="tipo-img">
+                    <img :src=" tipologia.image " alt="">
+                </div>
+            <span> {{ tipologia.name }} </span>
+                </div>
+        </div>
+
         <div class="my-container">
             <div class="arrow-container">
                 <span class="back-arrow">
@@ -80,5 +100,48 @@ export default {
     i:hover {
         cursor: pointer;
     }
+}
+
+.tipology{
+    max-width: 1320px;
+    min-width: 375px;
+    padding-left: 1rem;
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 2rem 0.5rem 1rem 0.5rem;
+    display: flex;
+
+    .tipo-card {
+        width: 120px;
+        margin-left: 10px;
+
+        .tipo-img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+
+        img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .name_card {
+            width: 100%;
+            height: 100%;
+
+            span {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+    }
+    
+
+
+
+
 }
 </style>
