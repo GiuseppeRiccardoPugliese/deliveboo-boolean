@@ -40,14 +40,14 @@ export default {
               <img src="../../public/Deliveboo1.png" alt="Deliveboo Logo">
             </div>
           </router-link>
-    
+
           <!-- Pulsante Account -->
-          <div>
+          <!-- <div>
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
               aria-controls="offcanvasRight">
               Accedi
             </button>
-          </div>
+          </div> -->
 
         </section>
       </nav>
