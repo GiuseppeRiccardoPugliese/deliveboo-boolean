@@ -12,7 +12,7 @@
                 <a href="{{ route('dish.create') }}" class="btn-create"><span class="plus">Aggiungi Nuovo Piatto</span></a>
             </div>
             <div class="row">
-                <ul class="list-group">
+                <ul class="list-group p-0">
                     @foreach ($dishes as $dish)
                         @if (Auth::user()->id == $dish->restaurant->user_id)
                             <li class="list-group-item">
@@ -26,8 +26,8 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="btn-group" role="group" aria-label="Azioni">
-                                            <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-primary btn-sm">
-                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-primary btn-sm w-100 h-100">
+                                                <i class="fa-solid fa-pen-to-square"></i> 
                                             </a>
                                             <form action="{{ route('dish.destroy', $dish->id) }}" method="POST">
                                                 @csrf
@@ -54,6 +54,7 @@
 
 
 <style>
+
 .plus {
     vertical-align: middle;
 }
