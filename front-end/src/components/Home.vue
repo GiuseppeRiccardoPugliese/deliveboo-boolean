@@ -12,15 +12,17 @@ export default {
     <div class="container-fluid">
         <div class="jumbotron">
             
-                <div class="col-6 jumbo-title">
-                    <span class="title-content"> I piatti che ami dove e quando vuoi </span>
+                <div class="jumbo-title">
+                    <span id="title-content"> I piatti che ami dove e quando vuoi </span>
                 </div>
            
             
-                <div class="col-6 advanced-search">
+                <div class="advanced-search">
                     <div class="advanced-input">
                         <div>
-                            <span> Milano <i class="fa-solid fa-location-dot"></i> </span>
+                            <span> Dai un'occhiata ai ristoranti nella città di 
+                                Milano <i class="fa-solid fa-location-dot"></i> 
+                            </span>
                         </div>
                         
                         <!-- La rotta che tramite il cerca porta ai ristoranti -->
@@ -46,7 +48,6 @@ export default {
 
 
     .jumbotron {
-
         width: 100%;
         height: 100%;
         display: flex;
@@ -54,13 +55,11 @@ export default {
         padding: 30px;
 
         .jumbo-title {
-            display: flex;
-            align-items: center;
+            width: 50%;
             padding: 50px;
-
-                display: flex;
-                justify-content: center;
-                background-color: rgba(0, 0, 0, 0);
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0);
             }
 
             span {
@@ -84,7 +83,7 @@ export default {
                         margin-bottom: 30px;
 
                         span {
-                        font-size: 50px;
+                        font-size: 20px;
                         // color: #ae3f68;
                         }
                     }
@@ -129,17 +128,18 @@ export default {
 
     .jumbotron{
         flex-direction: column;
-        
     }
 
     .jumbo-title{
         width: 100%;
         align-items: center;
-        padding: 10px;
+        text-align: center;
+    
+        #title-content {
+        font-size: 40px;
     }
-    .title-content {
-        font-size: 10px;
     }
+   
         
 }
 
@@ -147,17 +147,19 @@ export default {
 
     .jumbotron {
         flex-direction: column;
-        padding: 10px;
     }
 
     .jumbo-title{
         width: 100%;
         align-items: center;
         padding: 10px;
-    }
-    .title-content {
+
+        #title-content  {
         font-size: 40px;
+        text-align: center;
     }
+    }
+    
         
 }
 
