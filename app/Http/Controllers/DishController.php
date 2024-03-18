@@ -67,7 +67,7 @@ class DishController extends Controller
         $dish->description = $data['description'];
         $dish->price = $data['price'];
         $dish->image = $data['image'];
-        // $dish->visible = isset($data['visible']) ? true : false;
+        $dish->visible = true;
         $dish->restaurant_id = $restaurant_id;
         $dish->save();
     

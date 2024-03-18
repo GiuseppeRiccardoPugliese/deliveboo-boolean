@@ -44,8 +44,8 @@
         </div>
         <img id="image_dish" src="{{ asset('storage/' . $dish->image) }}" alt="Immagine Piatto" style="width: 250px">
 
-        <label class="label" for="visible">Visibilit&agrave;: </label>
-        <input type="checkbox" name="visible" {{ $dish->visible == 1 ? 'checked' : '' }}>
+        {{-- <label class="label" for="visible">Visibilit&agrave;: </label>
+        <input type="checkbox" name="visible" {{ $dish->visible == 1 ? 'checked' : '' }}> --}}
 
         <div class="mt-4">
             <input type="submit" value="UPDATE">
@@ -60,97 +60,74 @@
 
             let counter = 0;
 
-            //Prendo il valore dell'src all'interno del mio tag IMG
-            let dish_photo = document.getElementById('image_dish').getAttribute(
-                'src');
-            console.log(dish_photo);
-
             // Recupera il valore di input della PIVA
             let priceValue = document.getElementById("price").value;
             let dishName = document.getElementById("name").value;
             let dishDescription = document.getElementById("description").value;
             let img = document.getElementById("image");
 
-            counter = counter + checkPrice(priceValue, counter);
-            counter = counter + checkName(dishName, counter);
-            counter = counter + checkDescription(dishDescription, counter);
-            counter = counter + checkImage(img, counter, dish_photo);
-            console.log(counter);
+            // Verifica ogni campo e incrementa il counter se è valido
+            counter += checkField(priceValue, "priceError", "Compilare questo campo", isNaN(priceValue) || priceValue <= 0);
+            counter += checkField(dishName, "nameError", "Compilare questo campo", dishName.trim().length === 0);
+            counter += checkField(dishDescription, "descriptionError", "Compilare questo campo", dishDescription.trim().length === 0);
+            counter += checkImage(img);
 
-            if (counter === 4) {
+            // Se ci sono errori di validazione, non inviare il modulo
+            if (counter < 4) {
+                return false;
+            }
+
+            // Se il counter è uguale al numero di campi + 1 (l'immagine è facoltativa), invia il modulo
+            if (counter === 4 || (counter === 3 && img.files.length === 0)) {
                 this.submit();
             }
         });
 
-        function checkPrice(priceValue, counter) {
-            counter = 0;
-            if (priceValue.length === 0) {
-                document.getElementById("priceError").style.display = "block";
-                document.getElementById("priceError").innerHTML = "Compilare questo campo";
-            } else if (!isNaN(priceValue) && priceValue > 0) {
-                document.getElementById("priceError").style.display = "none";
-                counter++;
+        // Funzione per la validazione dei campi di input
+        function checkField(value, errorDivId, errorMessage, isError) {
+            if (isError) {
+                document.getElementById(errorDivId).style.display = "block";
+                document.getElementById(errorDivId).innerHTML = errorMessage;
+                return 0;
             } else {
-                document.getElementById("priceError").style.display = "block";
-                document.getElementById("priceError").innerHTML =
-                    "Il prezzo deve essere composto da un numero che sia positivo";
+                document.getElementById(errorDivId).style.display = "none";
+                return 1;
             }
-            return counter;
         }
 
-        function checkName(restaurantName, counter) {
-            counter = 0;
-            if (restaurantName.length === 0) {
-                document.getElementById("nameError").style.display = "block";
-                document.getElementById("nameError").innerHTML = "Compilare questo campo";
-            } else {
-                document.getElementById("nameError").style.display = "none";
-                counter++;
-            }
-            return counter;
-        }
+        // Funzione per la validazione dell'immagine
+        function checkImage(img) {
+            // Se seleziono un file
+            if (img.files.length > 0) {
+                // File selezionato
+                let file = img.files[0];
 
-        function checkDescription(restaurantAddress, counter) {
-            counter = 0;
-            if (restaurantAddress.length === 0) {
-                document.getElementById("descriptionError").style.display = "block";
-                document.getElementById("descriptionError").innerHTML = "Compilare questo campo";
-            } else {
-                document.getElementById("descriptionError").style.display = "none";
-                counter++;
-            }
-            return counter;
-        }
-
-        function checkImage(img, counter, dish_photo) {
-            counter = 0;
-
-            // Ottieni il file selezionato dall'utente
-            let file = img.files[0];
-            if (dish_photo != null) {
-                counter++;
-                return counter;
-            }
-            // Verifica se un file è stato selezionato
-            if (file) {
-                // Verifica se il tipo del file è tra quelli consentiti
-                if (file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes(
-                        'image/jpg')) {
-                    document.getElementById("imageError").style.display = "none";
-                    counter++;
+                // Verifica del tipo di file
+                if (file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes('image/jpg')) {
+                    // Verifica se la dimensione del file è inferiore a 2 MB
+                    if (file.size <= 2048 * 1024) {
+                        document.getElementById("imageError").style.display = "none";
+                        return 1; // L'immagine è valida
+                    } else {
+                        document.getElementById("imageError").style.display = "block";
+                        document.getElementById("imageError").innerHTML = "Dimensione del file superiore a 2MB";
+                        return 0; // L'immagine non è valida
+                    }
                 } else {
                     document.getElementById("imageError").style.display = "block";
                     document.getElementById("imageError").innerHTML = "Formato non supportato";
+                    return 0; // L'immagine non è valida
                 }
             } else {
-                document.getElementById("imageError").style.display = "block";
-                document.getElementById("imageError").innerHTML = "Immagine non caricata";
+                // Nascondi il messaggio di errore se l'utente non ha selezionato un'immagine
+                document.getElementById("imageError").style.display = "none";
+                return 1; // L'immagine è facoltativa, quindi non conta nel counter
             }
-
-            return counter;
         }
+
     </script>
 @endsection
+
 
 <style lang="scss" scoped>
     .login {
