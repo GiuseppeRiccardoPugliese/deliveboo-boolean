@@ -79,6 +79,7 @@ export default {
             <h1 class="mt-4">MENU</h1>
             <div v-for="(plate, i) in dishes":key="i">
                 <div class="mt-4 d-flex flex-column" v-if="plate.restaurant_id === restaurants[this.$route.params.index].id">
+                    <img :src="plate.image" alt="">
                     <h5>{{ plate.name }}</h5>
                     <span>{{ plate.description }}</span>
                     <strong>{{ plate.price }}€</strong>
