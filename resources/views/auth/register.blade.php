@@ -188,17 +188,24 @@
 
                             <script>
                                 function checkImage(img, counter) {
-                                    // Verifica se l'utente ha selezionato un file
+                                    // Se seleziono un file
                                     if (img.files.length > 0) {
                                         counter = 0;
-                            
-                                        // Ottieni il file selezionato dall'utente
+
+                                        // File selezionato
                                         let file = img.files[0];
-                            
-                                        // Verifica se il tipo del file è tra quelli consentiti
-                                        if (file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes('image/jpg')) {
-                                            document.getElementById("imageError").style.display = "none";
-                                            counter++;
+
+                                        // Verifica del tipo di file
+                                        if (file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes(
+                                                'image/jpg')) {
+                                            // Verifica se la dimensione del file è inferiore a 2 MB
+                                            if (file.size <= 2048 * 1024) {
+                                                document.getElementById("imageError").style.display = "none";
+                                                counter++;
+                                            } else {
+                                                document.getElementById("imageError").style.display = "block";
+                                                document.getElementById("imageError").innerHTML = "Dimensione del file superiore a 2MB";
+                                            }
                                         } else {
                                             document.getElementById("imageError").style.display = "block";
                                             document.getElementById("imageError").innerHTML = "Formato non supportato";
@@ -207,12 +214,12 @@
                                         // Nascondi il messaggio di errore se l'utente non ha selezionato un'immagine
                                         document.getElementById("imageError").style.display = "none";
                                     }
-                            
+
                                     return counter;
                                 }
                             </script>
-                            
-                            
+
+
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
