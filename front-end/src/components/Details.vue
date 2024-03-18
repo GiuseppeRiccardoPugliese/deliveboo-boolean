@@ -5,32 +5,36 @@ export default {
     name: "Details",
     data() {
         return {
-            restaurants: [],
-            dishes: [],
+            ristoranti: [], // Array per memorizzare i dati dei ristoranti
+            // tipologie: [],
         };
     },
     mounted() {
-        // Chiamata per recuperare i dati dei ristoranti
+    // Effettua la prima chiamata per ottenere i ristoranti dalla prima API
         axios
-            .get("http://localhost:8000/api/v1/restaurants")
-            .then((response) => {
-                this.restaurants = response.data;
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-            });
-
-        // Chiamata per recuperare i dati dei piatti
-        axios
-            .get("http://localhost:8000/api/v1/details")
-            .then((response) => {
-                this.dishes = response.data;
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-            });
+        .get("http://localhost:8000/api/v1/deliveboo")
+        .then((response) => {
+            this.ristoranti = response.data;
+            // Una volta ricevuti i dati dalla prima API, effettua la seconda chiamata
+            this.fetchSecondApiData();
+        })
+        .catch((error) => {
+            console.error("Error fetching data from first API:", error);
+        });
     },
     methods: {
+        fetchSecondApiData() {
+            // Effettua la seconda chiamata per ottenere i ristoranti dalla seconda API
+            axios
+                .get("http://localhost:5174/server.json")
+                .then((response) => {
+                // Aggiungi i ristoranti dalla seconda API alla lista esistente
+                this.ristoranti = [...this.ristoranti, ...response.data];
+                })
+                .catch((error) => {
+                console.error("Error fetching data from second API:", error);
+                });
+        },
         goBack() {
             // Funzione per tornare alla pagina precedente
             this.$router.go(-1);
@@ -49,27 +53,27 @@ export default {
             <strong>Ristoranti</strong>
         </span>
     </div>
-    <div class="row mx-3 mb-3" v-if="restaurants[this.$route.params.index]">
+    <div class="row mx-3 mb-3" v-if="ristoranti[this.$route.params.index]">
         <div
             class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-4"
         >
             <img
-                :src="restaurants[this.$route.params.index].image"
+                :src="ristoranti[this.$route.params.index].image"
                 alt=""
                 class="img_product"
             />
         </div>
         <div class="col-12 col-md-6 text-center text-md-start mb-4">
-            <h1>{{ restaurants[this.$route.params.index].name }}</h1>
+            <h1>{{ ristoranti[this.$route.params.index].name }}</h1>
             <!-- <h4 class="text-black-50">
-                {{ restaurants[this.$route.params.index].citta }}
+                {{ ristoranti[this.$route.params.index].citta }}
             </h4> -->
             <h4 class="text-black-50">
-                {{ restaurants[this.$route.params.index].address }}
+                {{ ristoranti[this.$route.params.index].address }}
             </h4>
             <h5
                 class="text-success"
-                v-if="restaurants[this.$route.params.index].visible === 1"
+                v-if="ristoranti[this.$route.params.index].visible === 1"
             >
                 APERTO
             </h5>
@@ -77,14 +81,15 @@ export default {
         </div>
         <div class="menu text-center border-top">
             <h1 class="mt-4">MENU</h1>
-            <div v-for="(plate, i) in dishes":key="i">
-                <div class="mt-4 d-flex flex-column" v-if="plate.restaurant_id === restaurants[this.$route.params.index].id">
-                    <img :src="plate.image" alt="">
-                    <h5>{{ plate.name }}</h5>
-                    <span>{{ plate.description }}</span>
-                    <strong>{{ plate.price }}€</strong>
-                </div>
+            <div v-for="(dish, index) in ristoranti[this.$route.params.index].dishes" :key="index" class="mt-4 d-flex flex-column">
+
+                <img :src="dish.image" alt="">
+                <h5>{{ dish.name }}</h5>
+                <span>{{ dish.description }}</span>
+                <strong>{{ dish.price }}€</strong>
             </div>
+
+
         </div>
     </div>
 </template>

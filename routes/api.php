@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiDataController;
 use App\Http\Controllers\Api\DishesApiController;
 use App\Http\Controllers\Api\RestaurantsApiController;
 use App\Http\Controllers\Api\TipologiesApiController;
@@ -22,14 +23,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'v1'], function() {
-    Route::get('/restaurants', [RestaurantsApiController::class, 'index']);
-});
+// Route::group(['prefix' => 'v1'], function() {
+//     Route::get('/restaurants', [RestaurantsApiController::class, 'index']);
+// });
 
 Route::group(['prefix' => 'v1'], function() {
     Route::get('/details', [DishesApiController::class, 'index']);
 });
 
+// Route::group(['prefix' => 'v1'], function() {
+//     Route::get('/tipologies', [TipologiesApiController::class, 'index']);
+// });
+
 Route::group(['prefix' => 'v1'], function() {
-    Route::get('/tipologies', [TipologiesApiController::class, 'index']);
+    Route::get('/deliveboo', [ApiDataController::class, 'Data']);
 });
+
