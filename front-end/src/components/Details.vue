@@ -56,7 +56,7 @@ export default {
             <img
                 :src="restaurants[this.$route.params.index].image"
                 alt=""
-                class="img_product"
+                class="img_product rounded"
             />
         </div>
         <div class="col-12 col-md-6 text-center text-md-start mb-4">
@@ -74,9 +74,9 @@ export default {
         </div>
         <div class="menu text-center border-top">
             <h1 class="mt-4">MENU</h1>
-            <div v-for="(plate, i) in dishes" :key="i">
+            <div v-for="(plate, i) in dishes" :key="i" class="my-5">
                 <div v-if="plate.restaurant_id === restaurants[this.$route.params.index].id">
-                    <div class="mt-4 d-flex flex-column" v-if="plate.visible">
+                    <div class="border-top border-bottom py-4 d-flex flex-column" v-if="plate.visible">
                         <img :src="plate.image" alt="" />
                         <h5>{{ plate.name }}</h5>
                         <span>{{ plate.description }}</span>
@@ -91,6 +91,7 @@ export default {
 <style lang="scss" scoped>
 .img_product {
     width: 100%;
+    max-width: 600px;
 }
 
 .back-arrow {
