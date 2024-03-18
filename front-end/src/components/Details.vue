@@ -39,8 +39,8 @@ export default {
             // Funzione per tornare alla pagina precedente
             this.$router.go(-1);
         },
-    },
-};
+    }
+}
 </script>
 
 <template>
