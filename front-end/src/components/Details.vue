@@ -1,12 +1,12 @@
 <script>
-
-import axios from 'axios';
+import axios from "axios";
 
 export default {
     name: "Details",
     data() {
         return {
             restaurants: [],
+            dishes: [],
         };
     },
     mounted() {
@@ -15,6 +15,16 @@ export default {
             .get("http://localhost:8000/api/v1/restaurants")
             .then((response) => {
                 this.restaurants = response.data;
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+
+        // Chiamata per recuperare i dati dei piatti
+        axios
+            .get("http://localhost:8000/api/v1/details")
+            .then((response) => {
+                this.dishes = response.data;
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
@@ -65,51 +75,16 @@ export default {
             </h5>
             <h5 class="text-danger" v-else>CHIUSO</h5>
         </div>
-        <!-- <div class="menu text-center border-top">
+        <div class="menu text-center border-top">
             <h1 class="mt-4">MENU</h1>
-            <h2 v-if="restaurants[this.$route.params.index].menu.Antipasti" class="mt-5 fw-bold">ANTIPASTI:</h2>
-            <div v-for="(plate,i) in restaurants[this.$route.params.index].menu.Antipasti" :key="i" class="mt-4 d-flex flex-column">
-                <h5>{{ plate.nome }}</h5>
-                <span>{{ plate.descrizione }}</span>
-                <strong>{{ plate.prezzo }}€</strong>
+            <div v-for="(plate, i) in dishes":key="i">
+                <div class="mt-4 d-flex flex-column" v-if="plate.restaurant_id === restaurants[this.$route.params.index].id">
+                    <h5>{{ plate.name }}</h5>
+                    <span>{{ plate.description }}</span>
+                    <strong>{{ plate.price }}€</strong>
+                </div>
             </div>
-            <h2 v-if="restaurants[this.$route.params.index].menu.PrimiPiatti" class="mt-5 fw-bold">PRIMI PIATTI:</h2>
-            <div v-for="(plate,i) in restaurants[this.$route.params.index].menu.PrimiPiatti" :key="i" class="mt-4 d-flex flex-column">
-                <h5>{{ plate.nome }}</h5>
-                <span>{{ plate.descrizione }}</span>
-                <strong>{{ plate.prezzo }}€</strong>
-            </div>
-            <h2 v-if="restaurants[this.$route.params.index].menu.SecondiPiatti" class="mt-5 fw-bold">SECONDI PIATTI:</h2>
-            <div v-for="(plate,i) in restaurants[this.$route.params.index].menu.SecondiPiatti" :key="i" class="mt-4 d-flex flex-column">
-                <h5>{{ plate.nome }}</h5>
-                <span>{{ plate.descrizione }}</span>
-                <strong>{{ plate.prezzo }}€</strong>
-            </div>
-            <h2 v-if="restaurants[this.$route.params.index].menu.Pizze" class="mt-5 fw-bold">PIZZE:</h2>
-            <div v-for="(plate,i) in restaurants[this.$route.params.index].menu.Pizze" :key="i" class="mt-4 d-flex flex-column">
-                <h5>{{ plate.nome }}</h5>
-                <span>{{ plate.descrizione }}</span>
-                <strong>{{ plate.prezzo }}€</strong>
-            </div>
-            <h2 v-if="restaurants[this.$route.params.index].menu.SushiESashimi" class="mt-5 fw-bold">SUSHI:</h2>
-            <div v-for="(plate,i) in restaurants[this.$route.params.index].menu.SushiESashimi" :key="i" class="mt-4 d-flex flex-column">
-                <h5>{{ plate.nome }}</h5>
-                <span>{{ plate.descrizione }}</span>
-                <strong>{{ plate.prezzo }}€</strong>
-            </div>
-            <h2 v-if="restaurants[this.$route.params.index].menu.Dolci" class="mt-5 fw-bold">DOLCI:</h2>
-            <div v-for="(plate,i) in restaurants[this.$route.params.index].menu.Dolci" :key="i" class="mt-4 d-flex flex-column">
-                <h5>{{ plate.nome }}</h5>
-                <span>{{ plate.descrizione }}</span>
-                <strong>{{ plate.prezzo }}€</strong>
-            </div>
-            <h2 v-if="restaurants[this.$route.params.index].menu.Bevande" class="mt-5 fw-bold">BEVANDE:</h2>
-            <div v-for="(plate,i) in restaurants[this.$route.params.index].menu.Bevande" :key="i" class="mt-4 d-flex flex-column">
-                <h5>{{ plate.nome }}</h5>
-                <span>{{ plate.descrizione }}</span>
-                <strong>{{ plate.prezzo }}€</strong>
-            </div>
-        </div> -->
+        </div>
     </div>
 </template>
 

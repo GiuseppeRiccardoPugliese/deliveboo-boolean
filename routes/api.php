@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\DishesApiController;
 use App\Http\Controllers\Api\RestaurantsApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v1'], function() {
     Route::get('/restaurants', [RestaurantsApiController::class, 'index']);
+});
+
+Route::group(['prefix' => 'v1'], function() {
+    Route::get('/details', [DishesApiController::class, 'index']);
 });
