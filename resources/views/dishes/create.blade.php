@@ -40,6 +40,7 @@
                     <label for="image">Immagine:</label>
                     <input type="file" id="image" name="image">
                     <div id="imageError" style="color: red; display: none;"></div>
+                    <small>Accetta solo file JPEG, JPG e PNG</small>
                 </div>
 
                 {{-- <label class="label" for="visible">Visibilit&agrave;: </label>
@@ -104,7 +105,7 @@
 
                 // Verifica del tipo di file
                 if (file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes(
-                    'image/jpg')) {
+                        'image/jpg')) {
                     // Verifica se la dimensione del file è inferiore a 2 MB
                     if (file.size <= 2048 * 1024) {
                         document.getElementById("imageError").style.display = "none";

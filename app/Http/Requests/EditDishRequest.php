@@ -27,7 +27,7 @@ class EditDishRequest extends FormRequest
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric|min:1|max:100',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'visible' => 'nullable|boolean',
         ];
     }
@@ -46,7 +46,7 @@ class EditDishRequest extends FormRequest
             'price.max' => 'Il prezzo massimo consentito è :max.',
             // 'image.required' => 'L\'immagine è obbligatoria.',
             'image.image' => 'Il file caricato deve essere un\'immagine.',
-            'image.mimes' => 'Il formato dell\'immagine deve essere JPEG, PNG, JPG o GIF.',
+            'image.mimes' => 'Il formato dell\'immagine deve essere JPEG, PNG, JPG.',
             'image.max' => 'La dimensione massima consentita per l\'immagine è 2MB.',
             'visible.boolean' => 'Il campo visibilità deve essere un valore booleano (true/false).',
         ];

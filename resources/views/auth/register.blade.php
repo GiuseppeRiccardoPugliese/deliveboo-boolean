@@ -13,7 +13,7 @@
 
                             <div class="mb-4 row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome Utente') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Nome Utente') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -30,7 +30,7 @@
 
                             <div class="mb-4 row">
                                 <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo E-Mail') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Indirizzo E-Mail') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -47,7 +47,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -64,7 +64,7 @@
 
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Conferma Password') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -75,7 +75,7 @@
                             {{-- NOME RISTORANTE --}}
                             <div class="mb-4 row">
                                 <label for="restaurant_name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome ristorante') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Nome ristorante') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="restaurant_name" type="name"
@@ -93,7 +93,7 @@
                             {{-- INDIRIZZO RISTORANTE --}}
                             <div class="mb-4 row">
                                 <label for="restaurant_address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo ristorante') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Indirizzo ristorante') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="restaurant_address" type="name"
@@ -111,7 +111,7 @@
                             {{-- PIVA RISTORANTE --}}
                             <div class="mb-4 row">
                                 <label for="piva"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('P.IVA') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*P.IVA') }}</label>
                                 <div class="col-md-6">
                                     <input id="piva" type="text"
                                         class="form-control @error('piva') is-invalid @enderror" name="piva" required
@@ -228,6 +228,8 @@
                                     </button>
                                 </div>
                             </div>
+
+                            <small>I campi contrassegnati con * sono <b>obbligatori</b>!</small>
                         </form>
                     </div>
                 </div>
