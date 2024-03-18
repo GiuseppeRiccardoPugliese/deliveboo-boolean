@@ -41,13 +41,13 @@
                 <div id="imageError" style="color: red; display: none;"></div>
             </div>
 
-            <div class="input-group">
+            {{--<div class="input-group">
                 <label for="visible">Visibilità:</label>
                 <input type="checkbox" id="visible" name="visible" value="1">
-            </div>
+            </div>--}}
 
             <div class="input-group">
-                <button type="submit" class="btn btn-primary btn-sm">CREATE</button>
+                <button type="submit" class="btn btn-primary btn-sm">CREA</button>
             </div>
         </form>
     </div>
