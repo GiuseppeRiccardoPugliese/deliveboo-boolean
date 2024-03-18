@@ -47,12 +47,12 @@ export default {
     <section>
 
         <div class="tipology">
-            <div class="tipo-card" v-for="(tipologia, index) in tipologie" :key="index" >
+            <div class="tipo-card" v-for="(tipologia, index) in tipologie" :key="index">
                 <div class="tipo-img">
-                    <img :src=" tipologia.image " alt="">
+                    <img :src="tipologia.image" alt="">
                 </div>
-            <span> {{ tipologia.name }} </span>
-                </div>
+                <span> {{ tipologia.name }} </span>
+            </div>
         </div>
 
         <div class="my-container">
@@ -68,16 +68,11 @@ export default {
 
             <div class="my-card-container">
                 <!-- Utilizza v-for per iterare sui ristoranti e mostrare i dati -->
-                <div
-                    class="my-card"
-                    v-for="(ristorante, index) in ristoranti"
-                    :key="index"
-                >
-                    <router-link
-                        :to="{ name: 'Details', params: { index: index } }"
-                        class="router-link"
-                    >
-                        <div class="restaurant-image" :style="{ 'background-image': 'url(' + ristorante.image + ')' }"></div>
+                <div class="my-card" v-for="(ristorante, index) in ristoranti" :key="index">
+                    <router-link :to="{ name: 'Details', params: { index: index } }" class="router-link">
+                        <div class="restaurant-image"
+                            :style="{ 'background-image': ristorante.image.includes('images/') && ristorante.image.includes('images/') !== null ? 'url(' + getImageUrl(ristorante) + ')' : ' url(' + ristorante.image + ')' }">
+                        </div>
                         <h6>{{ ristorante.name }}</h6>
                         <p v-if="ristorante.visible" class="open-status">
                             Aperto
@@ -99,7 +94,7 @@ export default {
     }
 }
 
-.tipology{
+.tipology {
     max-width: 1320px;
     min-width: 375px;
     padding-left: 1rem;
@@ -114,10 +109,11 @@ export default {
 
         .tipo-img {
             width: 100%;
+            margin-bottom: 0.5rem;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
         }
-        
+
 
         img {
             width: 100%;
@@ -133,9 +129,9 @@ export default {
                 height: 100%;
             }
         }
-        
+
     }
-    
+
 
 
 

@@ -71,10 +71,7 @@ export default {
             <h4 class="text-black-50">
                 {{ ristoranti[this.$route.params.index].address }}
             </h4>
-            <h5
-                class="text-success"
-                v-if="ristoranti[this.$route.params.index].visible === 1"
-            >
+            <h5 class="text-success" v-if="restaurants[this.$route.params.index].visible === 1">
                 APERTO
             </h5>
             <h5 class="text-danger" v-else>CHIUSO</h5>

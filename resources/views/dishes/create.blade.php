@@ -19,38 +19,41 @@
                 @method('POST')
 
                 <div class="input-group">
-                    <label for="name">Nome piatto:</label>
+                    <label for="name">*Nome piatto</label>
                     <input type="text" id="name" name="name">
                     <div id="nameError" style="color: red; display: none;"></div>
                 </div>
 
                 <div class="input-group">
-                    <label for="description">Descrizione piatto:</label>
+                    <label for="description">*Descrizione piatto</label>
                     <input type="text" id="description" name="description">
                     <div id="descriptionError" style="color: red; display: none;"></div>
                 </div>
 
                 <div class="input-group">
-                    <label for="price">Prezzo:</label>
+                    <label for="price">*Prezzo</label>
                     <input type="text" id="price" name="price" placeholder="inserisci il prezzo">
                     <div id="priceError" style="color: red; display: none;"></div>
                 </div>
 
                 <div class="input-group">
-                    <label for="image">Immagine:</label>
+                    <label for="image">Immagine</label>
                     <input type="file" id="image" name="image">
                     <div id="imageError" style="color: red; display: none;"></div>
+                    <small>Accetta solo file JPEG, JPG e PNG</small>
                 </div>
 
-                {{-- <label class="label" for="visible">Visibilit&agrave;: </label>
-                <input type="checkbox" name="visible" value="1"> --}}
+            {{--<div class="input-group">
+                <label for="visible">Visibilità:</label>
+                <input type="checkbox" id="visible" name="visible" value="1">
+            </div>--}}
 
-                <div class="input-group">
-                    <button type="submit" class="btn btn-primary btn-sm">CREATE</button>
+                <div class="input-group justify-content-center">
+                    <button type="submit" class="btn btn-primary btn-sm">CREA</button>
                 </div>
-            </form>
-        </div>
+        </form>
     </div>
+</div> 
     {{-- VALIDATION CLIENT-SIDE --}}
     <script>
         document.getElementById("myForm").addEventListener("submit", function(event) {
@@ -104,7 +107,7 @@
 
                 // Verifica del tipo di file
                 if (file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes(
-                    'image/jpg')) {
+                        'image/jpg')) {
                     // Verifica se la dimensione del file è inferiore a 2 MB
                     if (file.size <= 2048 * 1024) {
                         document.getElementById("imageError").style.display = "none";
