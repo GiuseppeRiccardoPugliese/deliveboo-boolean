@@ -43,17 +43,17 @@
                     <small>Accetta solo file JPEG, JPG e PNG</small>
                 </div>
 
-                {{-- <label class="label" for="visible">Visibilit&agrave;: </label>
-                <input type="checkbox" name="visible" value="1"> --}}
+            {{--<div class="input-group">
+                <label for="visible">Visibilità:</label>
+                <input type="checkbox" id="visible" name="visible" value="1">
+            </div>--}}
 
                 <div class="input-group justify-content-center">
                     <button type="submit" class="btn btn-primary btn-sm">CREA</button>
                 </div>
-
-                <small>I campi contrassegnati con * sono <b>obbligatori</b>!</small>
-            </form>
-        </div>
+        </form>
     </div>
+</div> 
     {{-- VALIDATION CLIENT-SIDE --}}
     <script>
         document.getElementById("myForm").addEventListener("submit", function(event) {
