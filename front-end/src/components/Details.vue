@@ -67,22 +67,21 @@ export default {
             <h4 class="text-black-50">
                 {{ restaurants[this.$route.params.index].address }}
             </h4>
-            <h5
-                class="text-success"
-                v-if="restaurants[this.$route.params.index].visible === 1"
-            >
+            <h5 class="text-success" v-if="restaurants[this.$route.params.index].visible === 1">
                 APERTO
             </h5>
             <h5 class="text-danger" v-else>CHIUSO</h5>
         </div>
         <div class="menu text-center border-top">
             <h1 class="mt-4">MENU</h1>
-            <div v-for="(plate, i) in dishes":key="i">
-                <div class="mt-4 d-flex flex-column" v-if="plate.restaurant_id === restaurants[this.$route.params.index].id">
-                    <img :src="plate.image" alt="">
-                    <h5>{{ plate.name }}</h5>
-                    <span>{{ plate.description }}</span>
-                    <strong>{{ plate.price }}€</strong>
+            <div v-for="(plate, i) in dishes" :key="i">
+                <div v-if="plate.restaurant_id === restaurants[this.$route.params.index].id">
+                    <div class="mt-4 d-flex flex-column" v-if="plate.visible">
+                        <img :src="plate.image" alt="" />
+                        <h5>{{ plate.name }}</h5>
+                        <span>{{ plate.description }}</span>
+                        <strong>{{ plate.price }}€</strong>
+                    </div>
                 </div>
             </div>
         </div>
