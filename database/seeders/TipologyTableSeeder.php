@@ -16,12 +16,16 @@ class TipologyTableSeeder extends Seeder
     public function run()
     {
         $tipologies = [
+            ['name' => 'Pizza'],
             ['name' => 'Italiano'],
-            ['name' => 'Giapponese'],
-            ['name' => 'Cinese'],
-            ['name' => 'Fast-Food'],
-            ['name' => 'Vegetariano'],
-            ['name' => 'Vegano'],
+            ['name' => 'Dessert'],
+            ['name' => 'Poke'],
+            ['name' => 'Sandwich'],
+            ['name' => 'Kebab'],
+            ['name' => 'Sushi'],
+            ['name' => 'Hamburger'],
+            ['name' => 'Americano'],
+            ['name' => 'Healthy'],
         ];
         foreach ($tipologies as $tipology) {
 
