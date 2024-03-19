@@ -280,15 +280,16 @@ export default {
                         </p>
                         <p v-else class="closed-status">Chiuso</p>
                     </router-link> -->
-                    <router-link :to="{ name: 'Details', params: { index: index } }" class="router-link">
+                    <router-link :to="{ name: 'Details', params: { index: index, restaurantName: ristorante.name } }" class="router-link">
                         <div class="restaurant-image"
                             :style="{ 'background-image': ristorante.image && ristorante.image.includes('images/') ? 'url(' + getImageUrl(ristorante) + ')' : 'url(' + ristorante.image + ')' }">
+                            <span class="tipology_card">{{ ristorante.tipologies }}</span>
                         </div>
                         <h6>{{ ristorante.name }}</h6>
-                        <p v-if="ristorante.visible" class="open-status">
+                        <p v-if="ristorante.visible" class="open-status d-none">
                             Aperto
                         </p>
-                        <p v-else class="closed-status">Chiuso</p>
+                        <p v-else class="closed-status d-none">Chiuso</p>
                     </router-link>
 
 
@@ -349,5 +350,10 @@ export default {
 
 
 
+}
+
+.tipology_card{
+    background-color: aqua;
+    padding: 5px;
 }
 </style>
