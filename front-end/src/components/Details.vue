@@ -10,17 +10,17 @@ export default {
         };
     },
     mounted() {
-    // Effettua la prima chiamata per ottenere i ristoranti dalla prima API
+        // Effettua la prima chiamata per ottenere i ristoranti dalla prima API
         axios
-        .get("http://localhost:8000/api/v1/deliveboo")
-        .then((response) => {
-            this.ristoranti = response.data;
-            // Una volta ricevuti i dati dalla prima API, effettua la seconda chiamata
-            this.fetchSecondApiData();
-        })
-        .catch((error) => {
-            console.error("Error fetching data from first API:", error);
-        });
+            .get("http://localhost:8000/api/v1/deliveboo")
+            .then((response) => {
+                this.ristoranti = response.data;
+                // Una volta ricevuti i dati dalla prima API, effettua la seconda chiamata
+                this.fetchSecondApiData();
+            })
+            .catch((error) => {
+                console.error("Error fetching data from first API:", error);
+            });
     },
     methods: {
         fetchSecondApiData() {
@@ -28,16 +28,19 @@ export default {
             axios
                 .get("http://localhost:5174/server.json")
                 .then((response) => {
-                // Aggiungi i ristoranti dalla seconda API alla lista esistente
-                this.ristoranti = [...this.ristoranti, ...response.data];
+                    // Aggiungi i ristoranti dalla seconda API alla lista esistente
+                    this.ristoranti = [...this.ristoranti, ...response.data];
                 })
                 .catch((error) => {
-                console.error("Error fetching data from second API:", error);
+                    console.error("Error fetching data from second API:", error);
                 });
         },
         goBack() {
             // Funzione per tornare alla pagina precedente
             this.$router.go(-1);
+        },
+        getImageUrl(ristorante) {
+            return `http://localhost:8000/storage/${ristorante}`;
         },
     }
 }
@@ -54,14 +57,10 @@ export default {
         </span>
     </div>
     <div class="row mx-3 mb-3" v-if="ristoranti[this.$route.params.index]">
-        <div
-            class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-4"
-        >
-            <img
-                :src="ristoranti[this.$route.params.index].image"
-                alt=""
-                class="img_product"
-            />
+        <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-4">
+            <img class="img_product"
+                :src="ristoranti[this.$route.params.index].image && ristoranti[this.$route.params.index].image.includes('images/') ? getImageUrl(ristoranti[this.$route.params.index].image) : ristoranti[this.$route.params.index].image"
+                alt="Ristorante Image" />
         </div>
         <div class="col-12 col-md-6 text-center text-md-start mb-4">
             <h1>{{ ristoranti[this.$route.params.index].name }}</h1>
@@ -78,7 +77,8 @@ export default {
         </div>
         <div class="menu text-center border-top">
             <h1 class="mt-4">MENU</h1>
-            <div v-for="(dish, index) in ristoranti[this.$route.params.index].dishes" :key="index" class="mt-4 d-flex flex-column">
+            <div v-for="(dish, index) in ristoranti[this.$route.params.index].dishes" :key="index"
+                class="my-5 py-4 border-top border-bottom d-flex flex-column">
 
                 <img :src="dish.image" alt="">
                 <h5>{{ dish.name }}</h5>
