@@ -33,7 +33,7 @@
                                         <img src="{{ asset('storage/' . $dish->image) }}" class="img-thumbnail-small" alt="Immagine del piatto">
                                     </td>
                                     <td>
-                                        <a href="{{ route('dish.show', $dish->id) }}" class="text-decoration-none">{{ $dish->name }}</a>
+                                        {{ $dish->name }}
                                     </td>
                                     <td>
                                         {{ $dish->price }} €
