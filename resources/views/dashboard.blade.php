@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2 class="fs-4 text-secondary my-4">
+        <h2 class="fs-2 text-secondary my-4 text-center">
             {{ __('Pannello di Controllo') }}
         </h2>
         <div class="row justify-content-center">
@@ -12,12 +12,15 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card mb-3">
-                                    <img src="{{ asset('storage/' . $restaurant->image) }}" style="height: 250px"
+                                    <img src="{{ asset('storage/' . $restaurant->image) }}" style="height: 300px"
                                         class="card-img-top" alt="Immagine del ristorante">
-                                    <div class="card-body">
+                                    <div class="card-body text-center">
                                         <h5 class="card-title">{{ $restaurant->name }}</h5>
                                         <p class="card-text">Indirizzo: {{ $restaurant->address }}</p>
                                         <p class="card-text">Partita IVA: {{ $restaurant->piva }}</p>
+                                        <p class="card-text"><small class="text-muted">Visibile:
+                                                {{ $restaurant->visible == 0 ? 'No' : 'Si' }}</small>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
