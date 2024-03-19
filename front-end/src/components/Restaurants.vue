@@ -21,6 +21,15 @@ export default {
       .catch((error) => {
         console.error("Error fetching data from first API:", error);
       });
+
+    axios
+      .get("http://localhost:8000/api/v1/tipologies")
+      .then((response) => {
+        this.tipologie = response.data;
+      })
+      .catch((error) => {
+        console.error("Error fetching data from first API:", error);
+      });
   },
   methods: {
     fetchSecondApiData() {
