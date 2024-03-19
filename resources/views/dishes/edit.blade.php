@@ -25,7 +25,7 @@
         </div>
 
         <div class="input-group">
-            <label class="label" for="description">Descrizione piatto: </label>
+            <label class="label" for="description">Descrizione: </label>
             <input id="description" type="text" name="description" class="p-2" value="{{ $dish->description }}">
             <div id="descriptionError" style="color: red; display: none;"></div>
         </div>
@@ -46,7 +46,7 @@
         <img id="image_dish" src="{{ asset('storage/' . $dish->image) }}" alt="Immagine Piatto" style="width: 250px">
 
         <div class="input-group">
-            <input type="submit" class="btn btn-primary btn-sm" value="CARICA">
+            <input type="submit" class="btn btn-primary btn-sm" value="Salva">
         </div>
 
     </form>
