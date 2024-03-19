@@ -283,6 +283,7 @@ export default {
                     <router-link :to="{ name: 'Details', params: { index: index } }" class="router-link">
                         <div class="restaurant-image"
                             :style="{ 'background-image': ristorante.image && ristorante.image.includes('images/') ? 'url(' + getImageUrl(ristorante) + ')' : 'url(' + ristorante.image + ')' }">
+                            <span class="tipology_card">{{ ristorante.tipologies }}</span>
                         </div>
                         <h6>{{ ristorante.name }}</h6>
                         <p v-if="ristorante.visible" class="open-status">
@@ -349,5 +350,10 @@ export default {
 
 
 
+}
+
+.tipology_card{
+    background-color: aqua;
+    padding: 5px;
 }
 </style>
