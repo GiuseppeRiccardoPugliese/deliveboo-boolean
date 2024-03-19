@@ -236,7 +236,7 @@ export default {
 
 
 <template>
-    <section>
+    <section class="bg-c">
         <!-- TIPOLOGIE -->
         <div class="tipology">
             <div class="tipo-card" v-for="(tipologia, index) in tipologie" :key="index">
@@ -355,5 +355,9 @@ export default {
 .tipology_card{
     background-color: aqua;
     padding: 5px;
+}
+
+.bg-c {
+    background-color: #f9fafa;
 }
 </style>
