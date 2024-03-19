@@ -1222,7 +1222,7 @@
     "name": "Ristorante La Pergola",
     "piva": "76543210987",
     "address": "Via Firenze, 30",
-    "image": "/img/?????????????????????????????????????????????.jpg",
+    "image": "/img/img23.jpg",
     "visible": 1,
     "tipologies": ["Italiano", "Pizza"],
     "dishes": [
@@ -1751,7 +1751,7 @@
     "name": "Kebab King",
     "piva": "78901234567",
     "address": "Via Istanbul, 7",
-    "image": "/img/img13.jpg",
+    "image": "/img/img20.jpg",
     "visible": 1,
     "tipologies": ["Kebab", "Healthy"],
     "dishes": [
@@ -1864,7 +1864,7 @@
     "name": "Hamburger Heaven",
     "piva": "90123456789",
     "address": "Via New York, 9",
-    "image": "/img/img15.jpg",
+    "image": "/img/img21.jpg",
     "visible": 1,
     "tipologies": ["Hamburger", "Americano"],
     "dishes": [
@@ -1924,7 +1924,7 @@
     "name": "Green Eats",
     "piva": "01234567890",
     "address": "Via Salute, 10",
-    "image": "/img/img16.jpg",
+    "image": "/img/img22.jpg",
     "visible": 1,
     "tipologies": ["Healthy"], 
     "dishes": [
