@@ -3,65 +3,122 @@ import axios from "axios";
 
 export default {
     name: "Restaurants",
-  data() {
-    return {
-      ristoranti: [], // Array per memorizzare i dati dei ristoranti
-      tipologie: [],
-    };
-  },
-  mounted() {
-    // Effettua la prima chiamata per ottenere i ristoranti dalla prima API
-    axios
-      .get("http://localhost:8000/api/v1/deliveboo")
-      .then((response) => {
-        this.ristoranti = response.data;
-        // Una volta ricevuti i dati dalla prima API, effettua la seconda chiamata
-        this.fetchSecondApiData();
-      })
-      .catch((error) => {
-        console.error("Error fetching data from first API:", error);
-      });
+    data() {
+        return {
+            ristoranti: [], // Array per memorizzare i dati dei ristoranti
+            tipologie: [],
+            selectedTipology: [], //ARRAY PER IL FILTRO DELLE TIPOLOGIE SELEZIONATE
+            clickedType: [], //ARRAY PER LE TIPOLOGIE CLICCATE
+        };
+    },
+    mounted() {
+        // Effettua la prima chiamata per ottenere i ristoranti dalla prima API
+        axios
+            .get("http://localhost:8000/api/v1/deliveboo")
+            .then((response) => {
+                this.ristoranti = response.data;
+                // Una volta ricevuti i dati dalla prima API, effettua la seconda chiamata
+                this.fetchSecondApiData();
+            })
+            .catch((error) => {
+                console.error("Error fetching data from first API:", error);
+            });
 
-    axios
-      .get("http://localhost:8000/api/v1/tipologies")
-      .then((response) => {
-        this.tipologie = response.data;
-      })
-      .catch((error) => {
-        console.error("Error fetching data from first API:", error);
-      });
-  },
-  methods: {
-    fetchSecondApiData() {
-      // Effettua la seconda chiamata per ottenere i ristoranti dalla seconda API
-      axios
-        .get("http://localhost:5174/server.json")
-        .then((response) => {
-          // Aggiungi i ristoranti dalla seconda API alla lista esistente
-          this.ristoranti = [...this.ristoranti, ...response.data];
-        })
-        .catch((error) => {
-          console.error("Error fetching data from second API:", error);
-        });
+        axios
+            .get("http://localhost:8000/api/v1/tipologies")
+            .then((response) => {
+                this.tipologie = response.data;
+            })
+            .catch((error) => {
+                console.error("Error fetching data from first API:", error);
+            });
     },
-    goBack() {
-      // Funzione per tornare alla pagina precedente
-      this.$router.go(-1);
-    },
-    getImageUrl(ristorante) {             
-        return `http://localhost:8000/storage/${ristorante.image}`;
-    },
-  },
-};
+    methods: {
+        fetchSecondApiData() {
+            // Effettua la seconda chiamata per ottenere i ristoranti dalla seconda API
+            axios
+                .get("http://localhost:5174/server.json")
+                .then((response) => {
+                    // Aggiungi i ristoranti dalla seconda API alla lista esistente
+                    this.ristoranti = [...this.ristoranti, ...response.data];
+                })
+                .catch((error) => {
+                    console.error("Error fetching data from second API:", error);
+                });
+        },
+        goBack() {
+            // Funzione per tornare alla pagina precedente
+            this.$router.go(-1);
+        },
+        getImageUrl(ristorante) { //FUNZIONE PER RITORNARE IL PATH DELL'IMG 
+            return `http://localhost:8000/storage/${ristorante.image}`;
+        },
+        getTipology(name) { //FUNZIONE PER IL NOME DELLA TIPOLOGIA
+            if (!this.selectedTipology.includes(name)) {
+                this.selectedTipology.push(name);
+            }
+            else {
+                const index = this.selectedTipology.indexOf(name); //IndexOf Restituisce l'index dell'elemento name all'interno del vettore
+                if (index !== -1) { //SE NON HAI NESSUNA TIPOLOGIA SELEZIONATA ALLORA TI IMPOSTO LA PRIMA
+                    this.selectedTipology.splice(index, 1);
+                }
+            }
+            console.log(this.selectedTipology);
+            this.searchTipology();
+        },
+        searchTipology() { //RICERCA DELLA TIPOLOGIA
+            let dataToSend = {};
+            if (this.selectedTipology.length > 0) {
+                console.log(this.selectedTipology);
+                dataToSend.tipology = this.selectedTipology;
+            }
+            axios.post("http://127.0.0.1:8000/api/v1/filtered", dataToSend) //CHIAMATA AXIOS FILTRATA IN BASE ALLA TIPOLOGIA SELEZIONATA
+                .then((response) => {
+                    this.ristoranti = response.data.restaurants;
+                })
+                .catch((error) => {
+                    console.error("Errore durante la richiesta API:", error);
+                }
+                );
+        },
+        toggleActive(index) { //FUNZIONE PER LE TIPOLOGIE SELEZIONATE(permette di selezionare piu' tipologie insieme cambiando l'opacity se selezionate o meno)
+            const elements = document.querySelectorAll('.tipo-img');
+            const clickedElement = elements[index];
+
+            // Controlla se l'elemento cliccato è già presente nell'array this.clickedType
+            const isClicked = this.clickedType.includes(index);
+
+            // Se l'elemento è già stato cliccato, rimuovilo dall'array e dalla classe
+            if (isClicked) {
+                const idx = this.clickedType.indexOf(index);
+                this.clickedType.splice(idx, 1);
+            } else {
+                // Altrimenti, aggiungi l'indice all'array
+                this.clickedType.push(index);
+            }
+
+            // Aggiorna la classe di tutti gli elementi in base all'array clickedType
+            elements.forEach((element, i) => {
+                if (this.clickedType.includes(i)) {
+                    element.classList.add('opacity-50');
+                } else {
+                    element.classList.remove('opacity-50');
+                }
+            });
+
+            console.log(this.clickedType);
+        }
+    }
+}
 </script>
 
 <template>
     <section>
-
+        <!-- TIPOLOGIE -->
         <div class="tipology">
             <div class="tipo-card" v-for="(tipologia, index) in tipologie" :key="index">
-                <div class="tipo-img">
-                    <img :src="tipologia.image" alt="">
+                <div class="tipo-img" @click=" getTipology(tipologia.name)"> <!-- Click prende la tipologia -->
+                    <img :src="tipologia.image" alt="" @click="toggleActive(index)"> <!-- Click opacity -->
                 </div>
                 <span> {{ tipologia.name }} </span>
             </div>

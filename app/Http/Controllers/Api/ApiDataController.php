@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use App\Models\Dish;
@@ -13,7 +14,7 @@ class ApiDataController extends Controller
     {
         // Recupera tutti i ristoranti dal database con le relazioni pre-caricate
         $restaurants = Restaurant::with('tipologies')->with('dishes')->get();
-        
+
         // Costruisci un array contenente tutti i dati
         $data = [];
 
@@ -44,5 +45,33 @@ class ApiDataController extends Controller
 
         // Restituisci i dati come risposta JSON
         return response()->json($data);
+    }
+    public function filteredTipology(Request $request)
+    {
+        $tipologies = $request->input('tipology');
+
+        $restaurants = Restaurant::with('user', 'tipologies')->get();
+
+        $filteredRestaurants = $restaurants->filter(function ($restaurant) use ($tipologies) {
+            if (empty($tipologies)) {
+                return true; // Restituisci il ristorante se nessuna tipologia è selezionata
+            }
+
+            $restaurantTipologies = $restaurant->tipologies->pluck('name')->toArray();
+
+            return count(array_intersect($tipologies, $restaurantTipologies)) === count($tipologies);
+        });
+
+        if ($filteredRestaurants->isEmpty()) {
+            return response()->json([
+                'messaggio' => 'Nessun ristorante trovato!',
+                'restaurants' => [],
+            ]);
+        } else {
+            return response()->json([
+                'messaggio' => 'Ristoranti trovati',
+                'restaurants' => $filteredRestaurants,
+            ]);
+        }
     }
 }
