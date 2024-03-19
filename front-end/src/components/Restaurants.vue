@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 import axios from "axios";
 
 export default {
@@ -110,7 +110,129 @@ export default {
         }
     }
 }
+</script> -->
+
+<script>
+import axios from "axios";
+
+export default {
+    name: "Restaurants",
+    data() {
+        return {
+            ristoranti: [], // Array per memorizzare i dati dei ristoranti
+            tipologie: [],
+            selectedTipology: [], //ARRAY PER IL FILTRO DELLE TIPOLOGIE SELEZIONATE
+            clickedType: [], //ARRAY PER LE TIPOLOGIE CLICCATE
+            originalRistoranti: [] // Array per memorizzare l'elenco originale dei ristoranti
+        };
+    },
+    mounted() {
+        // Effettua la prima chiamata per ottenere i ristoranti dalla prima API
+        axios
+            .get("http://localhost:8000/api/v1/deliveboo")
+            .then((response) => {
+                this.ristoranti = response.data;
+                // Assegna l'elenco originale dei ristoranti
+                this.originalRistoranti = response.data;
+
+                // Una volta ricevuti i dati dalla prima API, effettua la seconda chiamata
+                this.fetchSecondApiData();
+            })
+            .catch((error) => {
+                console.error("Error fetching data from first API:", error);
+            });
+
+        axios
+            .get("http://localhost:8000/api/v1/tipologies")
+            .then((response) => {
+                this.tipologie = response.data;
+            })
+            .catch((error) => {
+                console.error("Error fetching data from first API:", error);
+            });
+    },
+    methods: {
+        fetchSecondApiData() {
+            // Effettua la seconda chiamata per ottenere i ristoranti dalla seconda API (file JSON simulato)
+            axios
+                .get("http://localhost:5174/server.json")
+                .then((response) => {
+                    // Aggiungi i ristoranti dalla seconda API alla lista esistente
+                    this.ristoranti = [...this.ristoranti, ...response.data];
+                    // Salva l'elenco originale anche per i ristoranti della seconda API
+                    this.originalRistoranti = [...this.originalRistoranti, ...response.data];
+                })
+                .catch((error) => {
+                    console.error("Error fetching data from second API:", error);
+                });
+        },
+        goBack() {
+            // Funzione per tornare alla pagina precedente
+            this.$router.go(-1);
+        },
+        getImageUrl(ristorante) { //FUNZIONE PER RITORNARE IL PATH DELL'IMG 
+            return `http://localhost:8000/storage/${ristorante.image}`;
+        },
+        getTipology(name) { //FUNZIONE PER IL NOME DELLA TIPOLOGIA
+            if (!this.selectedTipology.includes(name)) {
+                this.selectedTipology.push(name);
+            }
+            else {
+                const index = this.selectedTipology.indexOf(name); //IndexOf Restituisce l'index dell'elemento name all'interno del vettore
+                if (index !== -1) { //SE NON HAI NESSUNA TIPOLOGIA SELEZIONATA ALLORA TI IMPOSTO LA PRIMA
+                    this.selectedTipology.splice(index, 1);
+                }
+            }
+            console.log(this.selectedTipology);
+            this.searchTipology();
+        },
+        searchTipology() {
+            // Se non ci sono tipologie selezionate, ripristina l'elenco completo dei ristoranti
+            if (this.selectedTipology.length === 0) {
+                this.ristoranti = [...this.originalRistoranti];
+                return;
+            }
+
+            // Altrimenti, applica il filtro basato sulle tipologie selezionate
+            let filteredRestaurants = [...this.originalRistoranti];
+            filteredRestaurants = filteredRestaurants.filter(ristorante => {
+                return ristorante.tipologies.some(tipologia => this.selectedTipology.includes(tipologia));
+            });
+
+            // Aggiorna la lista dei ristoranti con quelli filtrati
+            this.ristoranti = filteredRestaurants;
+        },
+        toggleActive(index) { //FUNZIONE PER LE TIPOLOGIE SELEZIONATE(permette di selezionare piu' tipologie insieme cambiando l'opacity se selezionate o meno)
+            const elements = document.querySelectorAll('.tipo-img');
+            const clickedElement = elements[index];
+
+            // Controlla se l'elemento cliccato è già presente nell'array this.clickedType
+            const isClicked = this.clickedType.includes(index);
+
+            // Se l'elemento è già stato cliccato, rimuovilo dall'array e dalla classe
+            if (isClicked) {
+                const idx = this.clickedType.indexOf(index);
+                this.clickedType.splice(idx, 1);
+            } else {
+                // Altrimenti, aggiungi l'indice all'array
+                this.clickedType.push(index);
+            }
+
+            // Aggiorna la classe di tutti gli elementi in base all'array clickedType
+            elements.forEach((element, i) => {
+                if (this.clickedType.includes(i)) {
+                    element.classList.add('opacity-50');
+                } else {
+                    element.classList.remove('opacity-50');
+                }
+            });
+
+            console.log(this.clickedType);
+        }
+    }
+}
 </script>
+
 
 
 <template>
