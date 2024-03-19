@@ -78,7 +78,7 @@ export default {
         <div class="menu text-center border-top">
             <h1 class="mt-4">MENU</h1>
             <div v-for="(dish, index) in ristoranti[this.$route.params.index].dishes" :key="index"
-                class="mt-4 d-flex flex-column">
+                class="my-5 py-4 border-top border-bottom d-flex flex-column">
 
                 <img :src="dish.image" alt="">
                 <h5>{{ dish.name }}</h5>
