@@ -92,12 +92,12 @@ export default {
                     {{ ristoranti[this.$route.params.index].address }}
                 </h4>
                 <h5
-                    class="text-success"
+                    class="text-success d-none"
                     v-if="ristoranti[this.$route.params.index].visible === 1"
                 >
                     APERTO
                 </h5>
-                <h5 class="text-danger" v-else>CHIUSO</h5>
+                <h5 class="text-danger d-none" v-else>CHIUSO</h5>
             </div>
             <div class="row">
                 <div class="col-12 col-md-8 text-center">

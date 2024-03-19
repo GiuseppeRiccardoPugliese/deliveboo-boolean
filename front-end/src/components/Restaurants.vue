@@ -286,10 +286,10 @@ export default {
                             <span class="tipology_card">{{ ristorante.tipologies }}</span>
                         </div>
                         <h6>{{ ristorante.name }}</h6>
-                        <p v-if="ristorante.visible" class="open-status">
+                        <p v-if="ristorante.visible" class="open-status d-none">
                             Aperto
                         </p>
-                        <p v-else class="closed-status">Chiuso</p>
+                        <p v-else class="closed-status d-none">Chiuso</p>
                     </router-link>
 
 
