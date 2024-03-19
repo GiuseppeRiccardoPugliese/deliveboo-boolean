@@ -124,7 +124,7 @@ export default {
 
 }
 
-@media all and (min-width: 576px) and (max-width: 1024px) {
+@media all and (min-width: 300px) and (max-width: 1024px) {
 
     .jumbotron{
         flex-direction: column;
