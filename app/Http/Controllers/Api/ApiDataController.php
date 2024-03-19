@@ -46,7 +46,7 @@ class ApiDataController extends Controller
         // Restituisci i dati come risposta JSON
         return response()->json($data);
     }
-    public function filteredTipology(Request $request)
+    public function filteredTipology(Request $request) //FUNZIONE PER LA CHIAMATA DEL FILTRO DELLE TIPOLOGIEEEEEEEEE!!!!
     {
         $tipologies = $request->input('tipology');
 

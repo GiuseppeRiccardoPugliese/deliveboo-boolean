@@ -37,5 +37,7 @@ Route::group(['prefix' => 'v1'], function () {
 
 Route::group(['prefix' => 'v1'], function () {
     Route::get('/deliveboo', [ApiDataController::class, 'Data']);
+
+    //ROTTA PER I FILTRI SULLE TIPOLOGIE
     Route::post('filtered', [ApiDataController::class, 'filteredTipology']);
 });
