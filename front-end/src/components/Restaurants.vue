@@ -280,7 +280,7 @@ export default {
                         </p>
                         <p v-else class="closed-status">Chiuso</p>
                     </router-link> -->
-                    <router-link :to="{ name: 'Details', params: { index: originalRistoranti.indexOf(ristorante) } }" class="router-link">
+                    <router-link :to="{ name: 'Details', params: { index: originalRistoranti.indexOf(ristorante), restaurantName: ristorante.name } }" class="router-link">
                         <div class="restaurant-image"
                             :style="{ 'background-image': ristorante.image && ristorante.image.includes('images/') ? 'url(' + getImageUrl(ristorante) + ')' : 'url(' + ristorante.image + ')' }">
                             <span class="tipology_card">{{ ristorante.tipologies }}</span>
