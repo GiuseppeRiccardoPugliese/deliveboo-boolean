@@ -220,7 +220,7 @@
                             </script>
 
                             {{-- TIPOLOGIE RISTORANTE --}}
-                            <div class="checkbox-group text-center m-3">
+                            {{-- <div class="checkbox-group text-center m-3">
                                 <label><input type="checkbox" name="type[]" value="Pizza"> Pizza</label>
                                 <label><input type="checkbox" name="type[]" value="Italiano"> Italiano</label>
                                 <label><input type="checkbox" name="type[]" value="Dessert"> Dessert</label>
@@ -231,7 +231,19 @@
                                 <label><input type="checkbox" name="type[]" value="Hamburger"> Hamburger</label>
                                 <label><input type="checkbox" name="type[]" value="Americano"> Americano</label>
                                 <label><input type="checkbox" name="type[]" value="Healthy"> Healthy</label>
-                            </div>
+                            </div> --}}
+
+                            <div>
+                                <label>Tipologie:</label><br>
+                                
+                                    @foreach($tipologies as $tipologia)
+                                                
+                                    <input type="checkbox" id="tipologia{{ $tipologia->id }}" name="tipologie[]" value="{{ $tipologia->id }}">
+                                                <label for="tipologia{{ $tipologia->id }}">{{ $tipologia->name }}</label><br>
+                                            
+                                    @endforeach
+                                        
+                           </div>
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">

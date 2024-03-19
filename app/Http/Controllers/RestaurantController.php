@@ -47,27 +47,34 @@ class RestaurantController extends Controller
     public function store(RestaurantRequest $request, $id)
     {
         $data = $request->all();
-
+    
         //Gestione IMG
         $img = $data['image'];
         $img_path = Storage::disk('public')->put('images', $img);
-
+    
         //Prendo l'ID dello USER
         $user = User::find($id);
-
+    
         $restaurant = new Restaurant();
         $restaurant->name = $data['name'];
         $restaurant->piva = $data['piva'];
         $restaurant->image = $img_path;
         $restaurant->address = $data['address'];
         $restaurant->visible = isset($data['visible']) ? true : false;
-
+    
+        // Salva il ristorante per ottenere l'ID generato automaticamente
         $restaurant->user()->associate($user);
-
         $restaurant->save();
-
+    
+        // Associare le tipologie al ristorante
+        if ($request->has('type')) {
+            $tipologie_ids = $request->input('type');
+            $restaurant->tipologies()->attach($tipologie_ids);
+        }
+    
         return redirect()->route('restaurant.index');
     }
+    
 
     /**
      * Display the specified resource.

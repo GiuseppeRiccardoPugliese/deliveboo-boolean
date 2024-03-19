@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Tipology;
+
 
 class RegisteredUserController extends Controller
 {
@@ -22,7 +24,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $tipologies = Tipology::all();
+
+        return view('auth.register', compact('tipologies'));
+
     }
 
     /**
@@ -66,6 +71,12 @@ class RegisteredUserController extends Controller
         $restaurant->user()->associate($user);
     
         $restaurant->save();
+
+        $selectedTypes = $request->input('tipologie', []);
+    
+        // Associare le tipologie selezionate al ristorante
+        // $restaurant = Auth::user()->restaurant;
+        $restaurant->tipologies()->sync($selectedTypes);
     
         event(new Registered($user));
     
