@@ -248,6 +248,1733 @@
         "visible": 1
       }
     ]
+  },
+  {
+    "id": "002",
+    "name": "Ristorante La Dolce Vita",
+    "piva": "",
+    "address": "Via Manzoni, 15",
+    "image": "/img/img03.jpg",
+    "visible": 0,
+    "tipologies": ["Italiano", "Dessert"],
+    "dishes": [
+      {
+        "name": "Prosciutto e Melone",
+        "description": "Prosciutto crudo con fette di melone",
+        "price": 9.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Carpaccio di Manzo",
+        "description": "Fettine sottili di manzo con rucola e grana",
+        "price": 10.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Risotto ai Funghi Porcini",
+        "description": "Risotto cremoso con funghi porcini freschi",
+        "price": 14.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Spaghetti alla Carbonara",
+        "description": "Spaghetti con uovo, pancetta e pecorino",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tagliata di Manzo",
+        "description": "Fettine di manzo grigliate servite con rucola e grana",
+        "price": 18.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Filetto di Branzino",
+        "description": "Filetto di branzino al forno con patate al rosmarino",
+        "price": 20.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tiramisù",
+        "description": "Classico dolce al caffè con savoiardi e mascarpone",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Panna Cotta",
+        "description": "Dolce al cucchiaio con salsa di frutti di bosco",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino Chianti Classico",
+        "description": "Bottiglia di vino Chianti Classico",
+        "price": 25.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Artigianale",
+        "description": "Bottiglia di birra artigianale locale",
+        "price": 5.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "003",
+    "name": "Ristorante La Trattoria",
+    "piva": "",
+    "address": "Via del Corso, 20",
+    "image": "/img/img04.jpg",
+    "visible": 0,
+    "tipologies": ["Italiano", "Dessert"],
+    "dishes": [
+      {
+        "name": "Bruschetta al Pomodoro",
+        "description": "Pane tostato con pomodoro fresco e basilico",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Insalata Caprese",
+        "description": "Mozzarella di bufala con pomodoro fresco e basilico",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Risotto ai Frutti di Mare",
+        "description": "Risotto cremoso con gamberi, cozze e vongole",
+        "price": 16.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Pasta all'Amatriciana",
+        "description": "Pasta con salsa di pomodoro, guanciale e pecorino",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Saltimbocca alla Romana",
+        "description": "Fettine di vitello con prosciutto crudo e salvia",
+        "price": 18.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Baccalà alla Livornese",
+        "description": "Filetti di baccalà con pomodoro, olive e capperi",
+        "price": 15.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tiramisù",
+        "description": "Dolce al caffè con savoiardi e mascarpone",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Gelato alla Crema",
+        "description": "Gelato artigianale alla crema con topping al cioccolato",
+        "price": 5.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Naturale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino Rosso della Casa",
+        "description": "Bottiglia di vino rosso della casa",
+        "price": 15.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Peroni",
+        "description": "Bottiglia di birra Peroni",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "004",
+    "name": "Ristorante Da Mario",
+    "piva": "",
+    "address": "Via Toledo, 30",
+    "image": "/img/img05.jpg",
+    "visible": 1,
+    "tipologies": ["Italiano", "Dessert"],
+    "dishes": [
+      {
+        "name": "Frittura di Paranza",
+        "description": "Assortimento di pesce fritto (calamari, gamberi, alici)",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Polpo alla Luciana",
+        "description": "Polpo cotto al sugo di pomodoro con olive e capperi",
+        "price": 14.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Spaghetti alle Vongole",
+        "description": "Spaghetti con vongole veraci, aglio, olio e peperoncino",
+        "price": 15.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Paccheri alla Genovese",
+        "description": "Paccheri con ragù di carne e cipolla",
+        "price": 13.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Frittura di Pesce",
+        "description": "Assortimento di pesce fritto (gamberi, calamari, triglie)",
+        "price": 18.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Parmigiana di Melanzane",
+        "description": "Melanzane fritte con salsa di pomodoro e mozzarella",
+        "price": 16.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Sfogliatella",
+        "description": "Dolce napoletano a sfoglia ripieno di ricotta",
+        "price": 5.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Pastiera Napoletana",
+        "description": "Torta pasquale napoletana con grano e ricotta",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino Bianco",
+        "description": "Bottiglia di vino bianco",
+        "price": 20.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Moretti",
+        "description": "Bottiglia di birra Moretti",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "005",
+    "name": "Ristorante Il Giardino",
+    "piva": "",
+    "address": "Via Garibaldi, 45",
+    "image": "/img/img06.jpg",
+    "visible": 1,
+    "tipologies": ["Italiano"],
+    "dishes": [
+      {
+        "name": "Caprese",
+        "description": "Mozzarella di bufala, pomodoro e basilico",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Prosciutto Crudo e Melone",
+        "description": "Prosciutto crudo con fette di melone",
+        "price": 10.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Risotto al Nero di Seppia",
+        "description": "Risotto con calamari e nero di seppia",
+        "price": 18.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Penne all'Arrabbiata",
+        "description": "Penne con salsa di pomodoro e peperoncino",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Cotoletta alla Milanese",
+        "description": "Cotoletta di vitello impanata e fritta",
+        "price": 20.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Branzino al Forno",
+        "description": "Branzino al forno con patate e olive",
+        "price": 22.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tiramisù",
+        "description": "Dolce al caffè con savoiardi e mascarpone",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Torta al Cioccolato",
+        "description": "Torta al cioccolato fondente con glassa",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Naturale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino Rosso della Casa",
+        "description": "Bottiglia di vino rosso della casa",
+        "price": 18.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Peroni",
+        "description": "Bottiglia di birra Peroni",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "006",
+    "name": "Ristorante Il Gabbiano",
+    "piva": "",
+    "address": "Via Partenope, 50",
+    "image": "/img/img07.jpg",
+    "visible": 1,
+    "tipologies": ["Italiano"],
+    "dishes": [
+      {
+        "name": "Mozzarella in Carrozza",
+        "description": "Mozzarella fritta in pastella",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Polpettine al Sugo",
+        "description": "Polpettine di carne con salsa di pomodoro",
+        "price": 9.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Pasta e Patate",
+        "description": "Pasta con patate, pomodoro e basilico",
+        "price": 10.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Risotto al Limone",
+        "description": "Risotto con scorza di limone e prezzemolo",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Parmigiana di Melanzane",
+        "description": "Melanzane fritte con salsa di pomodoro e mozzarella",
+        "price": 14.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Baccalà Fritto",
+        "description": "Baccalà fresco fritto",
+        "price": 16.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Torta Caprese",
+        "description": "Torta al cioccolato e mandorle",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Baba al Rhum",
+        "description": "Dolce napoletano inzuppato nel rum",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino Rosso",
+        "description": "Bottiglia di vino rosso",
+        "price": 18.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Moretti",
+        "description": "Bottiglia di birra Moretti",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "007",
+    "name": "Ristorante Sapore di Mare",
+    "piva": "",
+    "address": "Via del Corso, 55",
+    "image": "/img/img08.jpg",
+    "visible": 1,
+    "tipologies": ["Sushi"],
+    "dishes": [
+      {
+        "name": "Cozze alla Marinara",
+        "description": "Cozze in salsa di pomodoro e aglio",
+        "price": 10.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Insalata di Mare",
+        "description": "Insalata mista di mare con gamberetti, calamari e polpo",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Linguine allo Scoglio",
+        "description": "Linguine con frutti di mare",
+        "price": 16.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Risotto ai Frutti di Mare",
+        "description": "Risotto con frutti di mare",
+        "price": 18.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Frittura di Pesce",
+        "description": "Assortimento di pesce fritto (calamari, gamberi, triglie)",
+        "price": 20.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Grigliata Mista di Pesce",
+        "description": "Assortimento di pesce alla griglia (spada, gamberoni, branzino)",
+        "price": 22.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tiramisù",
+        "description": "Classico dolce al caffè con savoiardi e mascarpone",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Panna Cotta",
+        "description": "Dolce al cucchiaio con salsa di frutti di bosco",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino Bianco",
+        "description": "Bottiglia di vino bianco",
+        "price": 20.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Peroni",
+        "description": "Bottiglia di birra Peroni",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "010",
+    "name": "Ristorante Il Pescatore",
+    "piva": "",
+    "address": "Via dei Mille, 70",
+    "image": "/img/img10.jpg",
+    "visible": 0,
+    "tipologies": ["Poke"],
+    "dishes": [
+      {
+        "name": "Insalata di Mare",
+        "description": "Insalata mista di mare con gamberetti, calamari e polpo",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Cozze alla Marinara",
+        "description": "Cozze in salsa di pomodoro e aglio",
+        "price": 10.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Spaghetti alle Vongole",
+        "description": "Spaghetti con vongole veraci, aglio, olio e peperoncino",
+        "price": 15.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Risotto ai Frutti di Mare",
+        "description": "Risotto con frutti di mare",
+        "price": 18.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Grigliata Mista di Pesce",
+        "description": "Assortimento di pesce alla griglia (spada, gamberi, branzino)",
+        "price": 22.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Frittura di Pesce",
+        "description": "Assortimento di pesce fritto (calamari, gamberi, triglie)",
+        "price": 20.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tiramisù",
+        "description": "Classico dolce al caffè con savoiardi e mascarpone",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Baba al Rhum",
+        "description": "Dolce napoletano inzuppato nel rum",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino Bianco",
+        "description": "Bottiglia di vino bianco",
+        "price": 20.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Peroni",
+        "description": "Bottiglia di birra Peroni",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "011",
+    "name": "Ristorante Da Giuseppe",
+    "piva": "",
+    "address": "Via Veneto, 80",
+    "image": "/img/img11.jpg",
+    "visible": 1,
+    "tipologies": ["Italiano", "Dessert"],
+    "dishes": [
+      {
+        "name": "Carpaccio di Manzo",
+        "description": "Fettine sottili di manzo con rucola e grana",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Insalata di Rucola e Parmigiano",
+        "description": "Insalata di rucola con scaglie di parmigiano",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Gnocchi al Gorgonzola",
+        "description": "Gnocchi con salsa al gorgonzola e noci",
+        "price": 14.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Penne all'Arrabbiata",
+        "description": "Penne con salsa di pomodoro e peperoncino",
+        "price": 11.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Bistecca alla Fiorentina",
+        "description": "Bistecca di manzo alla griglia",
+        "price": 25.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Filetto di Salmone",
+        "description": "Filetto di salmone al cartoccio con verdure",
+        "price": 18.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tiramisù",
+        "description": "Dolce al caffè con savoiardi e mascarpone",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Torta di Mele",
+        "description": "Torta di mele fatta in casa",
+        "price": 5.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino Rosso",
+        "description": "Bottiglia di vino rosso",
+        "price": 20.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Peroni",
+        "description": "Bottiglia di birra Peroni",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "012",
+    "name": "Ristorante Il Paradiso",
+    "piva": "",
+    "address": "Via Montenapoleone, 90",
+    "image": "/img/img12.jpg",
+    "visible": 1,
+    "tipologies": ["Italiano", "Dessert"],
+    "dishes": [
+      {
+        "name": "Carpaccio di Salmone",
+        "description": "Fettine sottili di salmone con rucola e limone",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Insalata di Mare",
+        "description": "Insalata mista di mare con gamberetti, calamari e polpo",
+        "price": 14.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Risotto ai Funghi Porcini",
+        "description": "Risotto cremoso con funghi porcini freschi",
+        "price": 16.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Linguine allo Scoglio",
+        "description": "Linguine con frutti di mare",
+        "price": 18.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Grigliata Mista di Pesce",
+        "description": "Assortimento di pesce alla griglia (spada, gamberi, branzino)",
+        "price": 22.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tagliata di Manzo",
+        "description": "Fettine di manzo grigliate con rucola e grana",
+        "price": 20.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tiramisù",
+        "description": "Classico dolce al caffè con savoiardi e mascarpone",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Gelato alla Crema",
+        "description": "Gelato artigianale alla crema con topping al cioccolato",
+        "price": 5.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino Rosso",
+        "description": "Bottiglia di vino rosso",
+        "price": 25.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Moretti",
+        "description": "Bottiglia di birra Moretti",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "013",
+    "name": "Ristorante Sapore d'Oriente",
+    "piva": "",
+    "address": "Via Veneto, 95",
+    "image": "/img/img13.jpg",
+    "visible": 1,
+    "tipologies": ["Sushi", "Dessert"],
+    "dishes": [
+      {
+        "name": "Gyoza",
+        "description": "Ravioli giapponesi fritti o al vapore",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Edamame",
+        "description": "Fagioli di soia bolliti e salati",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Ramen",
+        "description": "Zuppa di noodles giapponese con carne o pesce",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Udon",
+        "description": "Zuppa di noodles giapponese con tempura",
+        "price": 14.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Teriyaki di Pollo",
+        "description": "Pollo cotto alla griglia con salsa teriyaki",
+        "price": 16.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tempura Misto",
+        "description": "Assortimento di tempura di gamberi, verdure e pesce",
+        "price": 18.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Mochi",
+        "description": "Dolce giapponese di gelato avvolto in pasta di riso",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Dorayaki",
+        "description": "Pancake giapponese con ripieno di crema di fagioli dolci",
+        "price": 5.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Sake caldo",
+        "description": "Bicchiere di sake riscaldato",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra giapponese",
+        "description": "Bottiglia di birra giapponese",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "The Verde",
+        "description": "Tè verde giapponese",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "014",
+    "name": "Ristorante Gusto Mediterraneo",
+    "piva": "",
+    "address": "Via Partenope, 110",
+    "image": "/img/img14.jpg",
+    "visible": 1,
+    "tipologies": ["Italiano", "Dessert"],
+    "dishes": [
+      {
+        "name": "Bruschetta al Pomodoro",
+        "description": "Pane tostato con pomodoro fresco e basilico",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Carpaccio di Polpo",
+        "description": "Sottile carpaccio di polpo con insalata",
+        "price": 10.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Pasta alla Puttanesca",
+        "description": "Pasta con pomodoro, olive, capperi e acciughe",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Risotto allo Zafferano",
+        "description": "Risotto con zafferano e verdure",
+        "price": 14.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Grigliata Mista di Pesce",
+        "description": "Assortimento di pesce alla griglia (spada, gamberi, branzino)",
+        "price": 22.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Salmone al Limone",
+        "description": "Filetto di salmone al cartoccio con limone",
+        "price": 20.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tiramisù",
+        "description": "Classico dolce al caffè con savoiardi e mascarpone",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Gelato alla Frutta",
+        "description": "Gelato artigianale alla frutta fresca",
+        "price": 5.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino Bianco",
+        "description": "Bottiglia di vino bianco",
+        "price": 20.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Moretti",
+        "description": "Bottiglia di birra Moretti",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "025",
+    "name": "Ristorante La Pergola",
+    "piva": "76543210987",
+    "address": "Via Firenze, 30",
+    "image": "/img/?????????????????????????????????????????????.jpg",
+    "visible": 1,
+    "tipologies": ["Italiano", "Pizza"],
+    "dishes": [
+      {
+        "name": "Antipasto misto",
+        "description": "Selezione di salumi e formaggi con verdure grigliate",
+        "price": 9.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Lasagna al forno",
+        "description": "Classico piatto di lasagna al ragù e besciamella",
+        "price": 11.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Pizza Margherita",
+        "description": "Pomodoro, mozzarella, basilico",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Pizza Quattro Formaggi",
+        "description": "Pomodoro, mozzarella, gorgonzola, fontina, parmigiano",
+        "price": 10.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tiramisù",
+        "description": "Dolce al caffè con savoiardi, mascarpone e cacao",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Torta al Cioccolato",
+        "description": "Torta al cioccolato fondente con crema al mascarpone",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Peroni",
+        "description": "Bottiglia di birra Peroni",
+        "price": 3.5,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino della casa",
+        "description": "Bicchiere di vino rosso o bianco della casa",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "026",
+    "name": "Ristorante Buon Gusto",
+    "piva": "65432109876",
+    "address": "Via Garibaldi, 40",
+    "image": "/img/img04.jpg",
+    "visible": 1,
+    "tipologies": ["Italiano", "Dessert"],
+    "dishes": [
+      {
+        "name": "Antipasto Toscano",
+        "description": "Selezione di affettati toscani con crostini di pane",
+        "price": 10.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Ribollita",
+        "description": "Zuppa tipica toscana con pane raffermo, cavolo nero e fagioli",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Pappardelle al Cinghiale",
+        "description": "Pappardelle con ragù di cinghiale",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Bistecca alla Fiorentina",
+        "description": "Fiorentina di manzo alla griglia servita con contorno di verdure",
+        "price": 22.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tiramisù",
+        "description": "Classico dolce al caffè con savoiardi e mascarpone",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Panna Cotta",
+        "description": "Dolce al cucchiaio con crema di latte e salsa ai frutti di bosco",
+        "price": 5.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Moretti",
+        "description": "Bottiglia di birra Moretti",
+        "price": 3.5,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino Chianti",
+        "description": "Bottiglia di vino Chianti Classico",
+        "price": 15.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "027",
+    "name": "Ristorante Veggie Delight",
+    "piva": "54321098765",
+    "address": "Via Verdi, 50",
+    "image": "/img/img05.jpg",
+    "visible": 1,
+    "tipologies": ["Healthy"],
+    "dishes": [
+      {
+        "name": "Insalata Caprese",
+        "description": "Mozzarella di bufala, pomodoro fresco, basilico",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Couscous alle Verdure",
+        "description": "Couscous con verdure miste e ceci",
+        "price": 9.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Lasagna Vegetariana",
+        "description": "Lasagna con verdure miste e formaggio",
+        "price": 10.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Falafel",
+        "description": "Polpette di ceci e spezie, servite con salsa tahini",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Torta di Verdure",
+        "description": "Torta salata con verdure di stagione",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Panna Cotta Vegana",
+        "description": "Dolce al cucchiaio vegano con latte di cocco e sciroppo d'acero",
+        "price": 5.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Artigianale",
+        "description": "Bottiglia di birra artigianale locale",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino Biologico",
+        "description": "Bottiglia di vino biologico rosso o bianco",
+        "price": 18.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "030",
+    "name": "Pizzeria La Vesuviana",
+    "piva": "21987654320",
+    "address": "Via Napoli, 2",
+    "image": "/img/img08.jpg",
+    "visible": 1,
+    "tipologies": ["Pizza", "Italiano"],
+    "dishes": [
+      {
+        "name": "Margherita",
+        "description": "Pomodoro, mozzarella, basilico",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Quattro Stagioni",
+        "description": "Pomodoro, mozzarella, funghi, prosciutto cotto, carciofi, olive nere",
+        "price": 11.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tiramisù",
+        "description": "Dolce al caffè con savoiardi, mascarpone e cacao",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Panna Cotta",
+        "description": "Dolce al cucchiaio con crema di latte e salsa ai frutti di bosco",
+        "price": 5.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Moretti",
+        "description": "Bottiglia di birra Moretti",
+        "price": 3.5,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino della casa",
+        "description": "Bicchiere di vino rosso o bianco della casa",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "031",
+    "name": "Trattoria Nonna Maria",
+    "piva": "31876543201",
+    "address": "Via Venezia, 3",
+    "image": "/img/img09.jpg",
+    "visible": 1,
+    "tipologies": ["Pizza", "Italiano"],
+    "dishes": [
+      {
+        "name": "Pizza Capricciosa",
+        "description": "Pomodoro, mozzarella, funghi, prosciutto cotto, carciofi, olive nere",
+        "price": 10.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Calzone",
+        "description": "Pizza chiusa a portafoglio con pomodoro, mozzarella, prosciutto cotto e funghi",
+        "price": 9.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tiramisù",
+        "description": "Dolce al caffè con savoiardi, mascarpone e cacao",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Gelato alla Fragola",
+        "description": "Gelato artigianale alla fragola",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Peroni",
+        "description": "Bottiglia di birra Peroni",
+        "price": 3.5,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino della casa",
+        "description": "Bicchiere di vino rosso o bianco della casa",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "032",
+    "name": "Ristorante Dolce Vita",
+    "piva": "45678901234",
+    "address": "Via Roma, 4",
+    "image": "/img/img10.jpg",
+    "visible": 1,
+    "tipologies": ["Dessert", "Italiano"],
+    "dishes": [
+      {
+        "name": "Tiramisù",
+        "description": "Classico dolce al caffè con savoiardi e mascarpone",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Panna Cotta",
+        "description": "Dolce al cucchiaio con crema di latte e salsa ai frutti di bosco",
+        "price": 5.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Cannoli Siciliani",
+        "description": "Gusci di pasticcera ripieni di ricotta dolce e gocce di cioccolato",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Gelato alla Crema",
+        "description": "Gelato artigianale alla crema con topping al cioccolato",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Torta al Cioccolato",
+        "description": "Torta al cioccolato fondente con crema al mascarpone",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Moretti",
+        "description": "Bottiglia di birra Moretti",
+        "price": 3.5,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino della casa",
+        "description": "Bicchiere di vino rosso o bianco della casa",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "033",
+    "name": "Ristorante Poke & Co.",
+    "piva": "56789012345",
+    "address": "Via Hawaii, 5",
+    "image": "/img/img11.jpg",
+    "visible": 1,
+    "tipologies": ["Poke", "Healthy"],
+    "dishes": [
+      {
+        "name": "Poke Bowl Salmone",
+        "description": "Riso, salmone fresco, avocado, edamame, salsa teriyaki",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Poke Bowl Tonno",
+        "description": "Riso, tonno fresco, mango, cetriolo, salsa di soia",
+        "price": 14.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Poke Vegano",
+        "description": "Riso, tofu, avocado, carote, cavolo, dressing al lime e zenzero",
+        "price": 10.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Edamame",
+        "description": "Fagioli di soia bolliti e salati",
+        "price": 5.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Smoothie Bowl",
+        "description": "Frutta fresca con yogurt e granola",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tè Verde",
+        "description": "Tè verde giapponese caldo o freddo",
+        "price": 3.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "034",
+    "name": "Paninoteca Deliziosa",
+    "piva": "67890123456",
+    "address": "Via Panini, 6",
+    "image": "/img/img12.jpg",
+    "visible": 1,
+    "tipologies": ["Sandwich", "Italiano"],
+    "dishes": [
+      {
+        "name": "Panino Caprese",
+        "description": "Pane ciabatta con mozzarella di bufala, pomodoro, basilico e olio d'oliva",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Panino Club",
+        "description": "Panino toast con pollo grigliato, bacon, lattuga, pomodoro e maionese",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Panino Light",    
+        "description": "Panino integrale con hummus, verdure grigliate e rucola",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Insalata di Pollo",
+        "description": "Insalata mista con dadini di pollo alla griglia e dressing al limone",
+        "price": 9.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Patatine Fritte",
+        "description": "Porzione di patatine fritte croccanti",
+        "price": 3.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Bibita in Lattina",
+        "description": "Bibita in lattina (Coca-Cola, Sprite, Fanta)",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 1.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "035",
+    "name": "Kebab King",
+    "piva": "78901234567",
+    "address": "Via Istanbul, 7",
+    "image": "/img/img13.jpg",
+    "visible": 1,
+    "tipologies": ["Kebab", "Healthy"],
+    "dishes": [
+      {
+        "name": "Kebab di Pollo",
+        "description": "Piatto di kebab con carne di pollo, insalata, pomodoro, cipolla e salsa",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Kebab di Manzo",
+        "description": "Piatto di kebab con carne di manzo, insalata, pomodoro, cipolla e salsa",
+        "price": 9.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Falafel Wrap",
+        "description": "Wrap con polpette di ceci, insalata, hummus e salsa tahini",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Patatine Fritte",
+        "description": "Porzione di patatine fritte croccanti",
+        "price": 3.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Efes",
+        "description": "Bottiglia di birra Efes",
+        "price": 3.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "036",
+    "name": "Sushi Palace",
+    "piva": "89012345678",
+    "address": "Via Tokyo, 8",
+    "image": "/img/img14.jpg",
+    "visible": 1,
+    "tipologies": ["Sushi", "Healthy"],
+    "dishes": [
+      {
+        "name": "Sashimi Misto",
+        "description": "Assortimento di sashimi misti di pesce crudo",
+        "price": 18.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Nigiri Salmone",
+        "description": "Sushi di riso con fettine di salmone sopra",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "California Roll",
+        "description": "Maki roll con avocado, surimi e cetriolo",
+        "price": 10.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Spicy Tuna Roll",
+        "description": "Maki roll con tonno piccante e maionese",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tempura Ice Cream",
+        "description": "Gelato avvolto nella pastella e fritto",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Miso Soup",
+        "description": "Zuppa giapponese a base di miso con alghe e tofu",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tè Verde",
+        "description": "Tè verde giapponese caldo o freddo",
+        "price": 3.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "037",
+    "name": "Hamburger Heaven",
+    "piva": "90123456789",
+    "address": "Via New York, 9",
+    "image": "/img/img15.jpg",
+    "visible": 1,
+    "tipologies": ["Hamburger", "Americano"],
+    "dishes": [
+      {
+        "name": "Classic Burger",
+        "description": "Hamburger di manzo con lattuga, pomodoro, cipolla, formaggio e salsa",
+        "price": 10.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Bacon Cheeseburger",
+        "description": "Hamburger di manzo con bacon, formaggio cheddar, lattuga, pomodoro e maionese",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Veggie Burger",
+        "description": "Hamburgerbase di ceci, carote e spezie, con insalata e maionese vegana",
+        "price": 9.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Onion Rings",
+        "description": "Anelli di cipolla fritti in pastella croccante",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Patatine Fritte",
+        "description": "Porzione di patatine fritte croccanti",
+        "price": 3.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Bibita in Bottiglia",
+        "description": "Bibita in bottiglia (Coca-Cola, Pepsi, Dr. Pepper)",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Budweiser",
+        "description": "Bottiglia di birra Budweiser",
+        "price": 3.5,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "038",
+    "name": "Green Eats",
+    "piva": "01234567890",
+    "address": "Via Salute, 10",
+    "image": "/img/img16.jpg",
+    "visible": 1,
+    "tipologies": ["Healthy"], 
+    "dishes": [
+      {
+        "name": "Insalata Mediterranea",
+        "description": "Insalata mista con pomodori, cetrioli, olive, feta e dressing al limone",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Wrap Vegano",
+        "description": "Wrap integrale con hummus, avocado, verdure grigliate e rucola",
+        "price": 9.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Buddha Bowl",
+        "description": "Bowl con riso integrale, quinoa, ceci, avocado, verdure al vapore e dressing alla curcuma",
+        "price": 11.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Smoothie Verde",
+        "description": "Frutta e verdura miste frullate con latte di mandorla",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua di Cocco",
+        "description": "Bottiglia di acqua di cocco naturale",
+        "price": 3.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tisana Detox",
+        "description": "Tisana depurativa a base di zenzero, limone e menta",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
   }
 ]
+  
+
+
+
   

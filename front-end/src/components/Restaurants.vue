@@ -112,6 +112,7 @@ export default {
 }
 </script>
 
+
 <template>
     <section>
         <!-- TIPOLOGIE -->
