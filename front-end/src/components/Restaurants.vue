@@ -236,7 +236,7 @@ export default {
 
 
 <template>
-    <section class="bg-c">
+    <section>
         <!-- TIPOLOGIE -->
         <div class="tipology">
             <div class="tipo-card" v-for="(tipologia, index) in tipologie" :key="index">
@@ -280,7 +280,7 @@ export default {
                         </p>
                         <p v-else class="closed-status">Chiuso</p>
                     </router-link> -->
-                    <router-link :to="{ name: 'Details', params: { index: index } }" class="router-link">
+                    <router-link :to="{ name: 'Details', params: { index: index, restaurantName: ristorante.name } }" class="router-link">
                         <div class="restaurant-image"
                             :style="{ 'background-image': ristorante.image && ristorante.image.includes('images/') ? 'url(' + getImageUrl(ristorante) + ')' : 'url(' + ristorante.image + ')' }">
                             <span class="tipology_card">{{ ristorante.tipologies }}</span>
@@ -355,9 +355,5 @@ export default {
 .tipology_card{
     background-color: aqua;
     padding: 5px;
-}
-
-.bg-c {
-    background-color: #f9fafa;
 }
 </style>
