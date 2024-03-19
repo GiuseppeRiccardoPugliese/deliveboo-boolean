@@ -56,6 +56,7 @@ export default {
             <strong>Ristoranti</strong>
         </span>
     </div>
+    
     <div class="row mx-3 mb-3" v-if="ristoranti[this.$route.params.index]">
         <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-4">
             <img class="img_product"
