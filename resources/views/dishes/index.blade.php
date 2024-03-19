@@ -8,49 +8,75 @@
     @auth
         <div class="container">
             <h2 class="fs-2 text-secondary my-4 text-center">{{ __('Menù') }}</h2>
-            <div class="row mb-3 justify-content-end">
-                <a href="{{ route('dish.create') }}" class="btn-create"><span class="plus">Aggiungi Nuovo Piatto</span></a>
+            <div class="row mb-3">
+            <div class="col-md-6">
+                    <a href="{{ route('dish.create') }}" class="btn btn-sm btn-primary"><span class="plus"><i class="fa-solid fa-plus"></i></span> Aggiungi Nuovo Piatto</a>
+                </div>
             </div>
             <div class="row">
-                <ul class="list-group p-0">
-                    @foreach ($dishes as $dish)
-                        @if (Auth::user()->id == $dish->restaurant->user_id)
-                            <li class="list-group-item border-1 rounded-1">
-                                <div class="row align-items-center">
-                                    <div class="col-md-3">
-                                        <img src="{{ asset('storage/' . $dish->image) }}" class="img-thumbnail"
-                                            alt="Immagine del piatto">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h3 class="text-center"><a href="{{ route('dish.show', $dish->id) }}"
-                                                class="text-decoration-none">Nome del piatto:
-                                                {{ $dish->name }}</a></h3>
-                                        <p class="text-center">Descrizione: {{ $dish->description }}</p>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="btn-group align-items-center" role="group" aria-label="Azioni">
-                                            <a href="{{ route('dish.edit', $dish->id) }}"
-                                                class="btn btn-primary btn-sm w-100 h-100 rounded-1">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Immagine</th>
+                            <th scope="col">Nome del piatto</th>
+                            <th scope="col">Prezzo</th>
+                            <th scope="col">Descrizione</th>
+                            <th scope="col">Visibilità</th>
+                            <th scope="col">Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($dishes as $dish)
+                            @if (Auth::user()->id == $dish->restaurant->user_id)
+                                <tr>
+                                    <td>
+                                        <img src="{{ asset('storage/' . $dish->image) }}" class="img-thumbnail-small" alt="Immagine del piatto">
+                                    </td>
+                                    <td>
+                                        {{ $dish->name }}
+                                    </td>
+                                    <td>
+                                        {{ $dish->price }} €
+                                    </td>
+                                    <td>
+                                        {{ $dish->description }}
+                                    </td>
+                                    <td>
+                                        {{ $dish->visible == 0 ? 'No' : 'Si' }}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group" aria-label="Azioni">
+                                            <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-outline-primary sm rounded">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                            <form class="m-0" action="{{ route('dish.destroy', $dish->id) }}" method="POST">
+                                            <button type="submit" class="btn btn btn-outline-danger sm rounded"  onclick="confirmDelete('{{ $dish->id }}')">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                            <form id="delete-form-{{ $dish->id }}" action="{{ route('dish.destroy', $dish->id) }}" method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
                                             </form>
                                         </div>
-                                    </div>
-                                </div>
-                            </li>
-                        @endif
-                    @endforeach
-                </ul>
+                                    </td>
+                                </tr>
+                            @endif
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     @endauth
 @endsection
+
+
+ <script>
+        function confirmDelete(dishId) {
+            if (confirm("Sei sicuro di voler eliminare questo piatto?")) {
+                // Se l'utente conferma, invia il modulo di eliminazione
+                document.getElementById('delete-form-' + dishId).submit();
+            }
+        }
+ </script>
 
 
 
@@ -85,13 +111,17 @@
         text-decoration: none;
     }
 
-    .btn-group .btn-primary {
+    .btn-group .btn-outline-primary {
         font-size: 20px;
         margin-right: 10px;
     }
 
-    .btn-group .btn-danger {
+    .btn-group .btn-outline-danger {
         font-size: 20px;
+    }
+    .img-thumbnail-small {
+            max-width: 100px;
+            height: auto;
     }
 </style>
 

@@ -13,5 +13,5 @@ export default [
     { path: '/home', component: Home, name: 'Home' },
     { path: '/restaurants', component: Restaurants, name: 'Restaurants' },
     { path: '/login', component: Login, name: 'Login' },
-    { path: '/details:index', component: Details, name: 'Details' }
+    { path: '/details:index:restaurantName', component: Details, name: 'Details' }
 ]
