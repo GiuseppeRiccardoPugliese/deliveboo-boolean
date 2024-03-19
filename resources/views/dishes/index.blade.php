@@ -46,10 +46,10 @@
                                     </td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Azioni">
-                                            <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-primary sm w-100 h-100">
+                                            <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-outline-primary sm rounded">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                            <button type="submit" class="btn btn-danger sm"  onclick="confirmDelete('{{ $dish->id }}')">
+                                            <button type="submit" class="btn btn btn-outline-danger sm rounded"  onclick="confirmDelete('{{ $dish->id }}')">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                             <form id="delete-form-{{ $dish->id }}" action="{{ route('dish.destroy', $dish->id) }}" method="POST" style="display: none;">
@@ -111,12 +111,12 @@
         text-decoration: none;
     }
 
-    .btn-group .btn-primary {
+    .btn-group .btn-outline-primary {
         font-size: 20px;
         margin-right: 10px;
     }
 
-    .btn-group .btn-danger {
+    .btn-group .btn-outline-danger {
         font-size: 20px;
     }
     .img-thumbnail-small {
