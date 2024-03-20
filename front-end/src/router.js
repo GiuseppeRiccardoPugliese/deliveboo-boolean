@@ -6,6 +6,7 @@ import Login from './components/Login.vue'
 import Restaurants from './components/Restaurants.vue'
 import Details from './components/Details.vue'
 import Carousel from './components/Carousel.vue'
+import Payment from './components/Payment.vue'
 
 
 export default [
@@ -13,5 +14,6 @@ export default [
     { path: '/home', component: Home, name: 'Home' },
     { path: '/restaurants', component: Restaurants, name: 'Restaurants' },
     { path: '/login', component: Login, name: 'Login' },
-    { path: '/details:index:restaurantName', component: Details, name: 'Details' }
+    { path: '/details:index/:restaurantName', component: Details, name: 'Details' },
+    { path: '/payment', component: Payment, name: 'Payment' }
 ]
