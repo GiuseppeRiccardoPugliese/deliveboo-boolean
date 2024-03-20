@@ -261,7 +261,26 @@ export default {
             <div class="my-card-container">
                 <!-- Utilizza v-for per iterare sui ristoranti e mostrare i dati -->
                 <div class="my-card" v-for="(ristorante, index) in ristoranti" :key="index">
-                    <router-link :to="{ name: 'Details', params: { index: index, restaurantName: ristorante.name } }" class="router-link">
+                    <!-- <router-link :to="{ name: 'Details', params: { index: index } }" class="router-link">
+                        <div class="restaurant-image" :style="{ 'background-image': 'url(' + ristorante.image + ')' }"></div>
+
+                        <h6>{{ ristorante.name }}</h6>
+                        <p v-if="ristorante.visible" class="open-status">
+                            Aperto
+                        </p>
+                        <p v-else class="closed-status">Chiuso</p>
+                    </router-link> -->
+                    <!-- <router-link :to="{ name: 'Details', params: { index: index } }" class="router-link">
+                        <div class="restaurant-image"
+                            :style="{ 'background-image': ristorante.image.includes('images/') && ristorante.image.includes('images/') !== null ? 'url(' + getImageUrl(ristorante) + ')' : ' url(' + ristorante.image + ')' }">
+                        </div>
+                        <h6>{{ ristorante.name }}</h6>
+                        <p v-if="ristorante.visible" class="open-status">
+                            Aperto
+                        </p>
+                        <p v-else class="closed-status">Chiuso</p>
+                    </router-link> -->
+                    <router-link :to="{ name: 'Details', params: { index: originalRistoranti.indexOf(ristorante), restaurantName: ristorante.name } }" class="router-link">
                         <div class="restaurant-image"
                             :style="{ 'background-image': ristorante.image && ristorante.image.includes('images/') ? 'url(' + getImageUrl(ristorante) + ')' : 'url(' + ristorante.image + ')' }">
                             <div class="tipology-container">
