@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
@@ -66,10 +67,25 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function update(Request $request, $id)
     {
-        //
+        // Ottieni l'ordine dal database
+        $order = Order::find($id);
+
+        // Verifica se l'ordine esiste
+        if (!$order) {
+            return response()->json(['message' => 'Ordine non trovato'], 404);
+        }
+
+        // Aggiorna i dettagli dell'ordine con i dati inviati dal frontend
+        $order->update($request->all());
+
+        // Rispondi al frontend confermando che l'ordine è stato aggiornato con successo
+        return response()->json(['message' => 'Ordine aggiornato con successo', 'order' => $order]);
     }
+
 
     /**
      * Remove the specified resource from storage.

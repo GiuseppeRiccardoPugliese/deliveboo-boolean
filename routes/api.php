@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ApiDataController;
 use App\Http\Controllers\Api\DishesApiController;
 use App\Http\Controllers\Api\RestaurantsApiController;
 use App\Http\Controllers\Api\TipologiesApiController;
+use App\Http\Controllers\OrderController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,3 +42,6 @@ Route::group(['prefix' => 'v1'], function () {
     //ROTTA PER I FILTRI SULLE TIPOLOGIE
     Route::post('filtered', [ApiDataController::class, 'filteredTipology']);
 });
+
+Route::put('/orders/{id}', [OrderController::class, 'update']);
+
