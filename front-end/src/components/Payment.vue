@@ -44,16 +44,71 @@ export default {
 
 
 <template>
-    <div>
-      <!-- Aggiungi il markup HTML per visualizzare i dettagli dell'ordine e il pulsante per confermare l'ordine -->
-      <h2>Riepilogo dell'ordine</h2>
-      <p v-for="(order, index) in orders" :key="index">{{ order.name }} ({{ order.quantity }}) - {{ order.price }}€</p>
-      <p>Totale: {{ totalPrice }}€</p>
-      <button @click="confirmOrder">Conferma Ordine</button>
+  <div class="order-card">
+    <div class="order-details">
+      <h2 class="order-title">Riepilogo dell'ordine</h2>
+      <div class="order-items">
+        <div v-for="(order, index) in orders" :key="index" class="order-item">
+          <p>{{ order.name }} ({{ order.quantity }}) - {{ order.price }}€</p>
+        </div>
+      </div>
+      <p class="order-total">Totale: {{ totalPrice }}€</p>
     </div>
-  </template>
+    <button class="confirm-button" @click="confirmOrder">Conferma Pagamento</button>
+  </div>
+</template>
 
-  
 <style lang="scss">
-    
+.order-card {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.order-details {
+  margin-bottom: 20px;
+}
+
+.order-title {
+  font-size: 24px;
+  color: #1c1c1c;
+  margin-bottom: 10px;
+}
+
+.order-items {
+  margin-bottom: 10px;
+}
+
+.order-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.order-total {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1c1c1c;
+}
+
+.confirm-button {
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  background-color: #ff5a5f;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.confirm-button:hover {
+  background-color: #e75155;
+}
 </style>
