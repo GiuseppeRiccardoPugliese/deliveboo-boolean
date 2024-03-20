@@ -216,7 +216,29 @@
                                     }
 
                                     return counter;
-                                }
+                                };
+
+                                //creiamo con un evento che viene attivato solo quando la pagina è completamente carica
+                                document.addEventListener('DOMContentLoaded', function () {
+
+                                    //prendo le due password tramite dei getElementById 
+                                    var firstPassword = document.getElementById('password');
+                                    var confirmPassword = document.getElementById('password-confirm');
+
+                                    //creo una funzione dove dico che se la password è uguale lascio scorrere ma se è sbagliata 
+                                    //faccio apparire un messaggio
+                                    function passwordValid(){
+                                        if (firstPassword.value === confirmPassword.value) {
+                                            confirmPassword.setCustomValidity('');
+                                        } else {
+                                            confirmPassword.setCustomValidity("Le password non corrispondono");
+                                        }
+                                    }
+
+                                    //infine qui richiamo le due funzioni e le metto a confronto
+                                    firstPassword.addEventListener('change', passwordValid);
+                                    confirmPassword.addEventListener('keyup', passwordValid);
+                                });
                             </script>
 
                             {{-- TIPOLOGIE RISTORANTE --}}
