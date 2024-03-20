@@ -219,20 +219,24 @@ export default {
                 const idx = this.clickedType.indexOf(index);
                 this.clickedType.splice(idx, 1);
             } else {
-                // Altrimenti, aggiungi l'indice all'array
                 this.clickedType.push(index);
             }
+            elements[index].classList.toggle('scaled', !isClicked);
 
             // Aggiorna la classe di tutti gli elementi in base all'array clickedType
             elements.forEach((element, i) => {
-                if (this.clickedType.includes(i)) {
-                    element.classList.add('opacity-50');
+                if (this.clickedType.length === 0 || this.clickedType.includes(i)) {
+                    element.classList.remove('myopacity');
+                    element.classList.remove('downscaled');
+
                 } else {
-                    element.classList.remove('opacity-50');
+                    element.classList.add('myopacity');
+                    element.classList.add('downscaled');
+                    
                 }
             });
 
-            console.log(this.clickedType);
+            // console.log(this.clickedType);
         }
     }
 }
@@ -334,6 +338,7 @@ export default {
             margin-bottom: 0.5rem;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
 
@@ -400,5 +405,24 @@ export default {
 .restaurant-container.pop-up {
     opacity: 1;
     transform: translateY(0);
+}
+
+
+// ANIMAZIONE PER FILTRI TYPO
+
+.scaled, .downscaled, .myopacity {
+    transition: all 0.5s ease;
+}
+
+.scaled {
+    transform: scale(1.05);
+}
+
+.downscaled {
+    transform: scale(0.95);
+}
+
+.myopacity {
+    opacity: 0.5;
 }
 </style>
