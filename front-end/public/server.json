@@ -694,7 +694,7 @@
     "name": "Ristorante Sapore di Mare",
     "piva": "",
     "address": "Via del Corso, 55",
-    "image": "/img/img08.jpg",
+    "image": "/img/img31.jpg",
     "visible": 1,
     "tipologies": ["Sushi"],
     "dishes": [
@@ -782,9 +782,9 @@
     "name": "Ristorante Il Pescatore",
     "piva": "",
     "address": "Via dei Mille, 70",
-    "image": "/img/img10.jpg",
+    "image": "/img/img28.jpg",
     "visible": 0,
-    "tipologies": ["Poke"],
+    "tipologies": ["Italiano"],
     "dishes": [
       {
         "name": "Insalata di Mare",
@@ -1628,10 +1628,10 @@
   },
   {
     "id": "9021",
-    "name": "Ristorante Poke & Co.",
+    "name": "Poke Bello",
     "piva": "56789012345",
     "address": "Via Hawaii, 5",
-    "image": "/img/img11.jpg",
+    "image": "/img/img30.jpg",
     "visible": 1,
     "tipologies": ["Poke", "Healthy"],
     "dishes": [
@@ -1691,7 +1691,7 @@
     "name": "Paninoteca Deliziosa",
     "piva": "67890123456",
     "address": "Via Panini, 6",
-    "image": "/img/img12.jpg",
+    "image": "/img/img29.jpg",
     "visible": 1,
     "tipologies": ["Sandwich", "Italiano"],
     "dishes": [
@@ -1753,7 +1753,7 @@
     "address": "Via Istanbul, 7",
     "image": "/img/img20.jpg",
     "visible": 1,
-    "tipologies": ["Kebab", "Healthy"],
+    "tipologies": ["Kebab"],
     "dishes": [
       {
         "name": "Kebab di Pollo",
@@ -1966,6 +1966,253 @@
       {
         "name": "Tisana Detox",
         "description": "Tisana depurativa a base di zenzero, limone e menta",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "9026",
+    "name": "Bella Pizza",
+    "piva": "01234567890",
+    "address": "Via Salute, 10",
+    "image": "/img/img25.jpg",
+    "visible": 1,
+    "tipologies": ["Pizza"], 
+    "dishes": [
+      {
+        "name": "Insalata Mediterranea",
+        "description": "Insalata mista con pomodori, cetrioli, olive, feta e dressing al limone",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Wrap Vegano",
+        "description": "Wrap integrale con hummus, avocado, verdure grigliate e rucola",
+        "price": 9.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Buddha Bowl",
+        "description": "Bowl con riso integrale, quinoa, ceci, avocado, verdure al vapore e dressing alla curcuma",
+        "price": 11.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Smoothie Verde",
+        "description": "Frutta e verdura miste frullate con latte di mandorla",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua di Cocco",
+        "description": "Bottiglia di acqua di cocco naturale",
+        "price": 3.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tisana Detox",
+        "description": "Tisana depurativa a base di zenzero, limone e menta",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "9026",
+    "name": "Sweet Desert",
+    "piva": "01234567890",
+    "address": "Via Salute, 10",
+    "image": "/img/img24.jpg",
+    "visible": 1,
+    "tipologies": ["Dessert"], 
+    "dishes": [
+      {
+        "name": "Insalata Mediterranea",
+        "description": "Insalata mista con pomodori, cetrioli, olive, feta e dressing al limone",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Wrap Vegano",
+        "description": "Wrap integrale con hummus, avocado, verdure grigliate e rucola",
+        "price": 9.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Buddha Bowl",
+        "description": "Bowl con riso integrale, quinoa, ceci, avocado, verdure al vapore e dressing alla curcuma",
+        "price": 11.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Smoothie Verde",
+        "description": "Frutta e verdura miste frullate con latte di mandorla",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua di Cocco",
+        "description": "Bottiglia di acqua di cocco naturale",
+        "price": 3.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tisana Detox",
+        "description": "Tisana depurativa a base di zenzero, limone e menta",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "9026",
+    "name": "Dolce Pizza",
+    "piva": "01234567890",
+    "address": "Via Salute, 10",
+    "image": "/img/img26.jpg",
+    "visible": 1,
+    "tipologies": ["Dessert" , "Pizza"], 
+    "dishes": [
+      {
+        "name": "Insalata Mediterranea",
+        "description": "Insalata mista con pomodori, cetrioli, olive, feta e dressing al limone",
+        "price": 8.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Wrap Vegano",
+        "description": "Wrap integrale con hummus, avocado, verdure grigliate e rucola",
+        "price": 9.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Buddha Bowl",
+        "description": "Bowl con riso integrale, quinoa, ceci, avocado, verdure al vapore e dressing alla curcuma",
+        "price": 11.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Smoothie Verde",
+        "description": "Frutta e verdura miste frullate con latte di mandorla",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua di Cocco",
+        "description": "Bottiglia di acqua di cocco naturale",
+        "price": 3.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tisana Detox",
+        "description": "Tisana depurativa a base di zenzero, limone e menta",
+        "price": 4.0,
+        "image": "",
+        "visible": 1
+      }
+    ]
+  },
+  {
+    "id": "9010",
+    "name": "BestPoke",
+    "piva": "",
+    "address": "Via dei Mille, 70",
+    "image": "/img/img27.jpg",
+    "visible": 0,
+    "tipologies": ["Poke"],
+    "dishes": [
+      {
+        "name": "Insalata di Mare",
+        "description": "Insalata mista di mare con gamberetti, calamari e polpo",
+        "price": 12.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Cozze alla Marinara",
+        "description": "Cozze in salsa di pomodoro e aglio",
+        "price": 10.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Spaghetti alle Vongole",
+        "description": "Spaghetti con vongole veraci, aglio, olio e peperoncino",
+        "price": 15.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Risotto ai Frutti di Mare",
+        "description": "Risotto con frutti di mare",
+        "price": 18.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Grigliata Mista di Pesce",
+        "description": "Assortimento di pesce alla griglia (spada, gamberi, branzino)",
+        "price": 22.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Frittura di Pesce",
+        "description": "Assortimento di pesce fritto (calamari, gamberi, triglie)",
+        "price": 20.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Tiramisù",
+        "description": "Classico dolce al caffè con savoiardi e mascarpone",
+        "price": 7.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Baba al Rhum",
+        "description": "Dolce napoletano inzuppato nel rum",
+        "price": 6.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Acqua Minerale",
+        "description": "Bottiglia di acqua minerale naturale",
+        "price": 2.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Vino Bianco",
+        "description": "Bottiglia di vino bianco",
+        "price": 20.0,
+        "image": "",
+        "visible": 1
+      },
+      {
+        "name": "Birra Peroni",
+        "description": "Bottiglia di birra Peroni",
         "price": 4.0,
         "image": "",
         "visible": 1
