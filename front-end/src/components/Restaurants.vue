@@ -123,7 +123,8 @@ export default {
             tipologie: [],
             selectedTipology: [], //ARRAY PER IL FILTRO DELLE TIPOLOGIE SELEZIONATE
             clickedType: [], //ARRAY PER LE TIPOLOGIE CLICCATE
-            originalRistoranti: [] // Array per memorizzare l'elenco originale dei ristoranti
+            originalRistoranti: [], // Array per memorizzare l'elenco originale dei ristoranti
+            loaded: false,
         };
     },
     mounted() {
@@ -150,6 +151,9 @@ export default {
             .catch((error) => {
                 console.error("Error fetching data from first API:", error);
             });
+        setTimeout(() => {
+            this.loaded = true; // Imposta lo stato a true dopo un certo periodo di tempo
+        }, 350);
     },
     methods: {
         fetchSecondApiData() {
@@ -166,6 +170,7 @@ export default {
                     console.error("Error fetching data from second API:", error);
                 });
         },
+
         goBack() {
             // Funzione per tornare alla pagina precedente
             this.$router.go(-1);
@@ -236,7 +241,7 @@ export default {
 
 
 <template>
-    <section>
+    <section class="restaurant-container" :class="{ 'pop-up': loaded }">
         <!-- TIPOLOGIE -->
         <div class="tipology">
             <div class="tipo-card" v-for="(tipologia, index) in tipologie" :key="index">
@@ -248,7 +253,7 @@ export default {
         </div>
 
         <div class="my-container">
-            <div class="arrow-container">
+            <div class="arrow-container" style="display: none;">
                 <span class="back-arrow">
                     <!-- Evento click per tornare indietro -->
                     <i @click="goBack" class="fa-solid fa-circle-left"></i>

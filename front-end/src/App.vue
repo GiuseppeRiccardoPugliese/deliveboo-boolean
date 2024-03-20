@@ -51,7 +51,9 @@ export default {
     <AppHeader />
     <div class="main-content">
       <Home />
-      <router-view></router-view>
+        <div class="router-container">
+          <router-view></router-view>
+        </div>
       <AppFooter />
     </div>
   </div>
@@ -85,5 +87,9 @@ export default {
   background-color: $btn_color;
   border-radius: 5px;
   z-index: 1000;
+}
+
+.router-container {
+  min-height: 600px;
 }
 </style>
