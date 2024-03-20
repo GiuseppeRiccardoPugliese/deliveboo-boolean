@@ -49,7 +49,7 @@
                     <!-- Ordini -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/dishes') }}">{{ __('Ordini') }}</a>
+                            <a class="nav-link" href="{{ url('/orders') }}">{{ __('Ordini') }}</a>
                         </li>
                     </ul>
 

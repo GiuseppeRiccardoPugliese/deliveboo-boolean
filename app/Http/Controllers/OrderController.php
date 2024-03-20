@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -13,7 +15,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::whereHas('restaurant', function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        })->get();
+
+        return view('orders.index', compact('orders'));
     }
 
     /**
