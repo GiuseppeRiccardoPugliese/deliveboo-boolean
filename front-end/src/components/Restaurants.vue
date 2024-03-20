@@ -153,7 +153,7 @@ export default {
             });
         setTimeout(() => {
             this.loaded = true; // Imposta lo stato a true dopo un certo periodo di tempo
-        }, 350);
+        }, 150);
     },
     methods: {
         fetchSecondApiData() {
@@ -393,6 +393,8 @@ export default {
     opacity: 0;
     transform: translateY(100%);
     transition: opacity 1s ease, transform 1s ease;
+    min-height: calc(100vh - 120px);
+
 }
 
 .restaurant-container.pop-up {

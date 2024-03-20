@@ -60,7 +60,7 @@ export default {
             padding: 50px;
             display: flex;
             justify-content: center;
-            animation: slideInFromRight 1.5s ease forwards;
+            animation: slideInFromRight 1.2s ease forwards;
             }
 
             span {
