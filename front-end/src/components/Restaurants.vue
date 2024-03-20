@@ -261,29 +261,13 @@ export default {
             <div class="my-card-container">
                 <!-- Utilizza v-for per iterare sui ristoranti e mostrare i dati -->
                 <div class="my-card" v-for="(ristorante, index) in ristoranti" :key="index">
-                    <!-- <router-link :to="{ name: 'Details', params: { index: index } }" class="router-link">
-                        <div class="restaurant-image" :style="{ 'background-image': 'url(' + ristorante.image + ')' }"></div>
-
-                        <h6>{{ ristorante.name }}</h6>
-                        <p v-if="ristorante.visible" class="open-status">
-                            Aperto
-                        </p>
-                        <p v-else class="closed-status">Chiuso</p>
-                    </router-link> -->
-                    <!-- <router-link :to="{ name: 'Details', params: { index: index } }" class="router-link">
-                        <div class="restaurant-image"
-                            :style="{ 'background-image': ristorante.image.includes('images/') && ristorante.image.includes('images/') !== null ? 'url(' + getImageUrl(ristorante) + ')' : ' url(' + ristorante.image + ')' }">
-                        </div>
-                        <h6>{{ ristorante.name }}</h6>
-                        <p v-if="ristorante.visible" class="open-status">
-                            Aperto
-                        </p>
-                        <p v-else class="closed-status">Chiuso</p>
-                    </router-link> -->
                     <router-link :to="{ name: 'Details', params: { index: index, restaurantName: ristorante.name } }" class="router-link">
                         <div class="restaurant-image"
                             :style="{ 'background-image': ristorante.image && ristorante.image.includes('images/') ? 'url(' + getImageUrl(ristorante) + ')' : 'url(' + ristorante.image + ')' }">
-                            <span class="tipology_card">{{ ristorante.tipologies }}</span>
+                            <div class="tipology-container">
+                            <!-- Utilizza v-for per iterare sulle tipologie del ristorante e mostrare le tipologie -->
+                            <span class="tipology-pin" v-for="(tipologia, idx) in ristorante.tipologies" :key="idx">{{ tipologia }}</span>
+                        </div>
                         </div>
                         <h6>{{ ristorante.name }}</h6>
                         <p v-if="ristorante.visible" class="open-status d-none">
@@ -352,8 +336,43 @@ export default {
 
 }
 
-.tipology_card{
-    background-color: aqua;
-    padding: 5px;
+.my-card {
+    position: relative;
+    display: inline-block;
+}
+
+.tipology-container {
+    position: absolute;
+    bottom: 45px;
+    left: -5px;
+    padding: 10px;
+}
+
+.tipology-pin {
+    background-color: #4285f4;
+    color: white;
+    font-weight: bold; 
+    padding: 4px 12px; 
+    border-radius: 8px; 
+    margin-left: 5px; 
+    display: inline-block;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s ease;
+}
+
+.tipology-pin:hover {
+    background-color: #3367d6;
+}
+
+.restaurant-container {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.restaurant-container.pop-up {
+    opacity: 1;
+    transform: translateY(0);
 }
 </style>
