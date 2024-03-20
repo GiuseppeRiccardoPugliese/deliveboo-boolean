@@ -108,16 +108,18 @@ export default {
             </div>
             <div class="col-12 col-md-6 text-center text-md-start mb-4">
                 <h1>{{ ristoranti[this.$route.params.index].name }}</h1>
+                <h3 class="text-primary my-2">Tipologie:</h3>
                 <div
                     v-for="(type, index) in ristoranti[this.$route.params.index]
                         .tipologies"
                     :key="index"
-                    class="my-2"
+                    class="text-center text-md-start"
                 >
-                    <h4 class="text-info">- {{ type }}</h4>
+                
+                    <h4 class="text-black-50 fw-bold">- {{ type }}</h4>
                 </div>
 
-                <h4 class="text-black-50">
+                <h4 class="text-black-50 my-3">
                     {{ ristoranti[this.$route.params.index].address }}
                 </h4>
                 <h5
@@ -158,7 +160,9 @@ export default {
                         <p>{{ order.name }} ( {{ order.quantity }} )  <strong>{{ order.price }}€</strong></p>
                     </div>
                     <p><strong>Totale: {{ totalPrice }}€</strong></p>
-                    <button class="btn btn-primary" type="button" style="width: 100%;">Effettua l'ordine</button>
+                    <router-link :to="{ name: 'Payment'}">
+                        <button class="btn btn-primary" type="button" style="width: 100%;">Effettua l'ordine</button>
+                    </router-link>
                 </div>
             </div>
         </div>
