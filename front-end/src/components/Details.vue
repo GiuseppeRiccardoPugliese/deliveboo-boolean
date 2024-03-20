@@ -67,6 +67,10 @@ export default {
                 }
                 this.totalPrice -= dish.price; // Aggiorna il prezzo totale
                 }
+        },
+        deleteOrders() {
+            this.orders = [];
+            this.totalPrice = 0
         }
     },
 };
@@ -163,6 +167,7 @@ export default {
                     <router-link :to="{ name: 'Payment'}">
                         <button class="btn btn-primary" type="button" style="width: 100%;">Effettua l'ordine</button>
                     </router-link>
+                    <button class="btn btn-danger mt-3" type="button" style="width: 100%;" @click="deleteOrders()">Svuota il carrello</button>
                 </div>
             </div>
         </div>
