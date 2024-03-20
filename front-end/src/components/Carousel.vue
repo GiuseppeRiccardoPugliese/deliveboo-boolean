@@ -124,6 +124,7 @@ img {
 
 .carousel-container {
     height: 100%;
+    padding: 24px 0;
 }
 
 @media screen and (max-width: 900px) {

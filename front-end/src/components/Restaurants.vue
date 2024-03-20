@@ -151,6 +151,7 @@ export default {
             .catch((error) => {
                 console.error("Error fetching data from first API:", error);
             });
+
         setTimeout(() => {
             this.loaded = true; // Imposta lo stato a true dopo un certo periodo di tempo
         }, 150);
@@ -170,7 +171,6 @@ export default {
                     console.error("Error fetching data from second API:", error);
                 });
         },
-
         goBack() {
             // Funzione per tornare alla pagina precedente
             this.$router.go(-1);
@@ -241,8 +241,6 @@ export default {
                     
                 }
             });
-
-            // console.log(this.clickedType);
         }
     }
 }
@@ -251,49 +249,53 @@ export default {
 
 
 <template>
-    <section class="restaurant-container" :class="{ 'pop-up': loaded }">
-        <!-- TIPOLOGIE -->
-        <div class="tipology">
-            <div class="tipo-card" v-for="(tipologia, index) in tipologie" :key="index">
-                <div class="tipo-img" @click=" getTipology(tipologia.name)"> <!-- Click prende la tipologia -->
-                    <img :src="tipologia.image" alt="" @click="toggleActive(index)"> <!-- Click opacity -->
-                </div>
-                <span> {{ tipologia.name }} </span>
-            </div>
-        </div>
+    <div class="my-general-container">
+        <!-- <section class="restaurant-container" :class="{ 'pop-up': loaded }"> -->
+        <section class="restaurant-container" :class="{ 'pop-up': loaded }">
 
-        <div class="my-container">
-            <div class="arrow-container" style="display: none;">
-                <span class="back-arrow">
-                    <!-- Evento click per tornare indietro -->
-                    <i @click="goBack" class="fa-solid fa-circle-left"></i>
-                </span>
-                <span class="restaurants-zone">
-                    <strong>Ristoranti a Milano</strong>
-                </span>
-            </div>
-
-            <div class="my-card-container">
-                <!-- Utilizza v-for per iterare sui ristoranti e mostrare i dati -->
-                <div class="my-card" v-for="(ristorante, index) in ristoranti" :key="index">
-                    <router-link :to="{ name: 'Details', params: { index: originalRistoranti.indexOf(ristorante), restaurantName: ristorante.name } }" class="router-link">
-                        <div class="restaurant-image"
-                            :style="{ 'background-image': ristorante.image && ristorante.image.includes('images/') ? 'url(' + getImageUrl(ristorante) + ')' : 'url(' + ristorante.image + ')' }">
-                            <div class="tipology-container">
-                            <!-- Utilizza v-for per iterare sulle tipologie del ristorante e mostrare le tipologie -->
-                            <span class="tipology-pin" v-for="(tipologia, idx) in ristorante.tipologies" :key="idx">{{ tipologia }}</span>
-                        </div>
-                        </div>
-                        <h6>{{ ristorante.name }}</h6>
-                        <p v-if="ristorante.visible" class="open-status d-none">
-                            Aperto
-                        </p>
-                        <p v-else class="closed-status d-none">Chiuso</p>
-                    </router-link>
+            <!-- TIPOLOGIE -->
+            <div class="tipology">
+                <div class="tipo-card" v-for="(tipologia, index) in tipologie" :key="index">
+                    <div class="tipo-img" @click=" getTipology(tipologia.name)"> <!-- Click prende la tipologia -->
+                        <img :src="tipologia.image" alt="" @click="toggleActive(index)"> <!-- Click opacity -->
+                    </div>
+                    <span> {{ tipologia.name }} </span>
                 </div>
             </div>
-        </div>
-    </section>
+
+            <div class="my-container">
+                <div class="arrow-container" style="display: none;">
+                    <span class="back-arrow">
+                        <!-- Evento click per tornare indietro -->
+                        <i @click="goBack" class="fa-solid fa-circle-left"></i>
+                    </span>
+                    <span class="restaurants-zone">
+                        <strong>Ristoranti a Milano</strong>
+                    </span>
+                </div>
+
+                <div class="my-card-container">
+                    <!-- Utilizza v-for per iterare sui ristoranti e mostrare i dati -->
+                    <div class="my-card" v-for="(ristorante, index) in ristoranti" :key="index">
+                        <router-link :to="{ name: 'Details', params: { index: originalRistoranti.indexOf(ristorante), restaurantName: ristorante.name } }" class="router-link">
+                            <div class="restaurant-image"
+                                :style="{ 'background-image': ristorante.image && ristorante.image.includes('images/') ? 'url(' + getImageUrl(ristorante) + ')' : 'url(' + ristorante.image + ')' }">
+                                <div class="tipology-container">
+                                <!-- Utilizza v-for per iterare sulle tipologie del ristorante e mostrare le tipologie -->
+                                <span class="tipology-pin" v-for="(tipologia, idx) in ristorante.tipologies" :key="idx">{{ tipologia }}</span>
+                            </div>
+                            </div>
+                            <h6>{{ ristorante.name }}</h6>
+                            <p v-if="ristorante.visible" class="open-status d-none">
+                                Aperto
+                            </p>
+                            <p v-else class="closed-status d-none">Chiuso</p>
+                        </router-link>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 </template>
 
 <style scoped lang="scss">
@@ -350,6 +352,12 @@ export default {
 
 }
 
+.my-general-container {
+    // height: 100%;
+  min-height: calc(100vh - 60px - 500px);
+
+}
+
 .my-card {
     position: relative;
     display: inline-block;
@@ -363,7 +371,7 @@ export default {
 }
 
 .tipology-pin {
-    background-color: #4285f4;
+    background-color: #6b4658;
     color: white;
     font-weight: bold; 
     padding: 4px 12px; 
@@ -382,9 +390,7 @@ export default {
 .restaurant-container {
     opacity: 0;
     transform: translateY(100%);
-    transition: opacity 1s ease, transform 1s ease;
-    min-height: calc(100vh - 120px);
-
+    transition: opacity 0s ease, transform 1s ease;
 }
 
 .restaurant-container.pop-up {
