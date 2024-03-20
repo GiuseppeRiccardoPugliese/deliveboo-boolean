@@ -46,7 +46,7 @@ export default {
                     spaceBetween: 10,
                 },
                 '1300': {
-                    slidesPerView: 4,
+                    slidesPerView: 5,
                     spaceBetween: 0,
                 },
             }"

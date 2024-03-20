@@ -154,7 +154,7 @@ export default {
 
         setTimeout(() => {
             this.loaded = true; // Imposta lo stato a true dopo un certo periodo di tempo
-        }, 150);
+        }, 550);
     },
     methods: {
         fetchSecondApiData() {
@@ -389,13 +389,18 @@ export default {
 
 .restaurant-container {
     opacity: 0;
-    transform: translateY(100%);
-    transition: opacity 0s ease, transform 1s ease;
+    transform: translateY(25%);
+    transition: opacity 0s ease, transform 0.5s ease;
+
+    // min-height: calc(100vh - 60px - 500px);
+
 }
 
 .restaurant-container.pop-up {
     opacity: 1;
     transform: translateY(0);
+    // height: 2400px;
+
 }
 
 
