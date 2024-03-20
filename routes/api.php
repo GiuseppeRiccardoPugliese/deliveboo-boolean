@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\ApiDataController;
 use App\Http\Controllers\Api\DishesApiController;
+use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\RestaurantsApiController;
 use App\Http\Controllers\Api\TipologiesApiController;
 
@@ -41,3 +43,8 @@ Route::group(['prefix' => 'v1'], function () {
     //ROTTA PER I FILTRI SULLE TIPOLOGIE
     Route::post('filtered', [ApiDataController::class, 'filteredTipology']);
 });
+
+//Rotte per il pagamento
+Route::get('generate', [PaymentController::class, 'generate']); //PRENDO IL TOKEN
+Route::post('make/payment', [PaymentController::class, 'makePayment']); //MANDO IL PAGAMENTO
+Route::get('products', [ProductController::class, 'index']);
