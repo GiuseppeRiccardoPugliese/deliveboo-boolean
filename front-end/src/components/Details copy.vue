@@ -24,6 +24,8 @@ export default {
             });
     },
     methods: {
+
+
         fetchSecondApiData() {
             // Effettua la seconda chiamata per ottenere i ristoranti dalla seconda API
             axios
@@ -56,6 +58,24 @@ export default {
                 }
                 this.totalPrice += dish.price; // Aggiorna il prezzo totale
         },
+        sendOrder(orders) {
+                const orderData = {
+                    items: orders, // Quantità di default quando aggiungi un piatto
+                    price: this.totalPrice
+                };
+
+                console.log('click invio ordine: ' , orderData);
+
+                axios.post('http://localhost:8000/api/v1/orders', orderData)
+                    .then(response => {
+                        console.log('Ordine inviato con successo:', response.data);
+                        // Esegui eventuali azioni aggiuntive dopo l'invio dell'ordine
+                    })
+                    .catch(error => {
+                        console.error('Errore durante l\'invio dell\'ordine:', error);
+                    });
+            },
+
         removeFromOrder(dish) {
             const existingOrderIndex = this.orders.findIndex(order => order.name === dish.name);
                 if (existingOrderIndex !== -1) {
@@ -67,10 +87,6 @@ export default {
                 }
                 this.totalPrice -= dish.price; // Aggiorna il prezzo totale
                 }
-        },
-        deleteOrders() {
-            this.orders = [];
-            this.totalPrice = 0
         }
     },
 };
@@ -112,18 +128,16 @@ export default {
             </div>
             <div class="col-12 col-md-6 text-center text-md-start mb-4">
                 <h1>{{ ristoranti[this.$route.params.index].name }}</h1>
-                <h3 class="text-primary my-2">Tipologie:</h3>
                 <div
                     v-for="(type, index) in ristoranti[this.$route.params.index]
                         .tipologies"
                     :key="index"
-                    class="text-center text-md-start"
+                    class="my-2"
                 >
-                
-                    <h4 class="text-black-50 fw-bold">- {{ type }}</h4>
+                    <h4 class="text-info">- {{ type }}</h4>
                 </div>
 
-                <h4 class="text-black-50 my-3">
+                <h4 class="text-black-50">
                     {{ ristoranti[this.$route.params.index].address }}
                 </h4>
                 <h5
@@ -164,10 +178,7 @@ export default {
                         <p>{{ order.name }} ( {{ order.quantity }} )  <strong>{{ order.price }}€</strong></p>
                     </div>
                     <p><strong>Totale: {{ totalPrice }}€</strong></p>
-                    <router-link :to="{ name: 'Payment'}">
-                        <button class="btn btn-primary" type="button" style="width: 100%;">Effettua l'ordine</button>
-                    </router-link>
-                    <button class="btn btn-danger mt-3" type="button" style="width: 100%;" @click="deleteOrders()">Svuota il carrello</button>
+                    <button class="btn btn-primary" type="button" @click="sendOrder(orders)" style="width: 100%;">Effettua l'ordine</button>
                 </div>
             </div>
         </div>

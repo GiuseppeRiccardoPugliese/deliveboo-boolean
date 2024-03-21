@@ -6,6 +6,7 @@ import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
 import Home from './components/Home.vue';
 import Carousel from './components/Carousel.vue';
+import Restaurants from './components/Restaurants.vue';
 
 
 export default {
@@ -14,6 +15,7 @@ export default {
     AppFooter,
     Home,
     Carousel,
+    Restaurants,
   },
   data() {
     return {
@@ -54,7 +56,7 @@ export default {
         <div class="router-container">
           <router-view></router-view>
         </div>
-      <AppFooter />
+        <AppFooter />
     </div>
   </div>
 
@@ -91,7 +93,7 @@ export default {
 
 .router-container {
   // min-height: 600px;
-  min-height: calc(100vh - 120px - 524px);
+  min-height: calc(100vh - 120px - 500px);
 
   // flex-grow: 1;
 }

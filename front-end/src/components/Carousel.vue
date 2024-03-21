@@ -46,7 +46,7 @@ export default {
                     spaceBetween: 10,
                 },
                 '1300': {
-                    slidesPerView: 4,
+                    slidesPerView: 5,
                     spaceBetween: 0,
                 },
             }"
@@ -124,6 +124,7 @@ img {
 
 .carousel-container {
     height: 100%;
+    padding: 24px 0;
 }
 
 @media screen and (max-width: 900px) {
