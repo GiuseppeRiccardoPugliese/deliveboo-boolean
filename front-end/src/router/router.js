@@ -25,20 +25,28 @@ const router = createRouter({
             component: Home,
             name: 'Home'
         },
-        { path: '/restaurants', component: Restaurants, name: 'Restaurants' },
-        { path: '/login', component: Login, name: 'Login' },
-        { path: '/details:index/:restaurantName', component: Details, name: 'Details' },
-        { path: '/payment', component: Payment, name: 'Payment' }
+        {
+            path: '/restaurants',
+            component: Restaurants,
+            name: 'Restaurants'
+        },
+        {
+            path: '/login',
+            component: Login,
+            name: 'Login'
+        },
+        {
+            path: '/details:index/:restaurantName',
+            component: Details,
+            name: 'Details'
+        },
+        {
+            path: '/payment',
+            component: Payment,
+            name: 'Payment'
+        }
     ]
 })
 
 
 export default router
-// [
-    // { path: '/', component: Carousel, name: 'Carousel' },
-    // { path: '/home', component: Home, name: 'Home' },
-    // { path: '/restaurants', component: Restaurants, name: 'Restaurants' },
-    // { path: '/login', component: Login, name: 'Login' },
-    // { path: '/details:index/:restaurantName', component: Details, name: 'Details' },
-    // { path: '/payment', component: Payment, name: 'Payment' }
-// ]

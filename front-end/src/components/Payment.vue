@@ -10,25 +10,27 @@ export default {
     };
   },
   methods: {
-    confirmOrder() {
-      // Raccolta dei dettagli dell'ordine
-      const orderData = {
-        // Altri dettagli dell'ordine se necessario
-        dishes: this.orders, // Array contenente gli elementi del carrello
-        totalPrice: this.totalPrice // Aggiungi il prezzo totale
-      };
-
-      // Invia la richiesta PUT per aggiornare l'ordine al backend
-      axios.post(`/api/orders/${orderId}`, orderData)
-        .then(response => {
-          console.log('Ordine aggiornato con successo:', response.data);
-          // Dopo aver confermato l'ordine, reindirizza l'utente alla pagina successiva
-          this.$router.push({ name: 'PaginaSuccessiva' });
-        })
-        .catch(error => {
-          console.error('Errore durante l\'aggiornamento dell\'ordine:', error.response.data);
-          // Gestisci l'errore e fornisce feedback all'utente, se necessario
+    sendData() {
+      this.errorsValidation();
+      if (
+        this.orderData.customer_name &&
+        this.orderData.customer_surname &&
+        this.orderData.customer_email &&
+        this.orderData.customer_address &&
+        this.orderData.customer_phone
+      ) {
+        this.localStorage();
+        this.orderData.total_price = this.sum;
+        this.items.forEach((item) => {
+          this.orderData.product_name.push(item.name);
+          this.orderData.products.push(item.id);
+          this.orderData.quantities.push(this.cart[item.id])
         });
+        axios.post("http://127.0.0.1:8000/api/orders", this.orderData);
+        console.log(this.orderData);
+        console.log(this.cart);
+        this.$router.push({ name: "order_confirmed" });
+      }
     }
   },
   mounted() {
@@ -55,33 +57,33 @@ export default {
       <p class="order-total">Totale: {{ totalPrice }}€</p>
     </div>
     <template>
-  <div class="order-card">
-    <div class="order-details">
-      <h2 class="order-title">Riepilogo dell'ordine</h2>
-      <div class="order-items">
-        <div v-for="(order, index) in orders" :key="index" class="order-item">
-          <p>{{ order.name }} ({{ order.quantity }}) - {{ order.price }}€</p>
+      <div class="order-card">
+        <div class="order-details">
+          <h2 class="order-title">Riepilogo dell'ordine</h2>
+          <div class="order-items">
+            <div v-for="(order, index) in orders" :key="index" class="order-item">
+              <p>{{ order.name }} ({{ order.quantity }}) - {{ order.price }}€</p>
+            </div>
+          </div>
+          <p class="order-total">Totale: {{ totalPrice }}€</p>
         </div>
-      </div>
-      <p class="order-total">Totale: {{ totalPrice }}€</p>
-    </div>
-    <form action="">
-        <div>
+        <form action="">
+          <div>
             <label for="guestName">Nome:</label>
             <input type="text" id="guestName" v-model="guestName" required>
-        </div>
-        <div>
+          </div>
+          <div>
             <label for="guestAddress">Indirizzo:</label>
             <input type="text" id="guestAddress" v-model="guestAddress" required>
-        </div>
-        <div>
+          </div>
+          <div>
             <label for="guestEmail">Email:</label>
             <input type="email" id="guestEmail" v-model="guestEmail" required>
-        </div>
-        <button class="confirm-button" @click="confirmOrder">Conferma Pagamento</button>
-      </form>
-  </div>
-</template>
+          </div>
+          <button class="confirm-button" @click="confirmOrder">Conferma Pagamento</button>
+        </form>
+      </div>
+    </template>
   </div>
 </template>
 

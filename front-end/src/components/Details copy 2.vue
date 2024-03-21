@@ -7,17 +7,13 @@ export default {
         return {
             ristoranti: [], // Array per memorizzare i dati dei ristoranti
             orders: [],
-            // orderData: { dishes: [], totalPrice: 0 },
-            orderData: {},
+            orderData: { dishes: [], totalPrice: 0 },
             totalPrice: 0,
+
         };
     },
-    computed: {
-        itemsFromLocalStorage() {
-            // Recupera gli elementi dal localStorage e analizza il JSON, se presente
-            return JSON.parse(localStorage.getItem("orders") || "[]");
-        },
-    },
+
+
 
     mounted() {
         // Effettua la prima chiamata per ottenere i ristoranti dalla prima API
@@ -26,24 +22,43 @@ export default {
             .then((response) => {
                 this.ristoranti = response.data;
                 // Una volta ricevuti i dati dalla prima API, effettua la seconda chiamata
+                this.fetchSecondApiData();
             })
             .catch((error) => {
                 console.error("Error fetching data from first API:", error);
             });
+
+        // Log per verificare i dati dell'ordine ricevuti
+        console.log('Dati dell\'ordine ricevuti:', this.$route.query.orderData);
     },
     methods: {
         localStorage() {
             const dataToSave = {
-                orders: this.orders,
-                // sum: this.sum,
+                items: this.items,
+                sum: this.sum,
                 totalPrice: this.totalPrice,
-                orderData: this.orderData
+                cart: this.cart
             };
 
             // Salva gli elementi nel localStorage
             localStorage.setItem("cartData", JSON.stringify(dataToSave));
         },
 
+        submitOrder() {
+            // Calcola il prezzo totale dell'intero ordine sommando i prezzi totali di tutti i piatti nel carrello
+            let totalOrderPrice = this.orders.reduce((total, dish) => total + dish.price, 0);
+
+            // Raccolta dei dettagli dell'ordine
+            const orderData = {
+                dishes: this.orders, // Array contenente gli elementi del carrello
+                totalPrice: totalOrderPrice // Prezzo totale dell'intero ordine
+                // Altri dettagli dell'ordine se necessario
+            };
+
+            this.$router.push({ name: 'Payment', query: { orderData: JSON.stringify(orderData) } });
+            // Effettua il console log del contenuto di orderData
+            console.log('Contenuto di orderData:', orderData);
+        },
         goBack() {
             // Funzione per tornare alla pagina precedente
             this.$router.go(-1);
@@ -61,7 +76,6 @@ export default {
             }
             this.totalPrice += dish.price;
         },
-
         removeFromOrder(dish) {
             const existingOrderIndex = this.orders.findIndex(order => order.name === dish.name);
             if (existingOrderIndex !== -1) {
@@ -78,33 +92,6 @@ export default {
             this.orders = [];
             this.totalPrice = 0;
         }
-    },
-    watch: {
-        // Un watcher per monitorare le modifiche agli ordini e salvare nel localStorage
-        orders: {
-            handler(newOrders) {
-                this.localStorage();
-            },
-            deep: true,
-        },
-        totalPrice() {
-            this.localStorage();
-        },
-        orderData: {
-            handler(newOrderData) {
-                this.localStorage();
-            },
-            deep: true,
-        },
-    },
-    created() {
-        const storedData = JSON.parse(localStorage.getItem("cartData") || "{}");
-        this.orders = storedData.orders || [];
-        // this.sum = storedData.sum || 0;
-        this.totalPrice = storedData.totalPrice || 0;
-        this.orderData = storedData.orderData || {};
-
-        console.log('Contenuto di localStorage:', storedData);
     },
 };
 </script>
@@ -181,7 +168,8 @@ export default {
                     </div>
                     <p><strong>Totale: {{ totalPrice }}€</strong></p>
 
-                    <router-link :to="{ name: 'Payment', }">
+                    <router-link :to="{ name: 'Payment', query: { orderData: JSON.stringify(orderData) } }"
+                        @click="submitOrder()">
                         <button class="btn btn-primary" type="button" style="width: 100%;">Effettua l'ordine</button>
                     </router-link>
 

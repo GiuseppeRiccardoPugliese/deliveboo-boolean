@@ -51,4 +51,3 @@ Route::post('make/payment', [PaymentController::class, 'makePayment']); //MANDO 
 Route::get('products', [ProductController::class, 'index']);
 
 Route::put('/orders/{id}', [OrderController::class, 'update']);
-

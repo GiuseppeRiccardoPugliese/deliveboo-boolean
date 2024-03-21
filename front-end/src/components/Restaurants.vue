@@ -23,7 +23,7 @@ export default {
                 this.originalRistoranti = response.data;
 
                 // Una volta ricevuti i dati dalla prima API, effettua la seconda chiamata
-                this.fetchSecondApiData();
+                // this.fetchSecondApiData();
             })
             .catch((error) => {
                 console.error("Error fetching data from first API:", error);
@@ -43,20 +43,20 @@ export default {
         // }, 550);
     },
     methods: {
-        fetchSecondApiData() {
-            // Effettua la seconda chiamata per ottenere i ristoranti dalla seconda API (file JSON simulato)
-            axios
-                .get("http://localhost:5174/server.json")
-                .then((response) => {
-                    // Aggiungi i ristoranti dalla seconda API alla lista esistente
-                    this.ristoranti = [...this.ristoranti, ...response.data];
-                    // Salva l'elenco originale anche per i ristoranti della seconda API
-                    this.originalRistoranti = [...this.originalRistoranti, ...response.data];
-                })
-                .catch((error) => {
-                    console.error("Error fetching data from second API:", error);
-                });
-        },
+        // fetchSecondApiData() {
+        //     // Effettua la seconda chiamata per ottenere i ristoranti dalla seconda API (file JSON simulato)
+        //     axios
+        //         .get("http://localhost:5174/server.json")
+        //         .then((response) => {
+        //             // Aggiungi i ristoranti dalla seconda API alla lista esistente
+        //             this.ristoranti = [...this.ristoranti, ...response.data];
+        //             // Salva l'elenco originale anche per i ristoranti della seconda API
+        //             this.originalRistoranti = [...this.originalRistoranti, ...response.data];
+        //         })
+        //         .catch((error) => {
+        //             console.error("Error fetching data from second API:", error);
+        //         });
+        // },
         goBack() {
             // Funzione per tornare alla pagina precedente
             this.$router.go(-1);
@@ -124,7 +124,7 @@ export default {
                 } else {
                     element.classList.add('myopacity');
                     element.classList.add('downscaled');
-                    
+
                 }
             });
         }
@@ -162,13 +162,16 @@ export default {
                 <div class="my-card-container">
                     <!-- Utilizza v-for per iterare sui ristoranti e mostrare i dati -->
                     <div class="my-card" v-for="(ristorante, index) in ristoranti" :key="index">
-                        <router-link :to="{ name: 'Details', params: { index: originalRistoranti.indexOf(ristorante), restaurantName: ristorante.name } }" class="router-link">
+                        <router-link
+                            :to="{ name: 'Details', params: { index: originalRistoranti.indexOf(ristorante), restaurantName: ristorante.name } }"
+                            class="router-link">
                             <div class="restaurant-image"
                                 :style="{ 'background-image': ristorante.image && ristorante.image.includes('images/') ? 'url(' + getImageUrl(ristorante) + ')' : 'url(' + ristorante.image + ')' }">
                                 <div class="tipology-container">
-                                <!-- Utilizza v-for per iterare sulle tipologie del ristorante e mostrare le tipologie -->
-                                <span class="tipology-pin" v-for="(tipologia, idx) in ristorante.tipologies" :key="idx">{{ tipologia }}</span>
-                            </div>
+                                    <!-- Utilizza v-for per iterare sulle tipologie del ristorante e mostrare le tipologie -->
+                                    <span class="tipology-pin" v-for="(tipologia, idx) in ristorante.tipologies"
+                                        :key="idx">{{ tipologia }}</span>
+                                </div>
                             </div>
                             <h6>{{ ristorante.name }}</h6>
                             <p v-if="ristorante.visible" class="open-status d-none">
@@ -231,7 +234,7 @@ export default {
 
     }
 
-    .tipo-card:hover{
+    .tipo-card:hover {
         cursor: pointer;
     }
 
@@ -258,12 +261,12 @@ export default {
 .tipology-pin {
     background-color: #6b4658;
     color: white;
-    font-weight: bold; 
-    padding: 4px 12px; 
-    border-radius: 8px; 
-    margin-left: 5px; 
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 8px;
+    margin-left: 5px;
     display: inline-block;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);    
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     transition: background-color 0.3s ease;
 }
@@ -277,7 +280,9 @@ export default {
 
 // ANIMAZIONE PER FILTRI TYPO
 
-.scaled, .downscaled, .myopacity {
+.scaled,
+.downscaled,
+.myopacity {
     transition: all 0.5s ease;
 }
 
