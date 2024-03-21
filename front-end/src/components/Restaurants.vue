@@ -346,9 +346,9 @@ export default {
 
     }
 
-
-
-
+    .tipo-card:hover{
+        cursor: pointer;
+    }
 
 }
 

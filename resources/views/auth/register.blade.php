@@ -239,6 +239,23 @@
                                     firstPassword.addEventListener('change', passwordValid);
                                     confirmPassword.addEventListener('keyup', passwordValid);
                                 });
+
+                                //creiamo una funzione dove hai la possibilità di selezionare massimo due tipologie
+                                function limitTipologies() {
+                                    
+                                    //ci ricaviamo solo gli input selezionati
+                                    var checkbox = document.querySelectorAll('input[name="tipologie[]"]:checked');
+
+                                    //e gli diciamo che se la lunghezza dei checkbox selezionati supera 2
+                                    if (checkbox.length > 2) {
+
+                                        //fai apparire questo alert
+                                        alert("Puoi selezionare solo due Tipologie.");
+
+                                        //e da qui preveniamo l'invio del modulo
+                                        event.preventDefault();
+                                    }
+                                }
                             </script>
 
                             {{-- TIPOLOGIE RISTORANTE --}}
@@ -247,7 +264,7 @@
 
                                 @foreach ($tipologies as $tipologia)
                                     <input type="checkbox" id="tipologia{{ $tipologia->id }}" name="tipologie[]"
-                                        value="{{ $tipologia->id }}">
+                                        value="{{ $tipologia->id }}" onclick="limitTipologies()">
                                     <label for="tipologia{{ $tipologia->id }}">{{ $tipologia->name }}</label><br>
                                 @endforeach
                             </div>
