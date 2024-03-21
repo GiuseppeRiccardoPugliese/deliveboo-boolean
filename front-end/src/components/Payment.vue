@@ -19,7 +19,7 @@ export default {
       };
 
       // Invia la richiesta PUT per aggiornare l'ordine al backend
-      axios.put(`/api/orders/${orderId}`, orderData)
+      axios.post(`/api/orders/${orderId}`, orderData)
         .then(response => {
           console.log('Ordine aggiornato con successo:', response.data);
           // Dopo aver confermato l'ordine, reindirizza l'utente alla pagina successiva
@@ -54,7 +54,34 @@ export default {
       </div>
       <p class="order-total">Totale: {{ totalPrice }}€</p>
     </div>
-    <button class="confirm-button" @click="confirmOrder">Conferma Pagamento</button>
+    <template>
+  <div class="order-card">
+    <div class="order-details">
+      <h2 class="order-title">Riepilogo dell'ordine</h2>
+      <div class="order-items">
+        <div v-for="(order, index) in orders" :key="index" class="order-item">
+          <p>{{ order.name }} ({{ order.quantity }}) - {{ order.price }}€</p>
+        </div>
+      </div>
+      <p class="order-total">Totale: {{ totalPrice }}€</p>
+    </div>
+    <form action="">
+        <div>
+            <label for="guestName">Nome:</label>
+            <input type="text" id="guestName" v-model="guestName" required>
+        </div>
+        <div>
+            <label for="guestAddress">Indirizzo:</label>
+            <input type="text" id="guestAddress" v-model="guestAddress" required>
+        </div>
+        <div>
+            <label for="guestEmail">Email:</label>
+            <input type="email" id="guestEmail" v-model="guestEmail" required>
+        </div>
+        <button class="confirm-button" @click="confirmOrder">Conferma Pagamento</button>
+      </form>
+  </div>
+</template>
   </div>
 </template>
 
