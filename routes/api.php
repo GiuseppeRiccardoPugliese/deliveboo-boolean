@@ -31,15 +31,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     Route::get('/restaurants', [RestaurantsApiController::class, 'index']);
 // });
 
+
 Route::group(['prefix' => 'v1'], function () {
+    //ROTTA PIATTI
     Route::get('/details', [DishesApiController::class, 'index']);
-});
 
-Route::group(['prefix' => 'v1'], function () {
+    //ROTTA TIPOLOGIE
     Route::get('/tipologies', [TipologiesApiController::class, 'index']);
-});
 
-Route::group(['prefix' => 'v1'], function () {
+    //ROTTA DB
     Route::get('/deliveboo', [ApiDataController::class, 'Data']);
 
     //ROTTA PER I FILTRI SULLE TIPOLOGIE
