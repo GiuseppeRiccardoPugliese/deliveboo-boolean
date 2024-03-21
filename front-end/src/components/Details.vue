@@ -6,10 +6,13 @@ export default {
     data() {
         return {
             ristoranti: [], // Array per memorizzare i dati dei ristoranti
-            orders: [],
             // orderData: { dishes: [], totalPrice: 0 },
-            orderData: {},
+            orderData: {
+                orders: [],
+                restaurantId: null,
+            },
             totalPrice: 0,
+
         };
     },
     computed: {
@@ -42,6 +45,8 @@ export default {
 
             // Salva gli elementi nel localStorage
             localStorage.setItem("cartData", JSON.stringify(dataToSave));
+            console.log(this.orderData);
+
         },
 
         goBack() {
@@ -51,7 +56,16 @@ export default {
         getImageUrl(ristorante) {
             return `http://localhost:8000/storage/${ristorante}`;
         },
-        addToOrder(dish) {
+        addToOrderWithRestaurantId() {
+            if (this.ristoranti.length > 0) { // Assicurati che ci sia almeno un ristorante nella lista
+                const restaurantId = this.ristoranti[this.$route.params.index].id; // Recupera l'ID del primo ristorante
+                this.orderData = {
+                    ...this.orderData,
+                    restaurantId: restaurantId
+                };
+            }
+        },
+        addToOrder(dish, restaurantId) {
             const existingOrder = this.orders.find(order => order.name === dish.name);
             if (existingOrder) {
                 existingOrder.quantity++;
@@ -61,6 +75,7 @@ export default {
             }
             this.totalPrice += dish.price;
         },
+
 
         removeFromOrder(dish) {
             const existingOrderIndex = this.orders.findIndex(order => order.name === dish.name);
@@ -96,6 +111,14 @@ export default {
             },
             deep: true,
         },
+        ristoranti: {
+            handler: function (newValue, oldValue) {
+                if (newValue.length > 0) {
+                    this.addToOrderWithRestaurantId(); // Richiama la funzione quando la lista dei ristoranti viene aggiornata
+                }
+            },
+            deep: true // Controlla anche le modifiche interne degli oggetti nell'array ristoranti
+        }
     },
     created() {
         const storedData = JSON.parse(localStorage.getItem("cartData") || "{}");

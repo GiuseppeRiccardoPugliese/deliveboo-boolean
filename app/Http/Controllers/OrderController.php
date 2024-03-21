@@ -40,7 +40,29 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Ottenere i dati dalla richiesta
+        $data = $request->all();
+
+        // Generare un numero d'ordine casuale
+        $number_order = rand(100000, 999999); // Genera un numero casuale a sei cifre
+
+        // Aggiungi il numero d'ordine casuale e l'ID del ristorante ai dati
+        $data['number_order'] = $number_order;
+        // $data['restaurant_id'] = // Ottieni l'ID del ristorante da dove vuoi
+
+        // Salva i dati nel database
+        $order = Order::create([
+            'number_order' => $data['number_order'],
+            'price' => $data['price'],
+            'guest_name' => $data['guest_name'],
+            'guest_email' => $data['guest_email'],
+            'guest_address' => $data['guest_address'],
+            'restaurant_id' => $data['restaurant_id'], // Aggiungi l'ID del ristorante
+            // Altri campi dell'ordine, se necessario
+        ]);
+
+        // Restituisci la risposta appropriata
+        return response()->json(['message' => 'Order created successfully', 'order' => $order], 201);
     }
 
     /**
