@@ -3,8 +3,10 @@
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Restaurant;
+use App\Models\Order;
  
 
 /*
@@ -64,6 +66,11 @@ Route::middleware('auth')->group(function () {
 
     //Rotta DELETE DISH
     Route::delete('/dishes/{id}', [DishController::class, 'destroy'])->name('dish.destroy');
+
+     //Rotta INDEX ORDINI
+     Route::middleware(['auth'])->group(function () {
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+});
 
 });
 
