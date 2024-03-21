@@ -10,8 +10,8 @@
 }
 
 body {
-    height: calc(100vh - 120px);
-    height: 100vh;
+    min-height: calc(100vh - 120px);
+    // height: 100vh;
     display: flex;
     flex-direction: column;
 }
