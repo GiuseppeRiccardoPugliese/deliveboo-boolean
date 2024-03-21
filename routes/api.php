@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\RestaurantsApiController;
 use App\Http\Controllers\Api\TipologiesApiController;
+use App\Http\Controllers\OrderController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -48,3 +49,6 @@ Route::group(['prefix' => 'v1'], function () {
 Route::get('generate', [PaymentController::class, 'generate']); //PRENDO IL TOKEN
 Route::post('make/payment', [PaymentController::class, 'makePayment']); //MANDO IL PAGAMENTO
 Route::get('products', [ProductController::class, 'index']);
+
+Route::put('/orders/{id}', [OrderController::class, 'update']);
+

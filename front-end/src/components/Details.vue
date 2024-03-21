@@ -7,7 +7,8 @@ export default {
         return {
             ristoranti: [], // Array per memorizzare i dati dei ristoranti
             orders: [],
-            totalPrice: 0
+            totalPrice: 0,
+            orderData: { dishes: [], totalPrice: 0 },
         };
     },
     mounted() {
@@ -22,6 +23,9 @@ export default {
             .catch((error) => {
                 console.error("Error fetching data from first API:", error);
             });
+
+        // Log per verificare i dati dell'ordine ricevuti
+        // console.log('Dati dell\'ordine ricevuti:', this.$route.query.orderData);
     },
     methods: {
         fetchSecondApiData() {
@@ -39,6 +43,21 @@ export default {
                     );
                 });
         },
+        submitOrder() {
+            // Calcola il prezzo totale dell'intero ordine sommando i prezzi totali di tutti i piatti nel carrello
+            let totalOrderPrice = this.orders.reduce((total, dish) => total + dish.price, 0);
+
+            // Raccolta dei dettagli dell'ordine
+            const orderData = {
+            dishes: this.orders, // Array contenente gli elementi del carrello
+            totalPrice: totalOrderPrice // Prezzo totale dell'intero ordine
+            // Altri dettagli dell'ordine se necessario
+            };
+            
+            this.$router.push({ name: 'Payment', query: { orderData: JSON.stringify(orderData) } });
+            // Effettua il console log del contenuto di orderData
+            console.log('Contenuto di orderData:', orderData);
+        },
         goBack() {
             // Funzione per tornare alla pagina precedente
             this.$router.go(-1);
@@ -54,7 +73,7 @@ export default {
                 } else {
                     this.orders.push({ name: dish.name, quantity: 1, price: dish.price });
                 }
-                this.totalPrice += dish.price; // Aggiorna il prezzo totale
+                this.totalPrice += dish.price;
         },
         removeFromOrder(dish) {
             const existingOrderIndex = this.orders.findIndex(order => order.name === dish.name);
@@ -164,7 +183,10 @@ export default {
                         <p>{{ order.name }} ( {{ order.quantity }} )  <strong>{{ order.price }}€</strong></p>
                     </div>
                     <p><strong>Totale: {{ totalPrice }}€</strong></p>
-                    <router-link :to="{ name: 'Payment'}">
+                    <!-- <router-link :to="{ name: 'Payment'}">
+                        <button class="btn btn-primary" type="button" style="width: 100%;" @click="submitOrder()">Effettua l'ordine</button>
+                    </router-link> -->
+                    <router-link :to="{ name: 'Payment', query: { orderData: JSON.stringify(orderData) }}" @click="submitOrder()">
                         <button class="btn btn-primary" type="button" style="width: 100%;">Effettua l'ordine</button>
                     </router-link>
                     <button class="btn btn-danger mt-3" type="button" style="width: 100%;" @click="deleteOrders()">Svuota il carrello</button>

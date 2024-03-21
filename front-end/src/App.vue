@@ -54,7 +54,15 @@ export default {
     <div class="main-content">
       <Home />
         <div class="router-container">
-          <router-view></router-view>
+          <router-view v-slot="{ Component }">
+            <transition 
+            enter-active-class="animate__animated animate__fadeInUp"
+            leave-active-class="animate__animated animate__fadeOut animate__faster	500ms"
+            mode="out-in"
+            >
+              <component :is="Component"/>
+            </transition>
+          </router-view>
         </div>
         <AppFooter />
     </div>
@@ -96,5 +104,17 @@ export default {
   min-height: calc(100vh - 120px - 500px);
 
   // flex-grow: 1;
+}
+
+.slideIn-enter-from,
+.slideIn-leave-to {
+  opacity: 0;
+  // transform: translateY(20%);
+}
+
+.slideIn-enter-active,
+.slideIn-leave-active {
+  transition: opacity 5s ease-out;
+  // transition: opacity 0.5s ease, transform 5s ease-in-out;
 }
 </style>
