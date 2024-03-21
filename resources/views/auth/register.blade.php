@@ -250,7 +250,7 @@
                                     if (checkbox.length > 2) {
 
                                         //fai apparire questo alert
-                                        alert("Puoi selezionare solo due Tipologie.");
+                                        document.getElementById("tipologyError").innerHTML = "Puoi selezionare solo 2 tipologie";
 
                                         //e da qui preveniamo l'invio del modulo
                                         event.preventDefault();
@@ -267,6 +267,8 @@
                                         value="{{ $tipologia->id }}" onclick="limitTipologies()">
                                     <label for="tipologia{{ $tipologia->id }}">{{ $tipologia->name }}</label><br>
                                 @endforeach
+                                
+                                <div id="tipologyError" style="color: red;"></div>
                             </div>
 
                             <div class="mb-4 row mb-0">
