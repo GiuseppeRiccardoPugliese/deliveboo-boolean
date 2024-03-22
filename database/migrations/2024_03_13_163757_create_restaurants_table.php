@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('piva')->unique();
             $table->string('address');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->boolean('visible')->default(true);
 
             $table->timestamps();
