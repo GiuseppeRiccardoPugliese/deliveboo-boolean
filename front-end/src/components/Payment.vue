@@ -195,7 +195,7 @@ export default {
         <h2 class="order-title">Riepilogo dell'ordine</h2>
         <div class="order-items">
           <div v-for="(order, index) in orders" :key="index" class="order-item">
-            <p>{{ order.name }} ({{ order.quantity }}) - {{ order.price.toFixed(2) }}€</p>
+            <p><strong class="text-black-50">x{{ order.quantity }} |</strong> {{ order.name }}  {{ order.price.toFixed(2) }}€</p>
           </div>
         </div>
         <p class="order-total">Totale: {{ totalPrice.toFixed(2) }}€</p>
