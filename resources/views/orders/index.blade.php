@@ -2,54 +2,47 @@
 
 @section('content')
     @unless (Auth::check())
-        <h1>Ecco la lista di tutti i piatti:</h1>
+        <h1>Ecco la lista dei tuoi piatti:</h1>
     @endunless
 
     @auth
         <div class="container">
             <h2 class="fs-2 text-secondary my-4 text-center">{{ __('Ordini') }}</h2>
             <div class="row mb-3">
-            <div class="row">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">numero ordine</th>
-                            <th scope="col">prezzo</th>
-                            <th scope="col">Nome utente</th>
-                            <th scope="col">Email utente</th>
-                            <th scope="col">Piatti</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($orders as $order)
+                <div class="row">
+                    <table class="table">
+                        <thead class="text-center">
+                            <tr>
+                                <th scope="col">Numero ordine</th>
+                                <th scope="col">Prezzo</th>
+                                <th scope="col">Nome cliente</th>
+                                <th scope="col">Indirizzo cliente</th>
+                                <th scope="col">Email cliente</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            @foreach ($orders as $order)
                                 <tr>
                                     <td>
-                                        {{ $orders->number_order }}
+                                        {{ $order->number_order }}
                                     </td>
                                     <td>
-                                        {{ $orders->price }}
+                                        {{ $order->price }}
                                     </td>
                                     <td>
-                                        {{ $orders->guest_name }}
+                                        {{ $order->guest_name }}
                                     </td>
                                     <td>
-                                        {{ $orders->guest_address }}
+                                        {{ $order->guest_address }}
                                     </td>
                                     <td>
-                                        {{ $orders->guest_email }}
-                                    </td>
-                                    <td>
-                                        <ul>
-                                            @foreach(json_decode($order->ordered_items) as $item)
-                                                <li>{{ $orders->ordered_items }}</li>
-                                            @endforeach
-                                        </ul>
+                                        {{ $order->guest_email }}
                                     </td>
                                 </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-    @endauth
-@endsection
+        @endauth
+    @endsection

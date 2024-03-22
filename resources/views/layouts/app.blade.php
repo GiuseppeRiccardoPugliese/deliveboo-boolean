@@ -25,7 +25,7 @@
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" href="{{ url('/dashboard') }}">
+                <a class="navbar-brand d-flex align-items-center" href="{{ url('http://localhost:5174/') }}">
                     <div class="logo_laravel">
                         <img src="{{ asset('deliveboo1.png') }}" alt="Logo" style="height: 40px">
                     </div>
@@ -42,21 +42,24 @@
                     <!-- dashboard -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="{{ url('dashboard') }}" class="btn btn-sm btn-primary nav-link"><span class="plus"></span>{{ __('Pannello Di Controllo') }}</a>
+                            <a href="{{ url('/dashboard') }}" class="btn btn-sm btn-primary nav-link"><span
+                                    class="plus"></span>{{ __('Pannello Di Controllo') }}</a>
                         </li>
                     </ul>
 
                     <!-- Ordini -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="{{ url('/orders') }}" class="btn btn-sm btn-primary nav-link"><span class="plus"></span>{{ __('Ordini') }}</a>
+                            <a href="{{ url('/orders') }}" class="btn btn-sm btn-primary nav-link"><span
+                                    class="plus"></span>{{ __('Ordini') }}</a>
                         </li>
                     </ul>
 
                     <!-- menù -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a href="{{ url('/dishes') }}" class="btn btn-sm btn-primary nav-link"><span class="plus"></span>{{ __('Menù') }}</a>
+                            <a href="{{ url('/dishes') }}" class="btn btn-sm btn-primary nav-link"><span
+                                    class="plus"></span>{{ __('Menù') }}</a>
                         </li>
                     </ul>
 
@@ -65,17 +68,21 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a href="{{ route('login') }}" class="btn btn-sm btn-primary nav-link"><span class="plus"></span>{{ __('Entra') }}</a>
+                                <a href="{{ route('login') }}" class="btn btn-sm btn-primary nav-link"><span
+                                        class="plus"></span>{{ __('Entra') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a href="{{ route('register') }}" class="btn btn-sm btn-primary nav-link"><span class="plus"></span>{{ __('Registrati') }}</a>
+                                    <a href="{{ route('register') }}" class="btn btn-sm btn-primary nav-link"><span
+                                            class="plus"></span>{{ __('Registrati') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a href="#" id="navbarDropdown" class="btn btn-sm btn-primary nav-link dropdown-toggle" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><span class="plus"></span>{{ Auth::user()->name }}</a>
+                                <a href="#" id="navbarDropdown"
+                                    class="btn btn-sm btn-primary nav-link dropdown-toggle" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><span
+                                        class="plus"></span>{{ Auth::user()->name }}</a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ url('profile') }}">{{ __('Profilo') }}</a>
@@ -103,9 +110,10 @@
 </body>
 
 <style scoped lang="scss">
-     .plus {
+    .plus {
         vertical-align: middle;
     }
+
     .navbar-nav .nav-link {
         border-radius: 100px;
         color: #fff;
