@@ -66,7 +66,8 @@ export default {
       // @ts-ignore
       braintree.dropin.create({
         authorization: 'sandbox_bntx9z5d_y9fkzm9y4q49xcj9',
-        selector: '#dropin-container'
+        selector: '#dropin-container',
+        locale: 'it_IT',
       }, (err, instance) => {
         if (err) {
           console.error('Error initializing Braintree:', err);
@@ -87,7 +88,7 @@ export default {
         });
       });
     },
-    makePayment(paymentMethodNonce) {
+    makePayment(paymentMethodNonce) { //FUNZIONE PER IL PAGAMENTO
       const storedData = JSON.parse(localStorage.getItem("cartData") || "{}");
       const orders = storedData.orders || [];
 
