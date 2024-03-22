@@ -60,7 +60,7 @@ export default {
       }
     },
 
-    makeDropIn() {
+    makeDropIn() { //DropIn Pagamento BrainTree
       var button = document.querySelector('#submit-button');
 
       // @ts-ignore
@@ -131,7 +131,7 @@ export default {
               .then(response => {
                 console.log("Ordine inviato con successo:", response.data);
                 // Esegui il routing alla pagina di conferma dell'ordine
-                // this.$router.push({ name: "order_confirmed" });
+                this.$router.push({ name: 'ThankYou' });
               })
               .catch(error => {
                 console.error("Errore durante l'invio dell'ordine:", error);

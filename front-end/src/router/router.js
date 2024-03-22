@@ -10,6 +10,7 @@ import Restaurants from '../components/Restaurants.vue'
 import Details from '../components/Details.vue'
 import Carousel from '../components/Carousel.vue'
 import Payment from '../components/Payment.vue'
+import ThankYou from '../components/ThankYou.vue'
 
 // Routes
 const router = createRouter({
@@ -44,7 +45,13 @@ const router = createRouter({
             path: '/payment',
             component: Payment,
             name: 'Payment'
+        },
+        {
+            path: '/thank-you',
+            component: ThankYou,
+            name: 'ThankYou'
         }
+
     ]
 })
 
