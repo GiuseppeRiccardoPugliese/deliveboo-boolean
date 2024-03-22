@@ -45,8 +45,6 @@ export default {
 
             // Salva gli elementi nel localStorage
             localStorage.setItem("cartData", JSON.stringify(dataToSave));
-            console.log(this.orderData);
-
         },
 
         goBack() {
@@ -94,7 +92,10 @@ export default {
         },
         deleteOrders() {
             this.orders = [];
+            this.orderData.orders = [];
+
             this.totalPrice = 0;
+            localStorage.removeItem("cartData");
         }
     },
     watch: {

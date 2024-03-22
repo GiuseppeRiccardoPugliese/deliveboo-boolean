@@ -29,9 +29,17 @@ export default {
   methods: {
     localStorage() {
       const dataToSave = {
+        price: this.totalPrice,
+        guest_name: this.orderData.guest_name,
+        guest_address: this.orderData.guest_address,
+        guest_email: this.orderData.guest_email,
+        restaurant_id: this.orderData.restaurantId,
+
         orders: this.orders,
         totalPrice: this.totalPrice,
         orderData: this.orderData,
+
+        product_name: this.orders.map(order => order.name), // Array di nomi dei prodotti
       };
 
       // Salva gli elementi nel localStorage
@@ -80,6 +88,8 @@ export default {
         });
       });
     },
+
+
     makePayment(paymentMethodNonce) { //FUNZIONE PER IL PAGAMENTO
       const storedData = JSON.parse(localStorage.getItem("cartData") || "{}");
       const orders = storedData.orders || [];
@@ -117,7 +127,6 @@ export default {
               guest_address: this.orderData.guest_address,
               product_name: this.orders.map(order => order.name), // Array di nomi dei prodotti
               restaurant_id: this.orderData.restaurantId,
-              // Aggiungi l'ID del ristorante se disponibile
             };
             axios.post("http://127.0.0.1:8000/api/v1/orders", dataToSend)
               .then(response => {
@@ -157,6 +166,7 @@ export default {
     },
   },
   mounted() {
+    this.makeDropIn();
     // Recupera gli ordini dal localStorage e analizza il JSON, se presente
     const ordersFromLocalStorage = localStorage.getItem("orders");
     if (ordersFromLocalStorage) {
@@ -177,35 +187,56 @@ export default {
 
 <template>
   <div class="order-card">
-    <div class="order-details">
-      <h2 class="order-title">Riepilogo dell'ordine</h2>
-      <div class="order-items">
-        <div v-for="(order, index) in orders" :key="index" class="order-item">
-          <p>{{ order.name }} ({{ order.quantity }}) - {{ order.price.toFixed(2) }}€</p>
+
+
+    <div class="my-container">
+      <!-- DETTAGLI ORDINE -->
+      <div class="order-details">
+        <h2 class="order-title">Riepilogo dell'ordine</h2>
+        <div class="order-items">
+          <div v-for="(order, index) in orders" :key="index" class="order-item">
+            <p>{{ order.name }} ({{ order.quantity }}) - {{ order.price.toFixed(2) }}€</p>
+          </div>
         </div>
+        <p class="order-total">Totale: {{ totalPrice.toFixed(2) }}€</p>
       </div>
-      <p class="order-total">Totale: {{ totalPrice.toFixed(2) }}€</p>
+
+      <!-- FORM CON DATI ESSENZIALI -->
+      <div class="card-details">
+        <form action="">
+
+          <div class="form-group">
+            <label for="guest_name">Nome:</label>
+            <input type="text" class="form-control" id="guest_name" name="guest_name" v-model="orderData.guest_name"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="guest_address">Indirizzo:</label>
+            <input type="text" class="form-control" id="guest_address" name="guest_address"
+              v-model="orderData.guest_address" required>
+          </div>
+          <div class="form-group">
+            <label for="guest_email">Email:</label>
+            <input type="email" class="form-control" id="guest_email" name="guest_email" v-model="orderData.guest_email"
+              required>
+          </div>
+
+          <!-- DROPIN BRAINTREE PAYMENT -->
+          <div id="dropin-container"></div>
+
+        </form>
+      </div>
     </div>
-    <form action="">
 
-      <div>
-        <label for="guest_name">Nome:</label>
-        <input type="text" id="guest_name" name="guest_name" v-model="orderData.guest_name" required>
-      </div>
-      <div>
-        <label for="guest_address">Indirizzo:</label>
-        <input type="text" id="guest_address" name="guest_address" v-model="orderData.guest_address" required>
-      </div>
-      <div>
-        <label for="guest_email">Email:</label>
-        <input type="email" id="guest_email" name="guest_email" v-model="orderData.guest_email" required>
-      </div>
 
-      <button class="confirm-button" id="submit-button" @click="sendData()">Checkout</button>
+    <div>
+      <button class="confirm-button" id="submit-button" @click="sendData()">Conferma e Paga</button>
+    </div>
 
-    </form>
 
-    <div id="dropin-container"></div>
+
+
+
 
   </div>
 
@@ -214,16 +245,28 @@ export default {
 
 <style lang="scss">
 .order-card {
-  max-width: 400px;
-  margin: 0 auto;
+
+  max-width: 800px;
+  margin: 2rem auto;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+
+  .my-container {
+    display: flex;
+    justify-content: space-around;
+    // align-items: center;
+  }
 }
 
 .order-details {
+  width: 45%;
   margin-bottom: 20px;
+}
+
+.card-details {
+  width: 45%;
 }
 
 .order-title {
