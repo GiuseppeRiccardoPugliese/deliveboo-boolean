@@ -27,7 +27,7 @@
                                         {{ $order->number_order }}
                                     </td>
                                     <td>
-                                        {{ $order->price }} <p>€</p>
+                                        {{ $order->price }} <span>€</span>
                                     </td>
                                     <td>
                                         {{ $order->guest_name }}
