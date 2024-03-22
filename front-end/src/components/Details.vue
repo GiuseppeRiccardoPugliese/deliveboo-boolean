@@ -67,13 +67,15 @@ export default {
         },
         addToOrder(dish, restaurantId) {
             const existingOrder = this.orders.find(order => order.name === dish.name);
+            const price = parseFloat(dish.price); // Converti il prezzo del piatto in un numero
             if (existingOrder) {
                 existingOrder.quantity++;
-                existingOrder.price += dish.price;
+                existingOrder.price += price;
             } else {
-                this.orders.push({ name: dish.name, quantity: 1, price: dish.price });
+                this.orders.push({ name: dish.name, quantity: 1, price: price, dishId: dish.id });
             }
-            this.totalPrice += dish.price;
+            this.totalPrice += price; // Aggiorna il prezzo totale
+            console.log(this.totalPrice);
         },
 
 
@@ -87,6 +89,7 @@ export default {
                     this.orders.splice(existingOrderIndex, 1);
                 }
                 this.totalPrice -= dish.price; // Aggiorna il prezzo totale
+                localStorage.setItem("totalPrice", this.totalPrice);
             }
         },
         deleteOrders() {
@@ -204,7 +207,7 @@ export default {
                     </div>
                     <p><strong>Totale: {{ totalPrice }}€</strong></p>
 
-                    <router-link :to="{ name: 'Payment', }">
+                    <router-link :to="{ name: 'Payment' }">
                         <button class="btn btn-primary" type="button" style="width: 100%;">Effettua l'ordine</button>
                     </router-link>
 

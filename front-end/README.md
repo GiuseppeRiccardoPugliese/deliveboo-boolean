@@ -18,3 +18,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
      npm install swiper
  -->
 
+<!-- Braintree
+npm i vue-braintree
+npm install vue-braintree-dropin
+ -->

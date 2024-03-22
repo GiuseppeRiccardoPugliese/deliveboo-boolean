@@ -25,9 +25,16 @@ class PaymentController extends Controller
 
     public function makePayment(PaymentRequest $request, Gateway $gateway)
     {
-        $product = Dish::find($request->product);
+        // $product = Dish::find($request->product);
+        $products = $request->product;
+        $totalPrice = 0;
+        foreach ($products as $dishId => $price) {
+            // Aggiungi il prezzo del piatto al totale
+            $totalPrice += $price;
+        }
+
         $result = $gateway->transaction()->sale([
-            'amount' => $product->price,
+            'amount' => $totalPrice,
             'paymentMethodNonce' => $request->token,
             'options' => [
                 'submitForSettlement' => true
