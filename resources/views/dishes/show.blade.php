@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
-    <h1>Piatto: [{{ $dish->id }}]</h1>
+    <h1 class="text-center">Piatto: [{{ $dish->id }}]</h1>
 
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
             <div class="col-md-12">
-                <div class="card-body">
+                <div class="card-body text-center">
                     <h5 class="card-title fw-bold">Nome piatto:
                         {{ $dish->name }}</h5>
                     <p class="card-text">Descrizione del piatto: {{ $dish->description }}</p>
@@ -25,4 +25,3 @@
         </div>
     </div>
 @endsection
-

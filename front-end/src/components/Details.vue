@@ -5,36 +5,132 @@ export default {
     name: "Details",
     data() {
         return {
-            restaurants: [],
-            dishes: [],
+            ristoranti: [], // Array per memorizzare i dati dei ristoranti
+            // orderData: { dishes: [], totalPrice: 0 },
+            orderData: {
+                orders: [],
+                restaurantId: null,
+            },
+            totalPrice: 0,
+
         };
     },
-    mounted() {
-        // Chiamata per recuperare i dati dei ristoranti
-        axios
-            .get("http://localhost:8000/api/v1/restaurants")
-            .then((response) => {
-                this.restaurants = response.data;
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-            });
+    computed: {
+        itemsFromLocalStorage() {
+            // Recupera gli elementi dal localStorage e analizza il JSON, se presente
+            return JSON.parse(localStorage.getItem("orders") || "[]");
+        },
+    },
 
-        // Chiamata per recuperare i dati dei piatti
+    mounted() {
+        // Effettua la prima chiamata per ottenere i ristoranti dalla prima API
         axios
-            .get("http://localhost:8000/api/v1/details")
+            .get("http://localhost:8000/api/v1/deliveboo")
             .then((response) => {
-                this.dishes = response.data;
+                this.ristoranti = response.data;
+                // Una volta ricevuti i dati dalla prima API, effettua la seconda chiamata
             })
             .catch((error) => {
-                console.error("Error fetching data:", error);
+                console.error("Error fetching data from first API:", error);
             });
     },
     methods: {
+        localStorage() {
+            const dataToSave = {
+                orders: this.orders,
+                // sum: this.sum,
+                totalPrice: this.totalPrice,
+                orderData: this.orderData
+            };
+
+            // Salva gli elementi nel localStorage
+            localStorage.setItem("cartData", JSON.stringify(dataToSave));
+            console.log(this.orderData);
+
+        },
+
         goBack() {
             // Funzione per tornare alla pagina precedente
             this.$router.go(-1);
         },
+        getImageUrl(ristorante) {
+            return `http://localhost:8000/storage/${ristorante}`;
+        },
+        addToOrderWithRestaurantId() {
+            if (this.ristoranti.length > 0) { // Assicurati che ci sia almeno un ristorante nella lista
+                const restaurantId = this.ristoranti[this.$route.params.index].id; // Recupera l'ID del primo ristorante
+                this.orderData = {
+                    ...this.orderData,
+                    restaurantId: restaurantId
+                };
+            }
+        },
+        addToOrder(dish, restaurantId) {
+            const existingOrder = this.orders.find(order => order.name === dish.name);
+            const price = parseFloat(dish.price); // Converti il prezzo del piatto in un numero
+            if (existingOrder) {
+                existingOrder.quantity++;
+                existingOrder.price += price;
+            } else {
+                this.orders.push({ name: dish.name, quantity: 1, price: price, dishId: dish.id });
+            }
+            this.totalPrice += price; // Aggiorna il prezzo totale
+            console.log(this.totalPrice);
+        },
+
+
+        removeFromOrder(dish) {
+            const existingOrderIndex = this.orders.findIndex(order => order.name === dish.name);
+            if (existingOrderIndex !== -1) {
+                const existingOrder = this.orders[existingOrderIndex];
+                existingOrder.quantity--;
+                existingOrder.price -= dish.price;
+                if (existingOrder.quantity === 0) {
+                    this.orders.splice(existingOrderIndex, 1);
+                }
+                this.totalPrice -= dish.price; // Aggiorna il prezzo totale
+                localStorage.setItem("totalPrice", this.totalPrice);
+            }
+        },
+        deleteOrders() {
+            this.orders = [];
+            this.totalPrice = 0;
+        }
+    },
+    watch: {
+        // Un watcher per monitorare le modifiche agli ordini e salvare nel localStorage
+        orders: {
+            handler(newOrders) {
+                this.localStorage();
+            },
+            deep: true,
+        },
+        totalPrice() {
+            this.localStorage();
+        },
+        orderData: {
+            handler(newOrderData) {
+                this.localStorage();
+            },
+            deep: true,
+        },
+        ristoranti: {
+            handler: function (newValue, oldValue) {
+                if (newValue.length > 0) {
+                    this.addToOrderWithRestaurantId(); // Richiama la funzione quando la lista dei ristoranti viene aggiornata
+                }
+            },
+            deep: true // Controlla anche le modifiche interne degli oggetti nell'array ristoranti
+        }
+    },
+    created() {
+        const storedData = JSON.parse(localStorage.getItem("cartData") || "{}");
+        this.orders = storedData.orders || [];
+        // this.sum = storedData.sum || 0;
+        this.totalPrice = storedData.totalPrice || 0;
+        this.orderData = storedData.orderData || {};
+
+        console.log('Contenuto di localStorage:', storedData);
     },
 };
 </script>
@@ -83,6 +179,25 @@ export default {
                         <strong>{{ plate.price }}€</strong>
                     </div>
                 </div>
+
+                <div class="card_payment col-12 col-md-4 text-center border pt-3">
+
+                    <h2>I TUOI ORDINI</h2>
+
+                    <div v-for="(order, index) in orders" :key="index">
+                        <p>{{ order.name }} ( {{ order.quantity }} ) <strong>{{ order.price.toFixed(2) }}€</strong></p>
+                    </div>
+                    <p><strong>Totale: {{ totalPrice.toFixed(2) }}€</strong></p>
+
+                    <router-link :to="{ name: 'Payment' }">
+                        <button class="btn btn-primary" type="button" style="width: 100%;">Effettua l'ordine</button>
+                    </router-link>
+
+                    <button class="btn btn-danger mt-3" type="button" style="width: 100%;"
+                        @click="deleteOrders()">Svuota il carrello
+                    </button>
+
+                </div>
             </div>
         </div>
     </div>
@@ -106,5 +221,14 @@ export default {
 .restaurants-zone {
     padding-left: 1rem;
     font-size: 1.5rem;
+}
+
+.bg-c {
+    background-color: #f9fafa;
+}
+
+.card_payment {
+    height: 400px;
+    background-color: #fff;
 }
 </style>

@@ -28,6 +28,7 @@ export default {
 .container-fluid {
     width: 100%;
     background-color: #2e3333;
+    // z-index: 1000;
 
     .footer {
         width: 80%;

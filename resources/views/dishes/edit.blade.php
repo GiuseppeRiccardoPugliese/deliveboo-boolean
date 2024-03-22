@@ -10,45 +10,43 @@
             </ul>
         </div>
     @endif
-
-    <form id="myForm" action="{{ route('dish.update', $dish->id) }}" method="POST" enctype="multipart/form-data"
+<div class="container">
+    <div class="card">
+        <form id="myForm" action="{{ route('dish.update', $dish->id) }}" method="POST" enctype="multipart/form-data"
         class="mt-4 d-flex flex-column justify-content-center align-items-center">
         @csrf
         @method('PUT')
 
 
-        <div class="input">
+        <div class="input-group">
             <label class="label" for="name">Nome piatto: </label>
             <input id="name" type="text" name="name" class="p-2" value="{{ $dish->name }}">
             <div id="nameError" style="color: red; display: none;"></div>
         </div>
 
-        <div class="input">
-            <label class="label" for="description">Descrizione piatto: </label>
+        <div class="input-group">
+            <label class="label" for="description">Descrizione: </label>
             <input id="description" type="text" name="description" class="p-2" value="{{ $dish->description }}">
             <div id="descriptionError" style="color: red; display: none;"></div>
         </div>
 
-        <div class="input">
-            <label class="label" for="price">Price</label>
+        <div class="input-group">
+            <label class="label" for="price">Prezzo: </label>
             <input id="price" type="text" name="price" placeholder="10.20" class="p-2"
                 value="{{ $dish->price }}">
             <div id="priceError" style="color: red; display: none;"></div>
         </div>
 
-        <div>
-            <span class="d-block">Tipo di file (jpg, png, jpeg): </span>
-            <label for="image">Image</label>
+        <div class="input-group">
+            <label for="image">Immagine: </label>
+            <span class="d-block">Tipo di file (jpg, png, jpeg) </span>
             <input type="file" name="image" id="image">
             <div id="imageError" style="color: red; display: none;"></div>
         </div>
         <img id="image_dish" src="{{ asset('storage/' . $dish->image) }}" alt="Immagine Piatto" style="width: 250px">
 
-        <label class="label" for="visible">Visibilit&agrave;: </label>
-        <input type="checkbox" name="visible" {{ $dish->visible == 1 ? 'checked' : '' }}>
-
-        <div class="mt-4">
-            <input type="submit" value="UPDATE">
+        <div class="input-group">
+            <input type="submit" class="btn btn-primary btn-sm" value="Salva">
         </div>
 
     </form>
@@ -60,143 +58,129 @@
 
             let counter = 0;
 
-            //Prendo il valore dell'src all'interno del mio tag IMG
-            let dish_photo = document.getElementById('image_dish').getAttribute(
-                'src');
-            console.log(dish_photo);
-
             // Recupera il valore di input della PIVA
             let priceValue = document.getElementById("price").value;
             let dishName = document.getElementById("name").value;
             let dishDescription = document.getElementById("description").value;
             let img = document.getElementById("image");
 
-            counter = counter + checkPrice(priceValue, counter);
-            counter = counter + checkName(dishName, counter);
-            counter = counter + checkDescription(dishDescription, counter);
-            counter = counter + checkImage(img, counter, dish_photo);
-            console.log(counter);
+            // Verifica ogni campo e incrementa il counter se è valido
+            counter += checkField(priceValue, "priceError", "Compilare questo campo", isNaN(priceValue) || priceValue <= 0);
+            counter += checkField(dishName, "nameError", "Compilare questo campo", dishName.trim().length === 0);
+            counter += checkField(dishDescription, "descriptionError", "Compilare questo campo", dishDescription.trim().length === 0);
+            counter += checkImage(img);
 
-            if (counter === 4) {
+            // Se ci sono errori di validazione, non inviare il modulo
+            if (counter < 4) {
+                return false;
+            }
+
+            // Se il counter è uguale al numero di campi + 1 (l'immagine è facoltativa), invia il modulo
+            if (counter === 4 || (counter === 3 && img.files.length === 0)) {
                 this.submit();
             }
         });
 
-        function checkPrice(priceValue, counter) {
-            counter = 0;
-            if (priceValue.length === 0) {
-                document.getElementById("priceError").style.display = "block";
-                document.getElementById("priceError").innerHTML = "Compilare questo campo";
-            } else if (!isNaN(priceValue) && priceValue > 0) {
-                document.getElementById("priceError").style.display = "none";
-                counter++;
+        // Funzione per la validazione dei campi di input
+        function checkField(value, errorDivId, errorMessage, isError) {
+            if (isError) {
+                document.getElementById(errorDivId).style.display = "block";
+                document.getElementById(errorDivId).innerHTML = errorMessage;
+                return 0;
             } else {
-                document.getElementById("priceError").style.display = "block";
-                document.getElementById("priceError").innerHTML =
-                    "Il prezzo deve essere composto da un numero che sia positivo";
+                document.getElementById(errorDivId).style.display = "none";
+                return 1;
             }
-            return counter;
         }
 
-        function checkName(restaurantName, counter) {
-            counter = 0;
-            if (restaurantName.length === 0) {
-                document.getElementById("nameError").style.display = "block";
-                document.getElementById("nameError").innerHTML = "Compilare questo campo";
-            } else {
-                document.getElementById("nameError").style.display = "none";
-                counter++;
-            }
-            return counter;
-        }
+        // Funzione per la validazione dell'immagine
+        function checkImage(img) {
+            // Se seleziono un file
+            if (img.files.length > 0) {
+                // File selezionato
+                let file = img.files[0];
 
-        function checkDescription(restaurantAddress, counter) {
-            counter = 0;
-            if (restaurantAddress.length === 0) {
-                document.getElementById("descriptionError").style.display = "block";
-                document.getElementById("descriptionError").innerHTML = "Compilare questo campo";
-            } else {
-                document.getElementById("descriptionError").style.display = "none";
-                counter++;
-            }
-            return counter;
-        }
-
-        function checkImage(img, counter, dish_photo) {
-            counter = 0;
-
-            // Ottieni il file selezionato dall'utente
-            let file = img.files[0];
-            if (dish_photo != null) {
-                counter++;
-                return counter;
-            }
-            // Verifica se un file è stato selezionato
-            if (file) {
-                // Verifica se il tipo del file è tra quelli consentiti
-                if (file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes(
-                        'image/jpg')) {
-                    document.getElementById("imageError").style.display = "none";
-                    counter++;
+                // Verifica del tipo di file
+                if (file.type.includes('image/jpeg') || file.type.includes('image/png') || file.type.includes('image/jpg')) {
+                    // Verifica se la dimensione del file è inferiore a 2 MB
+                    if (file.size <= 2048 * 1024) {
+                        document.getElementById("imageError").style.display = "none";
+                        return 1; // L'immagine è valida
+                    } else {
+                        document.getElementById("imageError").style.display = "block";
+                        document.getElementById("imageError").innerHTML = "Dimensione del file superiore a 2MB";
+                        return 0; // L'immagine non è valida
+                    }
                 } else {
                     document.getElementById("imageError").style.display = "block";
                     document.getElementById("imageError").innerHTML = "Formato non supportato";
+                    return 0; // L'immagine non è valida
                 }
             } else {
-                document.getElementById("imageError").style.display = "block";
-                document.getElementById("imageError").innerHTML = "Immagine non caricata";
+                // Nascondi il messaggio di errore se l'utente non ha selezionato un'immagine
+                document.getElementById("imageError").style.display = "none";
+                return 1; // L'immagine è facoltativa, quindi non conta nel counter
             }
-
-            return counter;
         }
+
     </script>
 @endsection
 
+
 <style lang="scss" scoped>
-    .login {
-        padding: 50px;
-        width: 477px;
-        margin: 20px auto;
-    }
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 400px;
+  border-radius: 10px;
+  margin: auto;
+  padding: 20px;
+}
 
-    .input {
-        margin: 15px 0;
-    }
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
 
-    .label {
-        margin-bottom: 5px;
-    }
+.container {
+  margin-top: 20px;
+}
 
-    .button {
-        text-align: center;
-    }
+.input-group {
+  margin-bottom: 15px;
+}
 
-    button {
-        width: 100%;
-        height: 40px;
-        border-radius: 7px;
-        background-color: #E2E5E5;
-        margin-bottom: 7px;
-    }
+.input-group label {
+  display: block;
+  font-weight: bold;
+}
 
-    button:hover {
-        background-color: #22cdd0;
-        color: white;
-    }
+.input-group input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
 
-    input {
-        border: 1px solid rgb(195, 192, 192);
-        border-radius: 5px;
-        height: 40px;
-        width: 100%;
-    }
+.input-group input[type="checkbox"] {
+  width: auto;
+  margin-left: 10px;
+}
 
-    input:focus {
-        border-color: #22cdd0;
-    }
+.input-group .btn-primary{
+    margin-top: 10px;
+}
 
-    a {
-        color: #22cdd0;
-        margin-left: 3px;
-    }
+
+.btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
 </style>

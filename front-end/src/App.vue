@@ -6,6 +6,7 @@ import AppHeader from './components/AppHeader.vue';
 import AppFooter from './components/AppFooter.vue';
 import Home from './components/Home.vue';
 import Carousel from './components/Carousel.vue';
+import Restaurants from './components/Restaurants.vue';
 
 
 export default {
@@ -14,6 +15,7 @@ export default {
     AppFooter,
     Home,
     Carousel,
+    Restaurants,
   },
   data() {
     return {
@@ -51,8 +53,18 @@ export default {
     <AppHeader />
     <div class="main-content">
       <Home />
-      <router-view></router-view>
-      <AppFooter />
+        <div class="router-container">
+          <router-view v-slot="{ Component }">
+            <transition 
+            enter-active-class="animate__animated animate__fadeInUp"
+            leave-active-class="animate__animated animate__fadeOut animate__faster	500ms"
+            mode="out-in"
+            >
+              <component :is="Component"/>
+            </transition>
+          </router-view>
+        </div>
+        <AppFooter />
     </div>
   </div>
 
@@ -85,5 +97,24 @@ export default {
   background-color: $btn_color;
   border-radius: 5px;
   z-index: 1000;
+}
+
+.router-container {
+  // min-height: 600px;
+  min-height: calc(100vh - 120px - 500px);
+
+  // flex-grow: 1;
+}
+
+.slideIn-enter-from,
+.slideIn-leave-to {
+  opacity: 0;
+  // transform: translateY(20%);
+}
+
+.slideIn-enter-active,
+.slideIn-leave-active {
+  transition: opacity 5s ease-out;
+  // transition: opacity 0.5s ease, transform 5s ease-in-out;
 }
 </style>

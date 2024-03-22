@@ -10,11 +10,14 @@
   },
   "dependencies": {
     "@fontsource-variable/comfortaa": "^5.0.19",
-    "axios": "^1.6.7",
+    "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
     "bootstrap-vue": "^2.23.1",
+    "braintree": "^3.22.0",
+    "braintree-web-drop-in": "^1.42.0",
     "swiper": "^11.0.7",
     "vue": "^3.4.21",
+    "vue-braintree": "^2.1.0",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {

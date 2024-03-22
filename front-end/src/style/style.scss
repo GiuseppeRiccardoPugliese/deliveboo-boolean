@@ -10,13 +10,13 @@
 }
 
 body {
-    // height: calc(100vh - 60px);
-    height: 100vh;
+    min-height: calc(100vh - 120px);
+    // height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
 /* Main content */
-.main-content {
-    flex-grow: 1; 
-}
+// .main-content {
+//     flex-grow: 1;
+// }

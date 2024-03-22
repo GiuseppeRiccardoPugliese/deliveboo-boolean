@@ -1,8 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Validator;
+
 
 use Illuminate\Http\Request;
+use App\Models\Tipology;
+use App\Models\Restaurant;
+// use App\Models\Restaurant;
+use Illuminate\Support\Facades\Auth;
 
 class TipologyController extends Controller
 {
@@ -23,7 +29,10 @@ class TipologyController extends Controller
      */
     public function create()
     {
-        //
+        $tipologie = Tipology::all();
+
+        // Puoi quindi restituire la vista con i dati necessari
+        return view('tipologie.create', compact('tipologie'));
     }
 
     /**
@@ -34,8 +43,23 @@ class TipologyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validazione dei dati inviati dal form
+        $request->validate([
+            'type' => 'array', // Assicurati che 'type' sia un array
+        ]);
+    
+        // Ottenere i tipi selezionati dall'utente
+        $selectedTypes = $request->input('type', []);
+    
+        // Associare le tipologie selezionate al ristorante
+        $restaurant = Auth::user()->restaurant; // Assumendo che l'utente autenticato abbia un ristorante associato
+        $restaurant->tipologies()->sync($selectedTypes);
+    
+        // Redirect alla pagina desiderata dopo il salvataggio
+        return redirect()->route('nome_della_rotta');
     }
+        
+    
 
     /**
      * Display the specified resource.
