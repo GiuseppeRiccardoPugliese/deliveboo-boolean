@@ -204,7 +204,7 @@ export default {
                     <h2>I TUOI ORDINI</h2>
 
                     <div v-for="(order, index) in orders" :key="index">
-                        <p>{{ order.name }} ( {{ order.quantity }} ) <strong>{{ order.price.toFixed(2) }}€</strong></p>
+                        <p><strong class="text-black-50">x{{ order.quantity }} |</strong>  {{ order.name }} <strong>{{ order.price.toFixed(2) }}€</strong></p>
                     </div>
                     <p><strong>Totale: {{ totalPrice.toFixed(2) }}€</strong></p>
 
