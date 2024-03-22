@@ -15,7 +15,7 @@ export default {
         guest_name: "",
         guest_email: "",
         guest_address: "",
-        product_name: [], // Aggiunto array per memorizzare i nomi dei prodotti
+        // product_name: [], // Aggiunto array per memorizzare i nomi dei prodotti
         orders: [],
       },
     };
@@ -48,15 +48,7 @@ export default {
       ) {
         // Chiamata al metodo per salvare i dati nel localStorage
         this.localStorage();
-
-        // this.orderData.price = this.totalPrice; // Modificato da this.sum
-        // this.orders.forEach((order) => {
-        //   this.orderData.product_name.push(order.name);
-        // });
-        // this.orderData.orders = this.orders;
         this.makeDropIn();
-
-
       }
     },
 
@@ -189,10 +181,10 @@ export default {
       <h2 class="order-title">Riepilogo dell'ordine</h2>
       <div class="order-items">
         <div v-for="(order, index) in orders" :key="index" class="order-item">
-          <p>{{ order.name }} ({{ order.quantity }}) - {{ order.price }}€</p>
+          <p>{{ order.name }} ({{ order.quantity }}) - {{ order.price.toFixed(2) }}€</p>
         </div>
       </div>
-      <p class="order-total">Totale: {{ totalPrice }}€</p>
+      <p class="order-total">Totale: {{ totalPrice.toFixed(2) }}€</p>
     </div>
     <form action="">
 
