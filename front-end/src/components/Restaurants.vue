@@ -132,7 +132,7 @@ export default {
     computed: {
         slug() {
         return function(name) {
-            return name.toLowerCase().replace(/\s+/g, '-');
+            return name.replace(/\s+/g, '-');
         }
     }
     }
