@@ -182,7 +182,7 @@ export default {
 
         <div class="row mx-3 mb-3" v-if="ristoranti[this.$route.params.index]">
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-4">
-                <img class="img_product" :src="ristoranti[this.$route.params.index].image &&
+                <img class="img_product rounded" :src="ristoranti[this.$route.params.index].image &&
                     ristoranti[this.$route.params.index].image.includes(
                         'images/'
                     )
@@ -258,6 +258,7 @@ export default {
 <style lang="scss" scoped>
 .img_product {
     width: 100%;
+    max-width: 700px;
 }
 
 .back-arrow {
@@ -279,7 +280,9 @@ export default {
 }
 
 .card_payment {
-    height: 400px;
+    height: 600px;
     background-color: #fff;
+    position: sticky;
+    top: 2%;
 }
 </style>

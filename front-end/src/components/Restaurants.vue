@@ -128,6 +128,13 @@ export default {
                 }
             });
         }
+    },
+    computed: {
+        slug() {
+        return function(name) {
+            return name.replace(/\s+/g, '-');
+        }
+    }
     }
 }
 </script>
@@ -154,7 +161,7 @@ export default {
                     <!-- Utilizza v-for per iterare sui ristoranti e mostrare i dati -->
                     <div class="my-card" v-for="(ristorante, index) in ristoranti" :key="index">
                         <router-link
-                            :to="{ name: 'Details', params: { index: originalRistoranti.indexOf(ristorante), restaurantName: ristorante.name } }"
+                            :to="{ name: 'Details', params: { index: originalRistoranti.indexOf(ristorante), restaurantName: slug(ristorante.name) } }"
                             class="router-link">
                             <div class="restaurant-image"
                                 :style="{ 'background-image': ristorante.image && ristorante.image.includes('images/') ? 'url(' + getImageUrl(ristorante) + ')' : 'url(' + ristorante.image + ')' }">
