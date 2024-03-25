@@ -9,8 +9,9 @@
         <div class="container">
             <h2 class="fs-2 text-secondary my-4 text-center">{{ __('Menù') }}</h2>
             <div class="row mb-3">
-            <div class="col-md-6">
-                    <a href="{{ route('dish.create') }}" class="btn btn-sm btn-primary"><span class="plus"><i class="fa-solid fa-plus"></i></span> Aggiungi Nuovo Piatto</a>
+                <div class="col-md-6">
+                    <a href="{{ route('dish.create') }}" class="btn btn-sm btn-primary"><span class="plus"><i
+                                class="fa-solid fa-plus"></i></span> Aggiungi Nuovo Piatto</a>
                 </div>
             </div>
             <div class="row">
@@ -30,7 +31,8 @@
                             @if (Auth::user()->id == $dish->restaurant->user_id)
                                 <tr>
                                     <td>
-                                        <img src="{{ asset('storage/' . $dish->image) }}" class="img-thumbnail-small" alt="Immagine del piatto">
+                                        <img src="{{ asset('storage/' . $dish->image) }}" class="img-thumbnail-small"
+                                            alt="Immagine del piatto">
                                     </td>
                                     <td>
                                         {{ $dish->name }}
@@ -43,16 +45,26 @@
                                     </td>
                                     <td>
                                         {{ $dish->visible == 0 ? 'No' : 'Si' }}
+                                        {{-- @if ($dish->visible == 0)
+                                            <i class="fa-solid fa-xmark fs-3 text-danger"></i>
+                                        @endif
+                                        @if ($dish->visible == 1)
+                                            <i class="fa-solid fa-check fs-4 text-success"></i>
+                                        @endif --}}
                                     </td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Azioni">
-                                            <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-outline-primary sm rounded">
+                                            <a href="{{ route('dish.edit', $dish->id) }}"
+                                                class="btn btn-outline-primary sm rounded">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                            <button type="submit" class="btn btn btn-outline-danger sm rounded"  onclick="confirmDelete('{{ $dish->id }}')">
+                                            <button type="submit" class="btn btn btn-outline-danger sm rounded"
+                                                onclick="confirmDelete('{{ $dish->id }}')">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
-                                            <form id="delete-form-{{ $dish->id }}" action="{{ route('dish.destroy', $dish->id) }}" method="POST" style="display: none;">
+                                            <form id="delete-form-{{ $dish->id }}"
+                                                action="{{ route('dish.destroy', $dish->id) }}" method="POST"
+                                                style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
@@ -69,14 +81,14 @@
 @endsection
 
 
- <script>
-        function confirmDelete(dishId) {
-            if (confirm("Sei sicuro di voler eliminare questo piatto?")) {
-                // Se l'utente conferma, invia il modulo di eliminazione
-                document.getElementById('delete-form-' + dishId).submit();
-            }
+<script>
+    function confirmDelete(dishId) {
+        if (confirm("Sei sicuro di voler eliminare questo piatto?")) {
+            // Se l'utente conferma, invia il modulo di eliminazione
+            document.getElementById('delete-form-' + dishId).submit();
         }
- </script>
+    }
+</script>
 
 
 
@@ -119,9 +131,10 @@
     .btn-group .btn-outline-danger {
         font-size: 20px;
     }
+
     .img-thumbnail-small {
-            max-width: 100px;
-            height: auto;
+        max-width: 100px;
+        height: auto;
     }
 </style>
 
