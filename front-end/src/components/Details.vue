@@ -103,9 +103,10 @@ export default {
         },
         deleteOrders() {
             this.totalPrice = 0;
-            this.orderData.orders = [];
-            this.orderData.restaurantId = "";
             this.orderData.restaurantIndex = "";
+            this.orderData.restaurantId = "";
+            this.orderData.price = 0;
+            this.orderData.orders = [];
         }
     },
     watch: {
