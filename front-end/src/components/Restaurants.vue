@@ -78,27 +78,19 @@ export default {
             this.searchTipology();
         },
         searchTipology() {
-            // Se non ci sono tipologie selezionate, ripristina l'elenco completo dei ristoranti
             if (this.selectedTipology.length === 0) {
                 this.ristoranti = [...this.originalRistoranti];
                 return;
             }
 
-            // Altrimenti, applica il filtro basato sulle tipologie selezionate
             let filteredRestaurants = [...this.originalRistoranti];
             filteredRestaurants = filteredRestaurants.filter(ristorante => {
-
-                if (this.selectedTipology.length >= 2) {
-                    return ristorante.tipologies.every(tipologia => this.selectedTipology.includes(tipologia));
-                }
-
-                return ristorante.tipologies.some(tipologia => this.selectedTipology.includes(tipologia));
-
+                return this.selectedTipology.every(selectedType => ristorante.tipologies.includes(selectedType));
             });
 
-            // Aggiorna la lista dei ristoranti con quelli filtrati
             this.ristoranti = filteredRestaurants;
         },
+
         toggleActive(index) { //FUNZIONE PER LE TIPOLOGIE SELEZIONATE(permette di selezionare piu' tipologie insieme cambiando l'opacity se selezionate o meno)
             const elements = document.querySelectorAll('.tipo-img');
             const clickedElement = elements[index];
@@ -131,10 +123,10 @@ export default {
     },
     computed: {
         slug() {
-        return function(name) {
-            return name.replace(/\s+/g, '-');
+            return function (name) {
+                return name.replace(/\s+/g, '-');
+            }
         }
-    }
     }
 }
 </script>
