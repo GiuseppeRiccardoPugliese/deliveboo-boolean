@@ -150,15 +150,6 @@ export default {
             </div>
 
             <div class="my-container">
-                <!-- <div class="arrow-container" style="display: none;">
-                    <span class="back-arrow">
-                        <i @click="goBack" class="fa-solid fa-circle-left"></i>
-                    </span>
-                    <span class="restaurants-zone">
-                        <strong>Ristoranti a Milano</strong>
-                    </span>
-                </div> -->
-
                 <div class="my-card-container">
                     <!-- Utilizza v-for per iterare sui ristoranti e mostrare i dati -->
                     <div class="my-card" v-for="(ristorante, index) in ristoranti" :key="index">
