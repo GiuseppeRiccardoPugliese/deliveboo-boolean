@@ -13,16 +13,21 @@
                     <table class="table">
                         <thead class="text-center">
                             <tr>
+                            <th scope="col"><div class="green-box">Ordini Totali {{ $totalOrders }}</div></th>
                                 <th scope="col">Numero ordine</th>
                                 <th scope="col">Prezzo</th>
-                                <th scope="col">Nome cliente</th>
+                                <th scope="col">Nome</th>
                                 <th scope="col">Indirizzo cliente</th>
                                 <th scope="col">Email cliente</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
+                            @php
+                                $orderCount = 0;
+                            @endphp
                             @foreach ($orders as $order)
                                 <tr>
+                                    <td>{{ ++$orderCount }}</td>
                                     <td>
                                         {{ $order->number_order }}
                                     </td>
@@ -46,3 +51,12 @@
             </div>
         @endauth
     @endsection
+
+<style>
+    .green-box {
+        background-color: #00FF00; /* Colore verde */
+        padding: 5px; /* Spazio intorno al testo */
+        border-radius: 5px; /* Bordo arrotondato */
+        color: #ffffff; /* Colore del testo bianco */
+    }
+</style>
