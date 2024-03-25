@@ -13,7 +13,7 @@
                     <table class="table">
                         <thead class="text-center">
                             <tr>
-                            <th scope="col"><div class="green-box">Ordini Totali {{ $totalOrders }}</div></th>
+                            <th scope="col"><div class="blue-box">Ordini Totali: {{ $totalOrders }}</div></th>
                                 <th scope="col">Numero ordine</th>
                                 <th scope="col">Prezzo</th>
                                 <th scope="col">Nome</th>
@@ -53,10 +53,10 @@
     @endsection
 
 <style>
-    .green-box {
-        background-color: #00FF00; /* Colore verde */
-        padding: 5px; /* Spazio intorno al testo */
-        border-radius: 5px; /* Bordo arrotondato */
-        color: #ffffff; /* Colore del testo bianco */
+    .blue-box {
+        background-color: #13dbe6;
+        padding: 5px; 
+        border-radius: 5px; 
+        color: #ffffff; 
     }
 </style>
