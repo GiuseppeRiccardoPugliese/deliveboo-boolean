@@ -139,7 +139,7 @@ export default {
         <section class="restaurant-container">
 
             <!-- TIPOLOGIE -->
-            <div class="tipology">
+            <div class="tipology row d-flex justify-content-center">
                 <div class="tipo-card" v-for="(tipologia, index) in tipologie" :key="index">
                     <div class="tipo-img" @click=" getTipology(tipologia.name)"> <!-- Click prende la tipologia -->
                         <img :src="tipologia.image" alt="" @click="toggleActive(index)"> <!-- Click opacity -->
