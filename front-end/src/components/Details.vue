@@ -207,12 +207,25 @@ export default {
                     </div>
                     <p><strong>Totale: {{ totalPrice.toFixed(2) }}€</strong></p>
 
-                    <router-link :to="{ name: 'Payment' }">
-                        <button class="btn btn-primary" type="button" style="width: 100%;">Effettua l'ordine</button>
-                    </router-link>
-
-                    <button class="btn btn-danger mt-3" type="button" style="width: 100%;"
-                        @click="deleteOrders()">Svuota il carrello
+                    <div v-if="totalPrice !== 0">
+                        <router-link :to="{ name: 'Payment' }" class="text-white">
+                            <button class="btn btn-primary" type="button" style="width: 100%;">
+                            Effettua l'ordine
+                        </button>
+                        </router-link>
+                    </div>
+                        
+                    <button v-else class="btn btn-primary" type="button" style="width: 100%;" disabled data-bs-toggle="button">
+                        <router-link :to="{ name: 'Payment' }" class="text-white">
+                            Effettua l'ordine
+                        </router-link>
+                    </button>
+   
+                    <button v-if="totalPrice !== 0" class="btn btn-danger mt-3" type="button" style="width: 100%;" @click="deleteOrders()">
+                        Svuota il carrello
+                    </button>
+                    <button v-else class="btn btn-danger mt-3" type="button" style="width: 100%;" disabled data-bs-toggle="button" @click="deleteOrders()">
+                        Svuota il carrello
                     </button>
 
                 </div>
