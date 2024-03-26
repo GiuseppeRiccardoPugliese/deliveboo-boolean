@@ -16,6 +16,7 @@
                                 <th scope="col">
                                     <div class="blue-box">Ordini Totali: {{ count($orders) }}</div>
                                 </th>
+                                <th scope="col">Ora</th>
                                 <th scope="col">Identificativo</th>
                                 <th scope="col">Prezzo</th>
                                 <th scope="col">Nome</th>
@@ -27,7 +28,11 @@
                             @foreach ($orders as $order)
                                 <tr>
                                     <td>
-                                        {{ $order->created_at }}
+                                        {{ \Carbon\Carbon::parse($order->created_at)->setTimezone('Europe/Rome')->locale('it')->isoFormat('D-MM-YYYY') }}
+                                    </td>
+                                    <td>
+                                        {{ \Carbon\Carbon::parse($order->created_at)->setTimezone('Europe/Rome')->locale('it')->isoFormat('HH:mm') }}
+                                    </td>
                                     </td>
                                     <td>
                                         {{ $order->number_order }}
@@ -52,6 +57,11 @@
             </div>
         @endauth
     @endsection
+
+    // Formatta created_at in formato italiano
+    foreach ($orders as $order) {
+    $order->formatted_created_at = Carbon::parse($order->created_at)->locale('it')->format('d/m/Y, H:i:s');
+    }
 
     <style>
         .blue-box {
