@@ -63,11 +63,6 @@
         @endauth
     @endsection
 
-    // Formatta created_at in formato italiano
-    foreach ($orders as $order) {
-    $order->formatted_created_at = Carbon::parse($order->created_at)->locale('it')->format('d/m/Y, H:i:s');
-    }
-
     <style>
         .blue-box {
             background-color: #13dbe6;
