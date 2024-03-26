@@ -30,22 +30,27 @@
                                     <td>
                                         {{ \Carbon\Carbon::parse($order->created_at)->setTimezone('Europe/Rome')->locale('it')->isoFormat('D-MM-YYYY') }}
                                     </td>
+
                                     <td>
                                         {{ \Carbon\Carbon::parse($order->created_at)->setTimezone('Europe/Rome')->locale('it')->isoFormat('HH:mm') }}
                                     </td>
-                                    </td>
+
                                     <td>
                                         {{ $order->number_order }}
                                     </td>
+
                                     <td>
                                         {{ $order->price }} <span>€</span>
                                     </td>
+
                                     <td>
                                         {{ $order->guest_name }}
                                     </td>
+
                                     <td>
                                         {{ $order->guest_address }}
                                     </td>
+
                                     <td>
                                         {{ $order->guest_email }}
                                     </td>
