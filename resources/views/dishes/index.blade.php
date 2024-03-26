@@ -19,7 +19,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Immagine</th>
-                            <th scope="col">Nome del piatto</th>
+                            <th scope="col">Nome</th>
                             <th scope="col">Prezzo</th>
                             <th scope="col">Descrizione</th>
                             <th scope="col">Visibilità</th>
@@ -44,13 +44,13 @@
                                         {{ $dish->description }}
                                     </td>
                                     <td>
-                                        {{ $dish->visible == 0 ? 'No' : 'Si' }}
-                                        {{-- @if ($dish->visible == 0)
+                                        {{-- {{ $dish->visible == 0 ? 'No' : 'Si' }} --}}
+                                        @if ($dish->visible == 0)
                                             <i class="fa-solid fa-xmark fs-3 text-danger"></i>
                                         @endif
                                         @if ($dish->visible == 1)
                                             <i class="fa-solid fa-check fs-4 text-success"></i>
-                                        @endif --}}
+                                        @endif
                                     </td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Azioni">

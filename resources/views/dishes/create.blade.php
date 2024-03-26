@@ -19,13 +19,13 @@
                 @method('POST')
 
                 <div class="input-group">
-                    <label for="name">*Nome piatto</label>
+                    <label for="name">*Nome</label>
                     <input type="text" id="name" name="name">
                     <div id="nameError" style="color: red; display: none;"></div>
                 </div>
 
                 <div class="input-group">
-                    <label for="description">*Descrizione piatto</label>
+                    <label for="description">*Descrizione</label>
                     <input type="text" id="description" name="description">
                     <div id="descriptionError" style="color: red; display: none;"></div>
                 </div>
@@ -43,17 +43,17 @@
                     <small>Accetta solo file JPEG, JPG e PNG</small>
                 </div>
 
-            {{--<div class="input-group">
+                {{-- <div class="input-group">
                 <label for="visible">Visibilità:</label>
                 <input type="checkbox" id="visible" name="visible" value="1">
-            </div>--}}
+            </div> --}}
 
                 <div class="input-group justify-content-center">
                     <button type="submit" class="btn btn-primary btn-sm">CREA</button>
                 </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div> 
     {{-- VALIDATION CLIENT-SIDE --}}
     <script>
         document.getElementById("myForm").addEventListener("submit", function(event) {
