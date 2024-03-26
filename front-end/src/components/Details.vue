@@ -6,7 +6,7 @@ export default {
     data() {
         return {
             ristoranti: [], // Array per fare il fetch dei ristoranti dal database
-            totalPrice: 0, // Variavile per calcolare il prezzo totale
+            totalPrice: 0, // Variabile per calcolare il prezzo totale
             orderData: {
                 restaurantIndex: "",
                 restaurantId: "",
@@ -16,11 +16,16 @@ export default {
         };
     },
     created() {
-        const storedData = JSON.parse(localStorage.getItem("orderData") || "{}");
-        this.orderData = storedData.orderData || [];
-        this.totalPrice = storedData.orderData.price || 0,
+        setTimeout(() => {
+            const storedData = JSON.parse(localStorage.getItem("orderData") || "{}");
+            if (storedData.orderData) {
+                this.orderData = storedData.orderData;
+                this.totalPrice = storedData.orderData.price;
+            }
             console.log('Contenuto di localStorage1:', storedData.orderData);
+        }, 500);
     },
+
     mounted() {
         // Effettua la prima chiamata per ottenere i ristoranti dalla prima API
         axios
@@ -66,11 +71,6 @@ export default {
                     this.$router.push({ name: 'Details', params: { index: this.orderData.restaurantIndex } });
                     return;
                 }
-            }
-
-            // Assicurati che this.orderData.orders sia definito
-            if (!this.orderData.orders) {
-                this.orderData.orders = [];
             }
 
             const existingOrder = this.orderData.orders.find(order => order.name === dish.name);
@@ -132,41 +132,6 @@ export default {
         },
     },
 };
-// ristoranti: {
-//     handler: function (newValue, oldValue) {
-//         if (newValue.length > 0) {
-//             this.addToOrderWithRestaurantId(); // Richiama la funzione quando la lista dei ristoranti viene aggiornata
-//         }
-//     },
-//     deep: true // Controlla anche le modifiche interne degli oggetti nell'array ristoranti
-// }
-// computed: {
-//     itemsFromLocalStorage() {
-//         // Recupera gli elementi dal localStorage e analizza il JSON, se presente
-//         return JSON.parse(localStorage.getItem("orderData") || "[]");
-//     },
-// },
-// addToOrderWithRestaurantId() {
-//     if (this.ristoranti.length > 0) { // Assicurati che ci sia almeno un ristorante nella lista
-//         const restaurantId = this.ristoranti[this.$route.params.index].id; // Recupera l'ID del primo ristorante
-//         this.orderData = {
-//             ...this.orderData,
-//             restaurantId: restaurantId
-//         };
-//     }
-// },
-// addToOrder(dish, restaurantId) {
-//     const existingOrder = this.orderData.orders.find(order => order.name === dish.name);
-//     const price = parseFloat(dish.price); // Converti il prezzo del piatto in un numero
-//     if (existingOrder) {
-//         existingOrder.quantity++;
-//         existingOrder.price += price;
-//     } else {
-//         this.orderData.orders.push({ name: dish.name, quantity: 1, price: price, dishId: dish.id });
-//     }
-//     this.totalPrice += price; // Aggiorna il prezzo totale
-//     console.log(this.totalPrice);
-// },
 </script>
 
 <template>

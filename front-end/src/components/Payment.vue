@@ -1,4 +1,6 @@
 <script>
+// npm install braintree-web
+import * as braintreeDropin from 'braintree-web-drop-in';
 import axios from "axios";
 
 export default {
@@ -7,21 +9,27 @@ export default {
     return {
       totalPrice: 0,
       orderData: {
-        number_order: "",
+        restaurantIndex: "",
+        restaurantId: "",
         price: 0,
+        orders: [],
         guest_name: "",
         guest_address: "",
         guest_email: "",
-        restaurantId: "",
-        orders: [],
+        number_order: "",
       },
+      braintreeInstance: null, // Memorizza l'istanza di Braintree
     };
   },
   created() {
-    const storedData = JSON.parse(localStorage.getItem("orderData") || "{}");
-    this.orderData = storedData.orderData || [];
-    this.totalPrice = storedData.orderData.price || 0,
+    setTimeout(() => {
+      const storedData = JSON.parse(localStorage.getItem("orderData") || "{}");
+      if (storedData.orderData) {
+        this.orderData = storedData.orderData;
+        this.totalPrice = storedData.orderData.price;
+      }
       console.log('Contenuto di localStorage1:', storedData.orderData);
+    }, 500);
   },
   methods: {
     localStorage() {
@@ -30,21 +38,16 @@ export default {
       };
       localStorage.setItem("orderData", JSON.stringify(dataToSave));
     },
+
     sendData() {
-      // event.preventDefault();
       console.log("Dati prima dell'invio:", this.orderData);
-      // this.errorsValidation();
       if (this.orderData.guest_name && this.orderData.guest_email && this.orderData.guest_address) {
-        // Chiamata al metodo per salvare i dati nel localStorage
-        this.localStorage();
-        this.makeDropIn();
+        this.makeBtnPayment();
       }
     },
 
-    makeDropIn() { //DropIn Pagamento BrainTree
-      let button = document.querySelector('#submit-button');
-
-      braintree.dropin.create({
+    makeDropIn() {
+      braintreeDropin.create({
         authorization: 'sandbox_bntx9z5d_y9fkzm9y4q49xcj9',
         selector: '#dropin-container',
         locale: 'it_IT',
@@ -54,20 +57,30 @@ export default {
           return;
         }
 
-        button.addEventListener('click', () => {
-          instance.requestPaymentMethod((err, payload) => {
-            if (err) {
-              console.error('Error requesting payment method:', err);
-              return;
-            }
+        this.braintreeInstance = instance; // Assegna l'istanza appena creata a braintreeInstance
+        this.makeBtnPayment();
 
-            // Ottieni il nonce del pagamento e invia il pagamento al server
-            let paymentMethodNonce = payload.nonce;
-            this.makePayment(paymentMethodNonce); // Utilizza "this" per accedere alla funzione makePayment
-          });
+      });
+    },
+
+    makeBtnPayment() {
+      if (!this.braintreeInstance) {
+        console.error('Braintree instance not initialized.');
+        return;
+      }
+      let button = document.querySelector('#submit-button');
+      button.addEventListener('click', () => {
+        this.braintreeInstance.requestPaymentMethod((err, payload) => {
+          if (err) {
+            console.error('Error requesting payment method:', err);
+            return;
+          }
+          let paymentMethodNonce = payload.nonce;
+          this.makePayment(paymentMethodNonce); // Utilizza "this" per accedere alla funzione makePayment
         });
       });
     },
+
     makePayment(paymentMethodNonce) { //FUNZIONE PER IL PAGAMENTO
       if (this.orderData.orders && this.orderData.orders.length > 0) {
         const productIds = {};
