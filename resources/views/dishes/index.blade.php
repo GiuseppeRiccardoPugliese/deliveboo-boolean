@@ -6,74 +6,81 @@
     @endunless
 
     @auth
+    <section class="intro">
+      <div class="container">
+        <h2 class="fs-2 text-secondary my-4 text-center">{{ __('Menù') }}</h2>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <a href="{{ route('dish.create') }}" class="btn btn-sm btn-primary"><span class="plus"><i
+                      class="fa-solid fa-plus"></i></span> Aggiungi Nuovo Piatto</a>
+          </div>
+        </div>
+      </div>
+
         <div class="container">
-            <h2 class="fs-2 text-secondary my-4 text-center">{{ __('Menù') }}</h2>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <a href="{{ route('dish.create') }}" class="btn btn-sm btn-primary"><span class="plus"><i
-                                class="fa-solid fa-plus"></i></span> Aggiungi Nuovo Piatto</a>
+            <div class="card">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
+                    <table class="table table-striped mb-0">
+                        <thead class="msbgazzurro">
+                            <tr>
+                                <th scope="col">Immagine</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Prezzo</th>
+                                <th scope="col">Descrizione</th>
+                                <th scope="col">Visibilità</th>
+                                <th scope="col">Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($dishes as $dish)
+                            @if (Auth::user()->id == $dish->restaurant->user_id)
+                            <tr>
+                                <td>
+                                    @if ($dish->image)
+                                        <img src="{{ asset('storage/' . $dish->image) }}" class="img-thumbnail-small" alt="Immagine del piatto">
+                                    @else
+                                        <img src="{{ asset('https://ae03.alicdn.com/kf/S9a1e48aca2ea4b5fb7c05cc37e8747884.jpg_640x640q90.jpg') }}" class="img-thumbnail-small" alt="Immagine di cortesia">
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ $dish->name }}
+                                </td>
+                                <td>
+                                    {{ $dish->price }} €
+                                </td>
+                                <td>
+                                    {{ $dish->description }}
+                                </td>
+                                <td>
+                                @if ($dish->visible == 0)
+                                <i class="fa-solid fa-xmark fs-3 text-danger"></i>
+                                @endif
+                                @if ($dish->visible == 1)
+                                <i class="fa-solid fa-check fs-4 text-success"></i>
+                                @endif
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Azioni">
+                                    <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-outline-primary sm rounded">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <button type="button" class="btn btn btn-outline-danger sm rounded" onclick="confirmDelete('{{ $dish->id }}')">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                    </div>
+                                </td>
+                            </tr>
+                                @endif
+                                @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="row">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Immagine</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Prezzo</th>
-                            <th scope="col">Descrizione</th>
-                            <th scope="col">Visibilità</th>
-                            <th scope="col">Azioni</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($dishes as $dish)
-                            @if (Auth::user()->id == $dish->restaurant->user_id)
-                                <tr>
-                                    <td>
-                                        <img src="{{ asset('storage/' . $dish->image) }}" class="img-thumbnail-small"
-                                            alt="Immagine del piatto">
-                                    </td>
-                                    <td>
-                                        {{ $dish->name }}
-                                    </td>
-                                    <td>
-                                        {{ $dish->price }} €
-                                    </td>
-                                    <td>
-                                        {{ $dish->description }}
-                                    </td>
-                                    <td>
-                                        {{-- {{ $dish->visible == 0 ? 'No' : 'Si' }} --}}
-                                        @if ($dish->visible == 0)
-                                            <i class="fa-solid fa-xmark fs-3 text-danger"></i>
-                                        @endif
-                                        @if ($dish->visible == 1)
-                                            <i class="fa-solid fa-check fs-4 text-success"></i>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <div class="btn-group" role="group" aria-label="Azioni">
-                                            <a href="{{ route('dish.edit', $dish->id) }}"
-                                                class="btn btn-outline-primary sm rounded">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                            <button type="button" class="btn btn btn-outline-danger sm rounded"
-                                                onclick="confirmDelete('{{ $dish->id }}')">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endif
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
         </div>
-    @endauth
+</section>
+@endauth
 
-    <!-- Modal di conferma eliminazione -->
+<!-- Modal di conferma eliminazione -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -118,17 +125,8 @@
 
 
 <style>
-    .plus {
-        vertical-align: middle;
-    }
-
-    .img-thumbnail {
-        max-width: 50%;
-        height: auto;
-    }
-
-    .list-group-item {
-        margin-bottom: 20px;
+    .msbgazzurro{
+        background-color: #13dbe6;
     }
 
     .btn-create {
@@ -158,6 +156,31 @@
         max-width: 100px;
         height: auto;
     }
+
+    .card {
+        border: 1px solid #ddd;
+        /* Bordo della card */
+        border-radius: 10px;
+        /* Bordi arrotondati */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Ombra */
+        transition: box-shadow 0.3s ease-in-out;
+        /* Transizione ombra */
+        padding: 10px;
+    }
+    .card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        /* Ombra leggermente più pronunciata al passaggio del mouse */
+    }
+
+    .table-scroll {
+    border-radius: .5rem;
+    }
+
+    .table-scroll table thead th {
+    font-size: 1.25rem;
+    }
+   
 </style>
 
 <!-- link font-awesome -->
