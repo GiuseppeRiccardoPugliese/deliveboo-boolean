@@ -42,51 +42,59 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            @foreach ($restaurants as $restaurant)
-                @if (Auth::user()->id == $restaurant->user_id)
-                    const ctx_{{ $restaurant->id }} = document.getElementById('myChart_{{ $restaurant->id }}');
-                    const labels = [
-                        'January',
-                        'February',
-                        'March',
-                        'April',
-                        'May',
-                        'June',
-                        'July',
-                        'August',
-                        'September',
-                        'October',
-                        'November',
-                        'December'
-                    ];
+      document.addEventListener('DOMContentLoaded', function () {
+    @foreach ($restaurants as $restaurant)
+        @if (Auth::user()->id == $restaurant->user_id)
+            const ctx_{{ $restaurant->id }} = document.getElementById('myChart_{{ $restaurant->id }}');
 
-                    // Recupera i dati degli ordini per questo ristorante
-                    const ordersData_{{ $restaurant->id }} = @json($restaurant->orders->pluck('price'));
+            const orders_{{ $restaurant->id }} = @json($restaurant->orders);
 
-                    new Chart(ctx_{{ $restaurant->id }}, {
-                        type: 'line',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'My First Dataset',
-                                data: ordersData_{{ $restaurant->id }},
-                                fill: false,
-                                borderColor: 'rgb(75, 192, 192)',
-                                tension: 0.1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
+            // Creare un oggetto per tenere traccia delle somme degli ordini per ogni mese
+            const ordersData_{{ $restaurant->id }} = {};
+            
+            // Iterare attraverso gli ordini e sommare gli importi per ogni mese
+            orders_{{ $restaurant->id }}.forEach(function(order) {
+                const orderDate = new Date(order.created_at);
+                const orderMonth = orderDate.toLocaleString('default', { month: 'long' }); // Estrae il nome del mese
+                const orderPrice = parseFloat(order.price); // Converti il prezzo in un numero
+                ordersData_{{ $restaurant->id }}[orderMonth] = (ordersData_{{ $restaurant->id }}[orderMonth] || 0) + orderPrice;
+            });
+
+            // Estrai le etichette e i dati dai risultati aggregati degli ordini
+            const labels = Object.keys(ordersData_{{ $restaurant->id }}).sort(function(a, b) {
+                return new Date(a + " 1, 2000").getTime() - new Date(b + " 1, 2000").getTime(); // Ordina i mesi cronologicamente
+            });
+            const data = labels.map(function(label) {
+                return ordersData_{{ $restaurant->id }}[label];
+            });
+
+            console.log(ordersData_{{ $restaurant->id }});
+
+            new Chart(ctx_{{ $restaurant->id }}, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'ORDINI TOTALI MENSILI NEL 2024',
+                        data: data,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgb(54, 162, 235)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
                         }
-                    });
-                @endif
-            @endforeach
-        });
+                    }
+                }
+            });
+        @endif
+    @endforeach
+});
+
+
     </script>
        
 @endsection

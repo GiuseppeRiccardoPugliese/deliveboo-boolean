@@ -19,6 +19,7 @@ export default {
         number_order: "",
       },
       braintreeInstance: null, // Memorizza l'istanza di Braintree
+      buttonClicked: false,
     };
   },
   created() {
@@ -133,7 +134,25 @@ export default {
       } else {
         console.error('Nessun ordine trovato.');
       }
-    }
+    },
+    submitForm() {
+      if (this.validateForm()) {
+        this.buttonClicked = true;
+        // Validazione allora
+        this.sendData();
+      }
+    },
+    validateForm() {
+      console.log(this.orderData.guest_name);
+      if (this.orderData.guest_name === null || this.orderData.guest_address === null || this.isValidEmail(this.orderData.guest_email) === null) {
+        return false;
+      }
+      return true;
+    },
+    isValidEmail(email) {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailPattern.test(email);
+    },
   },
   watch: {
     orderData: {
@@ -146,6 +165,9 @@ export default {
   mounted() {
     document.querySelector('#dropin-container').innerHTML = '';
     this.makeDropIn();
+    this.orderData.guest_name = "";
+    this.orderData.guest_address = "";
+    this.orderData.guest_email = "";
   },
 }
 </script>
@@ -170,37 +192,40 @@ export default {
 
       <!-- FORM CON DATI ESSENZIALI -->
       <div class="card-details">
-        <form action="">
+        <form action="" @submit.prevent="submitForm()">
 
           <div class="form-group">
             <label for="guest_name">Nome:</label>
-            <input type="text" class="form-control" id="guest_name" name="guest_name" v-model="orderData.guest_name"
-              required>
+            <input type="text" class="form-control" id="guest_name" name="guest_name" v-model="orderData.guest_name">
+            <div v-if="buttonClicked && !orderData.guest_name" style="color: red;">Il campo Nome è obbligatorio
+            </div>
           </div>
           <div class="form-group">
             <label for="guest_address">Indirizzo:</label>
             <input type="text" class="form-control" id="guest_address" name="guest_address"
-              v-model="orderData.guest_address" required>
+              v-model="orderData.guest_address">
+            <div v-if="buttonClicked && !orderData.guest_address" style="color: red;">Il campo Indirizzo è obbligatorio
+            </div>
           </div>
           <div class="form-group">
             <label for="guest_email">Email:</label>
-            <input type="email" class="form-control" id="guest_email" name="guest_email" v-model="orderData.guest_email"
-              required>
+            <input type="email" class="form-control" id="guest_email" name="guest_email"
+              v-model="orderData.guest_email">
+            <div v-if="buttonClicked && !isValidEmail(orderData.guest_email)" style="color: red;">Inserisci un indirizzo
+              email valido</div>
           </div>
 
           <!-- DROPIN BRAINTREE PAYMENT -->
           <div id="dropin-container"></div>
 
+          <div>
+            <button class="confirm-button" id="submit-button" type="submit">Conferma e
+              Paga</button>
+          </div>
         </form>
       </div>
 
     </div>
-
-    <div>
-      <button class="confirm-button" id="submit-button" @click.prevent="sendData()" type="button">Conferma e
-        Paga</button>
-    </div>
-
   </div>
 </template>
 
