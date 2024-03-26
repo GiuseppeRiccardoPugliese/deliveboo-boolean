@@ -58,16 +58,10 @@
                                                 class="btn btn-outline-primary sm rounded">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                            <button type="submit" class="btn btn btn-outline-danger sm rounded"
+                                            <button type="button" class="btn btn btn-outline-danger sm rounded"
                                                 onclick="confirmDelete('{{ $dish->id }}')">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
-                                            <form id="delete-form-{{ $dish->id }}"
-                                                action="{{ route('dish.destroy', $dish->id) }}" method="POST"
-                                                style="display: none;">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -78,17 +72,45 @@
             </div>
         </div>
     @endauth
-@endsection
+
+    <!-- Modal di conferma eliminazione -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Conferma eliminazione</h5>
+            </div>
+            <div class="modal-body">
+                Sei sicuro di voler eliminare questo piatto?
+            </div>
+            <div class="modal-footer">
+            <button id="cancelButton" type="button" class="btn btn-secondary">Annulla</button>
+                <form id="delete-form" method="POST" style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Elimina</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script>
-    function confirmDelete(dishId) {
-        if (confirm("Sei sicuro di voler eliminare questo piatto?")) {
-            // Se l'utente conferma, invia il modulo di eliminazione
-            document.getElementById('delete-form-' + dishId).submit();
+        function confirmDelete(dishId) {
+            jQuery('#delete-form').attr('action', "{{ route('dish.destroy', '') }}" + '/' + dishId);
+            jQuery('#confirmDeleteModal').modal('show');
+
         }
-    }
+        document.getElementById('cancelButton').onclick = function() {
+            var modalElement = document.getElementById('confirmDeleteModal');
+            var modalInstance = bootstrap.Modal.getInstance(modalElement);
+            modalInstance.hide();
+        };
 </script>
+@endsection
+
 
 
 
@@ -142,3 +164,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+
+
+
