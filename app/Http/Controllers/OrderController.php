@@ -19,6 +19,7 @@ class OrderController extends Controller
             $query->where('user_id', auth()->user()->id);
         })->orderByDesc('created_at')->get();
 
+
         return view('orders.index', compact('orders'));
     }
 

@@ -28,7 +28,7 @@
                             <div class="col-md-6">
                                 <div class="card mb-3">
                                     <div class="card-body">
-                                        <canvas id="myChart"></canvas>
+                                        <canvas id="myChart_{{ $restaurant->id }}"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -39,46 +39,55 @@
         @endforeach
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
     <script>
-        const ctx = document.getElementById('myChart');
-        const labels = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December'
-        ];
+        document.addEventListener('DOMContentLoaded', function () {
+            @foreach ($restaurants as $restaurant)
+                @if (Auth::user()->id == $restaurant->user_id)
+                    const ctx_{{ $restaurant->id }} = document.getElementById('myChart_{{ $restaurant->id }}');
+                    const labels = [
+                        'January',
+                        'February',
+                        'March',
+                        'April',
+                        'May',
+                        'June',
+                        'July',
+                        'August',
+                        'September',
+                        'October',
+                        'November',
+                        'December'
+                    ];
 
-        new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: labels,
-            datasets: [{
-              label: 'My First Dataset',
-              data: [2, 1, 6, 15, 6, 97, 3, 4, 6, 0.5, 8, 8 ],
-              fill: false,
-              borderColor: 'rgb(75, 192, 192)',
-              tension: 0.1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
+                    // Recupera i dati degli ordini per questo ristorante
+                    const ordersData_{{ $restaurant->id }} = @json($restaurant->orders->pluck('price'));
+
+                    new Chart(ctx_{{ $restaurant->id }}, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'My First Dataset',
+                                data: ordersData_{{ $restaurant->id }},
+                                fill: false,
+                                borderColor: 'rgb(75, 192, 192)',
+                                tension: 0.1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                @endif
+            @endforeach
         });
-      </script>
+    </script>
        
 @endsection
 
