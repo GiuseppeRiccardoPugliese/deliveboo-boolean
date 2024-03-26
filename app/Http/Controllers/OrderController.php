@@ -17,7 +17,7 @@ class OrderController extends Controller
     {
         $orders = Order::whereHas('restaurant', function ($query) {
             $query->where('user_id', auth()->user()->id);
-        })->get();
+        })->orderByDesc('created_at')->get();
 
         return view('orders.index', compact('orders'));
     }

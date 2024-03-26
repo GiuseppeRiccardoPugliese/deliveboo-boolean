@@ -16,15 +16,19 @@
                                 <th scope="col">
                                     <div class="blue-box">Ordini Totali: {{ count($orders) }}</div>
                                 </th>
+                                <th scope="col">Identificativo</th>
                                 <th scope="col">Prezzo</th>
                                 <th scope="col">Nome</th>
-                                <th scope="col">Indirizzo cliente</th>
-                                <th scope="col">Email cliente</th>
+                                <th scope="col">Indirizzo</th>
+                                <th scope="col">Email</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
                             @foreach ($orders as $order)
                                 <tr>
+                                    <td>
+                                        {{ $order->created_at }}
+                                    </td>
                                     <td>
                                         {{ $order->number_order }}
                                     </td>
