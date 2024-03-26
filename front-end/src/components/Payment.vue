@@ -110,7 +110,7 @@ export default {
                 guest_name: this.orderData.guest_name,
                 guest_email: this.orderData.guest_email,
                 guest_address: this.orderData.guest_address,
-                product_name: this.orderData.orders.map(order => order.name), // Array di nomi dei prodotti
+                product_name: this.orderData.orders.map(order => ({ id: order.dishId, quantity: order.quantity })),
                 restaurant_id: this.orderData.restaurantId,
               };
               axios.post("http://127.0.0.1:8000/api/v1/orders", dataToSend)
