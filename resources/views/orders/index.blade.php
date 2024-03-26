@@ -20,6 +20,7 @@
                     <table class="table table-striped mb-0">
                         <thead class="msbgazzurro">
                             <tr>
+                                <th scope="col">Data</th>
                                 <th scope="col">Ora</th>
                                 <th scope="col">Identificativo</th>
                                 <th scope="col">Prezzo</th>
