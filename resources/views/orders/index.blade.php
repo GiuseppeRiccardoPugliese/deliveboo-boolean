@@ -13,8 +13,9 @@
                     <table class="table">
                         <thead class="text-center">
                             <tr>
-                            <th scope="col"><div class="blue-box">Ordini Totali: {{ $totalOrders }}</div></th>
-                                <th scope="col">Numero ordine</th>
+                                <th scope="col">
+                                    <div class="blue-box">Ordini Totali: {{ count($orders) }}</div>
+                                </th>
                                 <th scope="col">Prezzo</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Indirizzo cliente</th>
@@ -22,12 +23,8 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            @php
-                                $orderCount = 0;
-                            @endphp
                             @foreach ($orders as $order)
                                 <tr>
-                                    <td>{{ ++$orderCount }}</td>
                                     <td>
                                         {{ $order->number_order }}
                                     </td>
@@ -52,11 +49,11 @@
         @endauth
     @endsection
 
-<style>
-    .blue-box {
-        background-color: #13dbe6;
-        padding: 5px; 
-        border-radius: 5px; 
-        color: #ffffff; 
-    }
-</style>
+    <style>
+        .blue-box {
+            background-color: #13dbe6;
+            padding: 5px;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+    </style>

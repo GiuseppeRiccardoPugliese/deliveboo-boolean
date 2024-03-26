@@ -15,15 +15,6 @@ class OrderController extends Controller
      */
     public function index()
     {
-        // Ottenere tutti gli ordini
-        $orders = Order::all();
-
-        // Contare il numero totale di ordini
-        $totalOrders = $orders->count();
-
-        // Passare $orders e $totalOrders alla vista
-        return view('orders.index', compact('orders', 'totalOrders'));
-
         $orders = Order::whereHas('restaurant', function ($query) {
             $query->where('user_id', auth()->user()->id);
         })->get();
