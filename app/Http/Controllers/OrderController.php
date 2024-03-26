@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 
 use App\Models\Order;
+use App\Models\Dish;
 
 class OrderController extends Controller
 {
@@ -43,13 +46,11 @@ class OrderController extends Controller
     {
         // Ottenere i dati dalla richiesta
         $data = $request->all();
-        // dd($data);
+
+        // Registrare i dati nel log
+        Log::info('Dati ricevuti dalla richiesta:', $data);
         // Generare un numero d'ordine casuale
         $number_order = rand(100000, 999999); // Genera un numero casuale a sei cifre
-
-        // Aggiungi il numero d'ordine casuale e l'ID del ristorante ai dati
-        // $data['number_order'] = $number_order;
-        // $data['restaurant_id'] = // Ottieni l'ID del ristorante da dove vuoi
 
         // Salva i dati nel database
         $order = Order::create([
@@ -62,9 +63,19 @@ class OrderController extends Controller
             // Altri campi dell'ordine, se necessario
         ]);
 
+        // Ottieni i nomi dei piatti dall'array nella richiesta
+        $products = $data['product_name'];
+
+        // Associare i piatti all'ordine utilizzando i loro ID
+        foreach ($products as $product) {
+            $order->dishes()->attach($product['id'], ['quantity' => $product['quantity']]);
+        }
+
+
         // Restituisci la risposta appropriata
         return response()->json(['message' => 'Order created successfully', 'order' => $order], 201);
     }
+
 
     /**
      * Display the specified resource.
