@@ -8,11 +8,11 @@ export default {
             ristoranti: [], // Array per fare il fetch dei ristoranti dal database
             totalPrice: 0, // Variabile per calcolare il prezzo totale
             orderData: {
+                restaurantIndex: "",
+                restaurantId: "",
+                price: 0,
                 orders: [],
-                restaurantId: null,
             },
-            totalPrice: 0,
-
         };
     },
     created() {
@@ -41,16 +41,10 @@ export default {
     methods: {
         localStorage() {
             const dataToSave = {
-                orders: this.orders,
-                // sum: this.sum,
-                totalPrice: this.totalPrice,
-                orderData: this.orderData
+                orderData: this.orderData,
             };
-
-            // Salva gli elementi nel localStorage
-            localStorage.setItem("cartData", JSON.stringify(dataToSave));
+            localStorage.setItem("orderData", JSON.stringify(dataToSave));
         },
-
         goBack() {
             // Funzione per tornare alla pagina precedente
             this.$router.go(-1);
@@ -85,44 +79,50 @@ export default {
                 existingOrder.quantity++;
                 existingOrder.price += price;
             } else {
-                this.orders.push({ name: dish.name, quantity: 1, price: price, dishId: dish.id });
+                this.orderData.orders.push({ name: dish.name, quantity: 1, price: price, dishId: dish.id });
             }
             this.totalPrice += price; // Aggiorna il prezzo totale
-            console.log(this.totalPrice);
+            const dataToSave = {
+                orderData: this.orderData,
+            };
+            localStorage.setItem("orderData", JSON.stringify(dataToSave));
         },
 
-
         removeFromOrder(dish) {
-            const existingOrderIndex = this.orders.findIndex(order => order.name === dish.name);
+            const existingOrderIndex = this.orderData.orders.findIndex(order => order.name === dish.name);
             if (existingOrderIndex !== -1) {
-                const existingOrder = this.orders[existingOrderIndex];
+                const existingOrder = this.orderData.orders[existingOrderIndex];
                 existingOrder.quantity--;
                 existingOrder.price -= dish.price;
                 if (existingOrder.quantity === 0) {
-                    this.orders.splice(existingOrderIndex, 1);
+                    this.orderData.orders.splice(existingOrderIndex, 1);
                 }
                 this.totalPrice -= dish.price; // Aggiorna il prezzo totale
                 localStorage.setItem("totalPrice", this.totalPrice);
             }
         },
         deleteOrders() {
-            this.orders = [];
-            this.orderData.orders = [];
-
             this.totalPrice = 0;
-            localStorage.removeItem("cartData");
+            this.orderData.restaurantIndex = "";
+            this.orderData.restaurantId = "";
+            this.orderData.price = 0;
+            this.orderData.orders = [];
         }
     },
     watch: {
-        // Un watcher per monitorare le modifiche agli ordini e salvare nel localStorage
-        orders: {
+        orders: { // Un watcher per monitorare le modifiche agli ordini e salvare nel localStorage
             handler(newOrders) {
+                this.orderData.orders = newOrders;
                 this.localStorage();
             },
             deep: true,
         },
-        totalPrice() {
-            this.localStorage();
+        totalPrice: {
+            handler(newTotalPrice) {
+                this.orderData.price = newTotalPrice; // Aggiorna orderData.price con totalPrice
+                this.localStorage(); // Salva nel localStorage dopo l'aggiornamento
+            },
+            deep: true,
         },
         orderData: {
             handler(newOrderData) {
@@ -201,7 +201,7 @@ export default {
 
                     <h2>I TUOI ORDINI</h2>
 
-                    <div v-for="(order, index) in orders" :key="index">
+                    <div v-for="(order, index) in orderData.orders" :key="index">
                         <p><strong class="text-black-50">x{{ order.quantity }} |</strong> {{ order.name }} <strong>{{
                     order.price.toFixed(2) }}€</strong></p>
                     </div>
