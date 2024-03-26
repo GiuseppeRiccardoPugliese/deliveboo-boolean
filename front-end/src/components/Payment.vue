@@ -3,12 +3,10 @@
 import * as braintreeDropin from 'braintree-web-drop-in';
 import axios from "axios";
 
-// @ts-ignore
 export default {
   name: "Payment",
   data() {
     return {
-      orders: [], // Array per memorizzare i dettagli dell'ordine
       totalPrice: 0,
       orderData: {
         restaurantIndex: "",
@@ -16,7 +14,6 @@ export default {
         price: 0,
         orders: [],
         guest_name: "",
-        guest_email: "",
         guest_address: "",
         guest_email: "",
         number_order: "",
@@ -37,21 +34,9 @@ export default {
   methods: {
     localStorage() {
       const dataToSave = {
-        price: this.totalPrice,
-        guest_name: this.orderData.guest_name,
-        guest_address: this.orderData.guest_address,
-        guest_email: this.orderData.guest_email,
-        restaurant_id: this.orderData.restaurantId,
-
-        orders: this.orders,
-        totalPrice: this.totalPrice,
         orderData: this.orderData,
-
-        product_name: this.orders.map(order => order.name), // Array di nomi dei prodotti
       };
-
-      // Salva gli elementi nel localStorage
-      localStorage.setItem("cartData", JSON.stringify(dataToSave));
+      localStorage.setItem("orderData", JSON.stringify(dataToSave));
     },
 
     sendData() {
@@ -97,73 +82,60 @@ export default {
     },
 
     makePayment(paymentMethodNonce) { //FUNZIONE PER IL PAGAMENTO
-      const storedData = JSON.parse(localStorage.getItem("cartData") || "{}");
-      const orders = storedData.orders || [];
-
-      const productIds = {};
-
-      orders.forEach(order => {
-        const { dishId, price } = order;
-        // Se l'ID del piatto è già presente, aggiungi il prezzo al totale
-        // Altrimenti, crea una nuova voce nell'oggetto
-        if (productIds[dishId]) {
-          productIds[dishId] += price;
-        } else {
-          productIds[dishId] = price;
-        }
-      });
-
-      console.log(productIds);
-      // Invia i dati al server per elaborare il pagamento
-      axios.post('http://localhost:8000/api/make/payment', {
-        token: paymentMethodNonce,
-        product: productIds,
-        _token: '{{ csrf_token() }}'
-      })
-
-        .then((response) => {
-          var data = response.data;
-          if (data.success) {
-            console.log('pagamento andato');
-            console.log(orders)
-            const dataToSend = {
-              price: this.totalPrice,
-              guest_name: this.orderData.guest_name,
-              guest_email: this.orderData.guest_email,
-              guest_address: this.orderData.guest_address,
-              product_name: this.orders.map(order => order.name), // Array di nomi dei prodotti
-              restaurant_id: this.orderData.restaurantId,
-            };
-            axios.post("http://127.0.0.1:8000/api/v1/orders", dataToSend)
-              .then(response => {
-                console.log("Ordine inviato con successo:", response.data);
-                // Esegui il routing alla pagina di conferma dell'ordine
-                this.$router.push({ name: 'ThankYou' });
-              })
-              .catch(error => {
-                console.error("Errore durante l'invio dell'ordine:", error);
-                // Gestisci l'errore in base alle tue esigenze
-              });
+      if (this.orderData.orders && this.orderData.orders.length > 0) {
+        const productIds = {};
+        this.orderData.orders.forEach(order => {
+          const { dishId, price } = order;
+          if (productIds[dishId]) {
+            productIds[dishId] += price;
           } else {
-            alert(data.message); // Mostra un messaggio di errore
+            productIds[dishId] = price;
           }
-        })
-        .catch((error) => {
-          console.error('Errore durante la richiesta:', error);
         });
+
+        console.log(productIds);
+        // Invia i dati al server per elaborare il pagamento
+        axios.post('http://localhost:8000/api/make/payment', {
+          token: paymentMethodNonce,
+          product: productIds,
+          _token: '{{ csrf_token() }}'
+        })
+          .then((response) => {
+            let data = response.data;
+            if (data.success) {
+              console.log('pagamento andato', this.orderData.orders);
+              // console.log(orders)
+              const dataToSend = {
+                price: this.totalPrice,
+                guest_name: this.orderData.guest_name,
+                guest_email: this.orderData.guest_email,
+                guest_address: this.orderData.guest_address,
+                product_name: this.orderData.orders.map(order => order.name), // Array di nomi dei prodotti
+                restaurant_id: this.orderData.restaurantId,
+              };
+              axios.post("http://127.0.0.1:8000/api/v1/orders", dataToSend)
+                .then(response => {
+                  console.log("Ordine inviato con successo:", response.data);
+                  // Esegui il routing alla pagina di conferma dell'ordine
+                  this.$router.push({ name: 'ThankYou' });
+                })
+                .catch(error => {
+                  console.error("Errore durante l'invio dell'ordine:", error);
+                  // Gestisci l'errore in base alle tue esigenze
+                });
+            } else {
+              alert(data.message); // Mostra un messaggio di errore
+            }
+          })
+          .catch((error) => {
+            console.error('Errore durante la richiesta:', error);
+          });
+      } else {
+        console.error('Nessun ordine trovato.');
+      }
     }
   },
   watch: {
-    // Un watcher per monitorare le modifiche agli ordini e salvare nel localStorage
-    orders: {
-      handler(newOrders) {
-        this.localStorage();
-      },
-      deep: true,
-    },
-    totalPrice() {
-      this.localStorage();
-    },
     orderData: {
       handler(newOrderData) {
         this.localStorage();
@@ -172,37 +144,25 @@ export default {
     },
   },
   mounted() {
+    document.querySelector('#dropin-container').innerHTML = '';
     this.makeDropIn();
-    // Recupera gli ordini dal localStorage e analizza il JSON, se presente
-    const ordersFromLocalStorage = localStorage.getItem("orders");
-    if (ordersFromLocalStorage) {
-      // Se ci sono dati nel localStorage, analizzali e assegnali a this.orders
-      this.orders = JSON.parse(ordersFromLocalStorage);
-    }
-  },
-  created() {
-    const storedData = JSON.parse(localStorage.getItem("cartData") || "{}");
-    this.orders = storedData.orders || [];
-    this.totalPrice = storedData.totalPrice || 0;
-    this.orderData = storedData.orderData || {};
-
-    console.log('Contenuto di localStorage:', storedData);
   },
 }
 </script>
 
+
+
 <template>
   <div class="order-card">
-
-
     <div class="my-container">
+
       <!-- DETTAGLI ORDINE -->
       <div class="order-details">
         <h2 class="order-title">Riepilogo dell'ordine</h2>
         <div class="order-items">
-          <div v-for="(order, index) in orders" :key="index" class="order-item">
-            <p><strong class="text-black-50">x{{ order.quantity }} |</strong> {{ order.name }} {{ order.price.toFixed(2)
-              }}€</p>
+          <div v-for="(order, index) in orderData.orders" :key="index" class="order-item">
+            <p><strong class="text-black-50">x{{ order.quantity }} |</strong> {{ order.name }} {{
+            order.price.toFixed(2) }}€</p>
           </div>
         </div>
         <p class="order-total">Totale: {{ totalPrice.toFixed(2) }}€</p>
@@ -233,20 +193,15 @@ export default {
 
         </form>
       </div>
-    </div>
 
+    </div>
 
     <div>
-      <button class="confirm-button" id="submit-button" @click="sendData()">Conferma e Paga</button>
+      <button class="confirm-button" id="submit-button" @click.prevent="sendData()" type="button">Conferma e
+        Paga</button>
     </div>
 
-
-
-
-
-
   </div>
-
 </template>
 
 
