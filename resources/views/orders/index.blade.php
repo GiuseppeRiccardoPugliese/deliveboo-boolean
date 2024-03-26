@@ -8,8 +8,11 @@
     @auth
     <section class="intro">
       <div class="container">
-        <h2 class="fs-2 text-secondary my-4 text-center">{{ __('Ordini') }}</h2>
+            <h2 class="fs-2 text-secondary my-4 text-center">{{ __('Ordini') }}</h2>
       </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-1 text-center blue-box">Ordini Totali: {{ count($orders) }}</div>
+        </div>
 
         <div class="container">
             <div class="card">
@@ -17,9 +20,6 @@
                     <table class="table table-striped mb-0">
                         <thead class="msbgazzurro">
                             <tr>
-                            <th scope="col">
-                                    <div class="blue-box">Ordini Totali: {{ count($orders) }}</div>
-                                </th>
                                 <th scope="col">Ora</th>
                                 <th scope="col">Identificativo</th>
                                 <th scope="col">Prezzo</th>
@@ -75,6 +75,7 @@
             padding: 5px;
             border-radius: 5px;
             color: #ffffff;
+            margin-bottom: 10px;
         }
         
         .card {
