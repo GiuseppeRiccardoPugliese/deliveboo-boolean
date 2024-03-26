@@ -5,8 +5,8 @@ export default {
     name: "Details",
     data() {
         return {
-            ristoranti: [], // Array per memorizzare i dati dei ristoranti
-            // orderData: { dishes: [], totalPrice: 0 },
+            ristoranti: [], // Array per fare il fetch dei ristoranti dal database
+            totalPrice: 0, // Variabile per calcolare il prezzo totale
             orderData: {
                 orders: [],
                 restaurantId: null,
@@ -15,11 +15,15 @@ export default {
 
         };
     },
-    computed: {
-        itemsFromLocalStorage() {
-            // Recupera gli elementi dal localStorage e analizza il JSON, se presente
-            return JSON.parse(localStorage.getItem("orders") || "[]");
-        },
+    created() {
+        setTimeout(() => {
+            const storedData = JSON.parse(localStorage.getItem("orderData") || "{}");
+            if (storedData.orderData) {
+                this.orderData = storedData.orderData;
+                this.totalPrice = storedData.orderData.price;
+            }
+            console.log('Contenuto di localStorage1:', storedData.orderData);
+        }, 500);
     },
 
     mounted() {
@@ -54,17 +58,28 @@ export default {
         getImageUrl(ristorante) {
             return `http://localhost:8000/storage/${ristorante}`;
         },
-        addToOrderWithRestaurantId() {
-            if (this.ristoranti.length > 0) { // Assicurati che ci sia almeno un ristorante nella lista
-                const restaurantId = this.ristoranti[this.$route.params.index].id; // Recupera l'ID del primo ristorante
-                this.orderData = {
-                    ...this.orderData,
-                    restaurantId: restaurantId
-                };
+        addToOrder(dish) {
+            const restaurantId = this.ristoranti[this.$route.params.index].id;
+            const restaurantIndex = this.$route.params.index;
+
+            if (this.orderData.restaurantId === "") {
+                this.orderData.restaurantId = restaurantId;
+                this.orderData.restaurantIndex = restaurantIndex;
+            } else if (this.orderData.restaurantId !== restaurantId) {
+                // Mostra un alert con il messaggio appropriato
+                if (confirm("Hai già un carrello aperto con un altro ristorante. Vuoi cancellarlo e proseguire o vuoi tornare sul vecchio ristorante?")) {
+                    // Se l'utente conferma, cancella l'ordine attuale e prosegui
+                    this.deleteOrders();
+                    this.orderData.restaurantId = restaurantId;
+                    this.orderData.restaurantIndex = restaurantIndex;
+                } else {
+                    // Altrimenti, torna sul vecchio ristorante
+                    this.$router.push({ name: 'Details', params: { index: this.orderData.restaurantIndex } });
+                    return;
+                }
             }
-        },
-        addToOrder(dish, restaurantId) {
-            const existingOrder = this.orders.find(order => order.name === dish.name);
+
+            const existingOrder = this.orderData.orders.find(order => order.name === dish.name);
             const price = parseFloat(dish.price); // Converti il prezzo del piatto in un numero
             if (existingOrder) {
                 existingOrder.quantity++;
@@ -115,23 +130,6 @@ export default {
             },
             deep: true,
         },
-        ristoranti: {
-            handler: function (newValue, oldValue) {
-                if (newValue.length > 0) {
-                    this.addToOrderWithRestaurantId(); // Richiama la funzione quando la lista dei ristoranti viene aggiornata
-                }
-            },
-            deep: true // Controlla anche le modifiche interne degli oggetti nell'array ristoranti
-        }
-    },
-    created() {
-        const storedData = JSON.parse(localStorage.getItem("cartData") || "{}");
-        this.orders = storedData.orders || [];
-        // this.sum = storedData.sum || 0;
-        this.totalPrice = storedData.totalPrice || 0;
-        this.orderData = storedData.orderData || {};
-
-        console.log('Contenuto di localStorage:', storedData);
     },
 };
 </script>
