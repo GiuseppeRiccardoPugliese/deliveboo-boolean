@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative;">
                     <table class="table table-striped mb-0">
-                        <thead class="msbgazzurro">
+                        <thead>
                             <tr>
                                 <th scope="col">Immagine</th>
                                 <th scope="col">Nome</th>
@@ -125,10 +125,6 @@
 
 
 <style>
-    .msbgazzurro{
-        background-color: #13dbe6;
-    }
-
     .btn-create {
         display: inline-block;
         background-color: #13dbe6;

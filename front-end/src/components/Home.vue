@@ -42,7 +42,6 @@ export default {
 
 .container-fluid {
     width: 100%;
-    height: 500px;
     background-image: url(../../public/img/jumbotron2.jpg);
     background-size: cover;
     padding: 0;
