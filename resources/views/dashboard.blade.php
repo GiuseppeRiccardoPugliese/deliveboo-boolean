@@ -27,8 +27,8 @@
 
                             <div class="col-md-6">
                                 <div class="card mb-3">
-                                    <div class="card-body">
-                                        <canvas id="myChart_{{ $restaurant->id }}"></canvas>
+                                    <div class="card-body chart-container" style="position: relative; height:60vh; width:100%">
+                                        <canvas id="myChart_{{ $restaurant->id }}" style="height:72px; width:100px "></canvas>
                                     </div>
                                 </div>
                             </div>
