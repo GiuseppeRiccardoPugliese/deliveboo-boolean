@@ -29,6 +29,11 @@ export default {
         this.totalPrice = storedData.orderData.price;
       }
       console.log('Contenuto di localStorage1:', storedData.orderData);
+
+      // Controlla se il carrello è vuoto e torna indietro se necessario
+      if (this.orderData.orders.length === 0) {
+        this.$router.go(-1); // Torna alla pagina precedente
+      }
     }, 500);
   },
   methods: {
@@ -40,13 +45,12 @@ export default {
     },
 
     sendData() {
-      console.log("Dati prima dell'invio:", this.orderData);
       if (this.orderData.guest_name && this.orderData.guest_email && this.orderData.guest_address) {
         this.makeBtnPayment();
       }
     },
 
-    makeDropIn() {
+    makeDropIn() { //FUNZIONE PER GENERARE IL FORM PER INSERIRE I DATI DELLA CARTA
       braintreeDropin.create({
         authorization: 'sandbox_bntx9z5d_y9fkzm9y4q49xcj9',
         selector: '#dropin-container',
@@ -63,7 +67,7 @@ export default {
       });
     },
 
-    makeBtnPayment() {
+    makeBtnPayment() { //FUNZIONE PER RECUPERARE L'ISTANZA AL CLICK DEL BOTTONE
       if (!this.braintreeInstance) {
         console.error('Braintree instance not initialized.');
         return;
@@ -76,7 +80,7 @@ export default {
             return;
           }
           let paymentMethodNonce = payload.nonce;
-          this.makePayment(paymentMethodNonce); // Utilizza "this" per accedere alla funzione makePayment
+          this.makePayment(paymentMethodNonce);
         });
       });
     },
@@ -92,8 +96,6 @@ export default {
             productIds[dishId] = price;
           }
         });
-
-        console.log(productIds);
         // Invia i dati al server per elaborare il pagamento
         axios.post('http://localhost:8000/api/make/payment', {
           token: paymentMethodNonce,
@@ -103,8 +105,6 @@ export default {
           .then((response) => {
             let data = response.data;
             if (data.success) {
-              console.log('pagamento andato', this.orderData.orders);
-              // console.log(orders)
               const dataToSend = {
                 price: this.totalPrice,
                 guest_name: this.orderData.guest_name,
@@ -113,9 +113,16 @@ export default {
                 product_name: this.orderData.orders.map(order => ({ id: order.dishId, quantity: order.quantity })),
                 restaurant_id: this.orderData.restaurantId,
               };
+
               axios.post("http://127.0.0.1:8000/api/v1/orders", dataToSend)
                 .then(response => {
-                  console.log("Ordine inviato con successo:", response.data);
+                  // this.totalPrice = 0;
+                  // this.orderData.restaurantIndex = "";
+                  // this.orderData.restaurantId = "";
+                  this.orderData.price = 0;
+                  this.orderData.orders = [];
+                  this.localStorage();
+                  console.log('pagamento andato', dataToSend);
                   // Esegui il routing alla pagina di conferma dell'ordine
                   this.$router.push({ name: 'ThankYou' });
                 })
@@ -123,6 +130,7 @@ export default {
                   console.error("Errore durante l'invio dell'ordine:", error);
                   // Gestisci l'errore in base alle tue esigenze
                 });
+
             } else {
               alert(data.message); // Mostra un messaggio di errore
             }
@@ -133,18 +141,21 @@ export default {
       } else {
         console.error('Nessun ordine trovato.');
       }
-    }
-  },
-  watch: {
-    orderData: {
-      handler(newOrderData) {
-        this.localStorage();
-      },
-      deep: true,
+    },
+    cancelOrder() {
+      // Torna alla pagina precedente
+      this.$router.go(-1);
     },
   },
+  // watch: {
+  //   orderData: {
+  //     handler(newOrderData) {
+  //       this.localStorage();
+  //     },
+  //     deep: true,
+  //   },
+  // },
   mounted() {
-    document.querySelector('#dropin-container').innerHTML = '';
     this.makeDropIn();
   },
 }
@@ -197,8 +208,13 @@ export default {
     </div>
 
     <div>
-      <button class="confirm-button" id="submit-button" @click.prevent="sendData()" type="button">Conferma e
-        Paga</button>
+      <button class="confirm-button" id="submit-button" @click.prevent="sendData()" type="button">
+        Conferma e Paga
+      </button>
+      <button class="cancel-button" @click.prevent="cancelOrder()" type="button">
+        Annulla
+      </button>
+
     </div>
 
   </div>
@@ -218,7 +234,6 @@ export default {
   .my-container {
     display: flex;
     justify-content: space-around;
-    // align-items: center;
   }
 }
 
@@ -256,18 +271,38 @@ export default {
   display: block;
   width: 100%;
   padding: 12px 0;
+  background-color: #0d6efd;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.confirm-button:hover {
+  background-color: #0037ff;
+}
+
+.cancel-button {
+  margin-top: 0.5rem;
+  display: block;
+  width: 100%;
+  padding: 12px 0;
   background-color: #ff5a5f;
   color: #fff;
   font-size: 18px;
   font-weight: bold;
   text-align: center;
   border: none;
-  border-radius: 4px;
+  border-radius: 100px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.confirm-button:hover {
-  background-color: #e75155;
+.cancel-button:hover {
+  background-color: #f82e34;
 }
 </style>
