@@ -66,7 +66,7 @@ export default {
         }
 
         this.braintreeInstance = instance; // Assegna l'istanza appena creata a braintreeInstance
-        this.makeBtnPayment();
+        // this.makeBtnPayment();
 
       });
     },
@@ -76,16 +76,13 @@ export default {
         console.error('Braintree instance not initialized.');
         return;
       }
-      let button = document.querySelector('#submit-button');
-      button.addEventListener('click', () => {
-        this.braintreeInstance.requestPaymentMethod((err, payload) => {
-          if (err) {
-            console.error('Error requesting payment method:', err);
-            return;
-          }
-          let paymentMethodNonce = payload.nonce;
-          this.makePayment(paymentMethodNonce);
-        });
+      this.braintreeInstance.requestPaymentMethod((err, payload) => {
+        if (err) {
+          console.error('Error requesting payment method:', err);
+          return;
+        }
+        let paymentMethodNonce = payload.nonce;
+        this.makePayment(paymentMethodNonce);
       });
     },
 
@@ -161,19 +158,8 @@ export default {
       this.$router.go(-1);
     },
   },
-  // watch: {
-  //   orderData: {
-  //     handler(newOrderData) {
-  //       this.localStorage();
-  //     },
-  //     deep: true,
-  //   },
-  // },
   mounted() {
     this.makeDropIn();
-    this.orderData.guest_name = "";
-    this.orderData.guest_address = "";
-    this.orderData.guest_email = "";
   },
 }
 </script>
