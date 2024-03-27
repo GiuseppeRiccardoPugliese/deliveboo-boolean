@@ -60,10 +60,16 @@
                 ordersData_{{ $restaurant->id }}[orderMonth] = (ordersData_{{ $restaurant->id }}[orderMonth] || 0) + orderPrice;
             });
 
-            // Estrai le etichette e i dati dai risultati aggregati degli ordini
+          
+           // Definire i nomi dei mesi in italiano
+            const monthsInOrder = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+
+            // Ordinare le chiavi (mesi) dall'oggetto in base all'ordine definito
             const labels = Object.keys(ordersData_{{ $restaurant->id }}).sort(function(a, b) {
-                return new Date(a + " 1, 2000").getTime() - new Date(b + " 1, 2000").getTime(); // Ordina i mesi cronologicamente
+                return monthsInOrder.indexOf(a) - monthsInOrder.indexOf(b);
             });
+
+
             const data = labels.map(function(label) {
                 return ordersData_{{ $restaurant->id }}[label];
             });
@@ -77,8 +83,21 @@
                     datasets: [{
                         label: 'ORDINI TOTALI MENSILI NEL 2024',
                         data: data,
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgb(54, 162, 235)',
+                        backgroundColor: [
+                            '#994672',
+                            '#c63b5e',
+                            '#5a6690',
+                            '#12ced9',
+                            '#7be7ea', 
+                            '#f6a6b0',
+                            '#874879',
+                            '#f5314a',
+                            '#13dbe6',
+                            '#4a6c94',
+                            '#2eb2c3',
+                            '#2aa4bb'
+                        ],
+                        // borderColor: 'rgb(54, 162, 235)',
                         borderWidth: 1
                     }]
                 },
