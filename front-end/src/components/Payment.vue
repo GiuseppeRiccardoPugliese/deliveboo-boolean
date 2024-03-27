@@ -46,8 +46,11 @@ export default {
     },
 
     sendData() {
-      if (this.orderData.guest_name && this.orderData.guest_email && this.orderData.guest_address) {
-        this.makeBtnPayment();
+      if (this.validateForm()) {
+        this.buttonClicked = true;
+        if (this.orderData.guest_name && this.orderData.guest_email && this.orderData.guest_address) {
+          this.makeBtnPayment();
+        }
       }
     },
 
@@ -140,13 +143,6 @@ export default {
           });
       } else {
         console.error('Nessun ordine trovato.');
-      }
-    },
-    submitForm() {
-      if (this.validateForm()) {
-        this.buttonClicked = true;
-        // Validazione allora
-        this.sendData();
       }
     },
     validateForm() {
