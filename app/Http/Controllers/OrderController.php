@@ -85,7 +85,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = order::find($id);
+        return view('orders.show', compact('order',));
     }
 
     /**
