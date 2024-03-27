@@ -18,14 +18,14 @@ export default {
         };
     },
     created() {
-        // setTimeout(() => {
-        const storedData = JSON.parse(localStorage.getItem("orderData") || "{}");
-        if (storedData.orderData) {
-            this.orderData = storedData.orderData;
-            this.totalPrice = storedData.orderData.price;
-        }
-        console.log('Contenuto di localStorage:', storedData.orderData);
-        // }, 500);
+        setTimeout(() => {
+            const storedData = JSON.parse(localStorage.getItem("orderData") || "{}");
+            if (storedData.orderData) {
+                this.orderData = storedData.orderData;
+                this.totalPrice = storedData.orderData.price;
+            }
+            // console.log('Contenuto di localStorage:', storedData.orderData);
+        }, 500);
     },
 
     mounted() {
@@ -53,6 +53,21 @@ export default {
         getImageUrl(ristorante) {
             return `http://localhost:8000/storage/${ristorante}`;
         },
+
+        removeFromOrder(dish) {
+            const existingOrderIndex = this.orderData.orders.findIndex(order => order.name === dish.name);
+            if (existingOrderIndex !== -1) {
+                const existingOrder = this.orderData.orders[existingOrderIndex];
+                existingOrder.quantity--;
+                existingOrder.price -= dish.price;
+                if (existingOrder.quantity === 0) {
+                    this.orderData.orders.splice(existingOrderIndex, 1);
+                }
+                this.totalPrice -= dish.price; // Aggiorna il prezzo totale
+                localStorage.setItem("totalPrice", this.totalPrice);
+            }
+        },
+
         addToOrder(dish) {
             const restaurantId = this.ristoranti[this.$route.params.index].id;
             const restaurantIndex = this.$route.params.index;
@@ -80,19 +95,6 @@ export default {
             localStorage.setItem("orderData", JSON.stringify(dataToSave));
         },
 
-        removeFromOrder(dish) {
-            const existingOrderIndex = this.orderData.orders.findIndex(order => order.name === dish.name);
-            if (existingOrderIndex !== -1) {
-                const existingOrder = this.orderData.orders[existingOrderIndex];
-                existingOrder.quantity--;
-                existingOrder.price -= dish.price;
-                if (existingOrder.quantity === 0) {
-                    this.orderData.orders.splice(existingOrderIndex, 1);
-                }
-                this.totalPrice -= dish.price; // Aggiorna il prezzo totale
-                localStorage.setItem("totalPrice", this.totalPrice);
-            }
-        },
         makeOrder() {
             const restaurantId = this.ristoranti[this.$route.params.index].id;
             const currentRestaurantId = restaurantId;
@@ -103,6 +105,7 @@ export default {
                 this.$router.push({ name: 'Payment' });
             }
         },
+
         // MODAL CART
         openModalCart() {
             this.showModalCart = true;
@@ -121,6 +124,7 @@ export default {
             this.deleteOrders();
             this.closeModalCart();
         },
+
         // MODAL DISH
         openModalDish() {
             this.showModalDish = true;
@@ -373,7 +377,7 @@ body.modal-open {
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(30px);
     background-color: rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
