@@ -33,7 +33,7 @@ export default {
 
       // Controlla se il carrello è vuoto e torna indietro se necessario
       if (this.orderData.orders.length === 0) {
-        this.$router.go(-1); // Torna alla pagina precedente
+        this.goBack(); // Torna alla pagina precedente
       }
     }, 500);
   },
@@ -117,7 +117,6 @@ export default {
 
               axios.post("http://127.0.0.1:8000/api/v1/orders", dataToSend)
                 .then(response => {
-                  // this.totalPrice = 0;
                   // this.orderData.restaurantIndex = "";
                   // this.orderData.restaurantId = "";
                   this.orderData.price = 0;
@@ -161,7 +160,7 @@ export default {
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailPattern.test(email);
     },
-    cancelOrder() {
+    goBack() {
       // Torna alla pagina precedente
       this.$router.go(-1);
     },
@@ -191,7 +190,7 @@ export default {
 
       <!-- DETTAGLI ORDINE -->
       <div class="order-details">
-        <h2 class="order-title">Riepilogo dell'ordine</h2>
+        <h2 class="order-title">Riepilogo dell'ordine:</h2>
         <div class="order-items">
           <div v-for="(order, index) in orderData.orders" :key="index" class="order-item">
             <p><strong class="text-black-50">x{{ order.quantity }} |</strong> {{ order.name }} {{
@@ -237,10 +236,9 @@ export default {
       <button class="confirm-button" id="submit-button" @click.prevent="sendData()" type="button">
         Conferma e Paga
       </button>
-      <button class="cancel-button" @click.prevent="cancelOrder()" type="button">
+      <button class="cancel-button" @click.prevent="goBack()" type="button">
         Annulla
       </button>
-
     </div>
 
   </div>
@@ -253,8 +251,8 @@ export default {
   max-width: 800px;
   margin: 2rem auto;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 40px;
+  box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.3);
   background-color: #fff;
 
   .my-container {
@@ -283,8 +281,12 @@ export default {
 }
 
 .order-item {
-  padding: 10px 0;
   border-bottom: 1px solid #eaeaea;
+
+  p {
+    margin: 0;
+    padding: 1rem 0;
+  }
 }
 
 .order-total {
