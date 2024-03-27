@@ -13,7 +13,7 @@
                             <div class="info-restaurant col-md-6">
                                 <div class="card mb-3">
                                     <div class="restaurant-image">
-                                        <img src="{{ asset('storage/' . $restaurant->image) }}" style="height: 300px"
+                                        <img src="{{ asset('storage/' . $restaurant->image) }}" style="height: 320px"
                                         class="card-img-top" alt="Immagine del ristorante">
                                     </div>
                                     
