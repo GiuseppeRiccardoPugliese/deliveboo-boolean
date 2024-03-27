@@ -10,10 +10,13 @@
                 @if (Auth::user()->id == $restaurant->user_id)
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="info-restaurant col-md-6">
                                 <div class="card mb-3">
-                                    <img src="{{ asset('storage/' . $restaurant->image) }}" style="height: 300px"
+                                    <div class="restaurant-image">
+                                        <img src="{{ asset('storage/' . $restaurant->image) }}" style="height: 300px"
                                         class="card-img-top" alt="Immagine del ristorante">
+                                    </div>
+                                    
                                     <div class="card-body text-center">
                                         <h5 class="card-title">{{ $restaurant->name }}</h5>
                                         <p class="card-text">Indirizzo: {{ $restaurant->address }}</p>
@@ -27,8 +30,8 @@
 
                             <div class="col-md-6">
                                 <div class="card mb-3">
-                                    <div class="chart-container" style="position: relative; height:60vh; width:100%">
-                                        <canvas id="myChart_{{ $restaurant->id }}" style="height:72px; width:100px "></canvas>
+                                    <div class="chart-container">
+                                        <canvas id="myChart_{{ $restaurant->id }}" style="height: 100%; width: 100%" ></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -84,14 +87,14 @@
                         label: 'ORDINI TOTALI MENSILI NEL 2024',
                         data: data,
                         backgroundColor: [
-                            '#994672',
-                            '#c63b5e',
+                            '#f5314a',
+                            '#ae3f68',
                             '#5a6690',
-                            '#12ced9',
+                            '#e65b72',
                             '#7be7ea', 
                             '#f6a6b0',
                             '#874879',
-                            '#f5314a',
+                            '#db3755',
                             '#13dbe6',
                             '#4a6c94',
                             '#2eb2c3',
@@ -139,7 +142,7 @@
     .card-img-top {
         border-radius: 10px;
         /* Bordi arrotondati solo in alto a sinistra */
-        height: 200px;
+        height: 100%;
         /* Altezza dell'immagine */
         object-fit: cover;
         /* Immagine adattata alla dimensione dell'elemento */
@@ -155,5 +158,20 @@
     .card-text {
         margin-bottom: 0.5rem;
         /* Margine inferiore */
+    }
+    .restaurant-image {
+        width: 100%;
+        height: 331px;
+    }
+
+    .info-restaurant{
+        width: 100%;
+        height: 480px;
+        margin-bottom: 50px;
+    }
+    .chart-container {
+        width: 100%;
+        height: 480px;
+       
     }
 </style>
