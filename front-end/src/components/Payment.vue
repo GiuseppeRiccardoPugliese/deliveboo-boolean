@@ -228,11 +228,6 @@ export default {
 
           <!-- DROPIN BRAINTREE PAYMENT -->
           <div id="dropin-container"></div>
-
-          <div>
-            <button class="confirm-button" id="submit-button" type="submit">Conferma e
-              Paga</button>
-          </div>
         </form>
       </div>
 
