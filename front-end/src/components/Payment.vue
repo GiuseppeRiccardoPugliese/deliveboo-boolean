@@ -120,8 +120,8 @@ export default {
 
               axios.post("http://127.0.0.1:8000/api/v1/orders", dataToSend)
                 .then(response => {
-                  // this.orderData.restaurantIndex = "";
-                  // this.orderData.restaurantId = "";
+                  this.orderData.restaurantIndex = "";
+                  this.orderData.restaurantId = "";
                   this.orderData.price = 0;
                   this.orderData.orders = [];
                   this.localStorage();
@@ -146,7 +146,7 @@ export default {
       }
     },
     validateForm() {
-      console.log(this.orderData.guest_name);
+      // console.log(this.orderData.guest_name);
       if (this.orderData.guest_name === null || this.orderData.guest_address === null || this.isValidEmail(this.orderData.guest_email) === null) {
         return false;
       }

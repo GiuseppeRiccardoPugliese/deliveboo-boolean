@@ -16,14 +16,14 @@ export default {
         };
     },
     created() {
-        setTimeout(() => {
-            const storedData = JSON.parse(localStorage.getItem("orderData") || "{}");
-            if (storedData.orderData) {
-                this.orderData = storedData.orderData;
-                this.totalPrice = storedData.orderData.price;
-            }
-            // console.log('Contenuto di localStorage1:', storedData.orderData);
-        }, 500);
+        // setTimeout(() => {
+        const storedData = JSON.parse(localStorage.getItem("orderData") || "{}");
+        if (storedData.orderData) {
+            this.orderData = storedData.orderData;
+            this.totalPrice = storedData.orderData.price;
+        }
+        console.log('Contenuto di localStorage:', storedData.orderData);
+        // }, 500);
     },
 
     mounted() {
@@ -32,7 +32,6 @@ export default {
             .get("http://localhost:8000/api/v1/deliveboo")
             .then((response) => {
                 this.ristoranti = response.data;
-                // Una volta ricevuti i dati dalla prima API, effettua la seconda chiamata
             })
             .catch((error) => {
                 console.error("Error fetching data from first API:", error);
@@ -101,6 +100,22 @@ export default {
                 localStorage.setItem("totalPrice", this.totalPrice);
             }
         },
+        makeOrder() {
+            const restaurantId = this.ristoranti[this.$route.params.index].id;
+            const currentRestaurantId = restaurantId;
+
+            if (currentRestaurantId !== this.orderData.restaurantId) {
+                if (confirm("I piatti all'interno del carrello non appartengono a questo ristorante, confermi di voler ordinare i piatti del ristorante precedente?")) {
+                    this.$router.push({ name: 'Payment' });
+                } else {
+                    this.deleteOrders();
+                    return;
+                }
+            } else {
+                this.$router.push({ name: 'Payment' });
+            }
+
+        },
         deleteOrders() {
             this.totalPrice = 0;
             this.orderData.restaurantIndex = "";
@@ -127,6 +142,9 @@ export default {
         orderData: {
             handler(newOrderData) {
                 this.localStorage();
+                const storedData = JSON.parse(localStorage.getItem("orderData"));
+                console.log('Contenuto di localStorage dal Watcher:', storedData.orderData);
+
             },
             deep: true,
         },
@@ -212,18 +230,18 @@ export default {
                     <p><strong>Totale: {{ totalPrice.toFixed(2) }}€</strong></p>
 
                     <div v-if="totalPrice !== 0">
-                        <router-link :to="{ name: 'Payment' }" class="text-white">
-                            <button class="btn btn-success" type="button" style="width: 100%;">
-                                Effettua l'ordine
-                            </button>
-                        </router-link>
+                        <!-- <router-link :to="{ name: 'Payment' }" class="text-white"> -->
+                        <button class="btn btn-success" type="button" style="width: 100%;" @click="makeOrder()">
+                            Effettua l'ordine
+                        </button>
+                        <!-- </router-link> -->
                     </div>
 
                     <button v-else class="btn btn-success" type="button" style="width: 100%;" disabled
                         data-bs-toggle="button">
-                        <router-link :to="{ name: 'Payment' }" class="text-white">
-                            Effettua l'ordine
-                        </router-link>
+                        <!-- <router-link :to="{ name: 'Payment' }" class="text-white"> -->
+                        Effettua l'ordine
+                        <!-- </router-link> -->
                     </button>
 
                     <button v-if="totalPrice !== 0" class="btn btn-danger mt-3" type="button" style="width: 100%;"
