@@ -59,6 +59,11 @@
                                     <td>
                                         {{ $order->guest_email }}
                                     </td>
+                                    <td>
+                                        <a href="{{ route('order.show', $order->id) }}" class="btn btn-sm btn-primary view-order">
+                                        visualizza
+                                        </a>
+                                    </td>
                                 </tr>
                                 @endforeach
                         </tbody>
@@ -69,6 +74,15 @@
     </section>
     @endauth
 @endsection
+
+    <script>
+            $(document).ready(function() {
+                $('.view-order').click(function() {
+                    var orderId = $(this).data('order-id');
+                    window.location.href = '/orders/' + orderId;
+                });
+            });
+    </script>
 
     <style>
         .blue-box {
