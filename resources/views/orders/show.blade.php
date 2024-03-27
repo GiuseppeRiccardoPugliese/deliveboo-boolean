@@ -24,6 +24,7 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
+                        <th>Quantità</th>
                         <th>Descrizione</th>
                         <th>Prezzo</th>
                     </tr>
@@ -32,6 +33,7 @@
                     @foreach ($order->dishes as $dish)
                         <tr>
                             <td>{{ $dish->name }}</td>
+                            <td>{{ $dish->pivot->quantity }}</td>
                             <td>{{ $dish->description }}</td>
                             <td>{{ $dish->price }} €</td>
                         </tr>
