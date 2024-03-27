@@ -27,8 +27,8 @@
 
                             <div class="col-md-6">
                                 <div class="card mb-3">
-                                    <div class="card-body">
-                                        <canvas id="myChart_{{ $restaurant->id }}"></canvas>
+                                    <div class="chart-container" style="position: relative; height:60vh; width:100%">
+                                        <canvas id="myChart_{{ $restaurant->id }}" style="height:72px; width:100px "></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -42,51 +42,78 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            @foreach ($restaurants as $restaurant)
-                @if (Auth::user()->id == $restaurant->user_id)
-                    const ctx_{{ $restaurant->id }} = document.getElementById('myChart_{{ $restaurant->id }}');
-                    const labels = [
-                        'January',
-                        'February',
-                        'March',
-                        'April',
-                        'May',
-                        'June',
-                        'July',
-                        'August',
-                        'September',
-                        'October',
-                        'November',
-                        'December'
-                    ];
+      document.addEventListener('DOMContentLoaded', function () {
+    @foreach ($restaurants as $restaurant)
+        @if (Auth::user()->id == $restaurant->user_id)
+            const ctx_{{ $restaurant->id }} = document.getElementById('myChart_{{ $restaurant->id }}');
 
-                    // Recupera i dati degli ordini per questo ristorante
-                    const ordersData_{{ $restaurant->id }} = @json($restaurant->orders->pluck('price'));
+            const orders_{{ $restaurant->id }} = @json($restaurant->orders);
 
-                    new Chart(ctx_{{ $restaurant->id }}, {
-                        type: 'line',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'My First Dataset',
-                                data: ordersData_{{ $restaurant->id }},
-                                fill: false,
-                                borderColor: 'rgb(75, 192, 192)',
-                                tension: 0.1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
+            // Creare un oggetto per tenere traccia delle somme degli ordini per ogni mese
+            const ordersData_{{ $restaurant->id }} = {};
+            
+            // Iterare attraverso gli ordini e sommare gli importi per ogni mese
+            orders_{{ $restaurant->id }}.forEach(function(order) {
+                const orderDate = new Date(order.created_at);
+                const orderMonth = orderDate.toLocaleString('default', { month: 'long' }); // Estrae il nome del mese
+                const orderPrice = parseFloat(order.price); // Converti il prezzo in un numero
+                ordersData_{{ $restaurant->id }}[orderMonth] = (ordersData_{{ $restaurant->id }}[orderMonth] || 0) + orderPrice;
+            });
+
+          
+           // Definire i nomi dei mesi in italiano
+            const monthsInOrder = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+
+            // Ordinare le chiavi (mesi) dall'oggetto in base all'ordine definito
+            const labels = Object.keys(ordersData_{{ $restaurant->id }}).sort(function(a, b) {
+                return monthsInOrder.indexOf(a) - monthsInOrder.indexOf(b);
+            });
+
+
+            const data = labels.map(function(label) {
+                return ordersData_{{ $restaurant->id }}[label];
+            });
+
+            console.log(ordersData_{{ $restaurant->id }});
+
+            new Chart(ctx_{{ $restaurant->id }}, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'ORDINI TOTALI MENSILI NEL 2024',
+                        data: data,
+                        backgroundColor: [
+                            '#994672',
+                            '#c63b5e',
+                            '#5a6690',
+                            '#12ced9',
+                            '#7be7ea', 
+                            '#f6a6b0',
+                            '#874879',
+                            '#f5314a',
+                            '#13dbe6',
+                            '#4a6c94',
+                            '#2eb2c3',
+                            '#2aa4bb'
+                        ],
+                        // borderColor: 'rgb(54, 162, 235)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
                         }
-                    });
-                @endif
-            @endforeach
-        });
+                    }
+                }
+            });
+        @endif
+    @endforeach
+});
+
+
     </script>
        
 @endsection
@@ -116,11 +143,6 @@
         /* Altezza dell'immagine */
         object-fit: cover;
         /* Immagine adattata alla dimensione dell'elemento */
-    }
-
-    .card-body {
-        padding: 1.25rem;
-        /* Spaziatura interna */
     }
 
     .card-title {

@@ -159,22 +159,26 @@ export default {
                     " alt="Ristorante Image" />
             </div>
             <div class="col-12 col-md-6 text-center text-md-start mb-4">
-                <h1>{{ ristoranti[this.$route.params.index].name }}</h1>
-                <h3 class="text-primary my-2">Tipologie:</h3>
-                <div v-for="(type, index) in ristoranti[this.$route.params.index]
-                    .tipologies" :key="index" class="text-center text-md-start">
-
-                    <h4 class="text-black-50 fw-bold">- {{ type }}</h4>
+                <h1 class="fw-bold">{{ ristoranti[this.$route.params.index].name }}</h1>
+                <div class="my-4 d-flex justify-content-center justify-content-md-start">
+                    <div v-for="(type, index) in ristoranti[this.$route.params.index].tipologies" :key="index"
+                        class="bg_brown type_border d-flex align-items-center justify-content-center my-1 mx-1"
+                        style="width: fit-content;">
+                        <h4 class="fw-bold text-white p-3 mb-0">{{ type }}</h4>
+                    </div>
                 </div>
 
-                <h4 class="text-black-50 my-3">
-                    {{ ristoranti[this.$route.params.index].address }}
+                <h4 class="text-black-50 my-3 fw-bold">
+                    <i class="fa-solid fa-location-dot"></i> {{ ristoranti[this.$route.params.index].address }}
                 </h4>
                 <h5 class="text-success d-none" v-if="ristoranti[this.$route.params.index].visible === 1">
                     APERTO
                 </h5>
                 <h5 class="text-danger d-none" v-else>CHIUSO</h5>
             </div>
+
+            <div class="border_middle my-5"></div>
+
             <div class="row">
                 <div class="col-12 col-md-8 text-center">
                     <div v-for="(dish, index) in ristoranti[
@@ -197,7 +201,7 @@ export default {
                     </div>
                 </div>
 
-                <div class="card_payment col-12 col-md-4 text-center border pt-3">
+                <div class="card_payment rounded col-12 col-md-4 text-center border pt-3">
 
                     <h2>I TUOI ORDINI</h2>
 
@@ -209,13 +213,13 @@ export default {
 
                     <div v-if="totalPrice !== 0">
                         <router-link :to="{ name: 'Payment' }" class="text-white">
-                            <button class="btn btn-primary" type="button" style="width: 100%;">
+                            <button class="btn btn-success" type="button" style="width: 100%;">
                                 Effettua l'ordine
                             </button>
                         </router-link>
                     </div>
 
-                    <button v-else class="btn btn-primary" type="button" style="width: 100%;" disabled
+                    <button v-else class="btn btn-success" type="button" style="width: 100%;" disabled
                         data-bs-toggle="button">
                         <router-link :to="{ name: 'Payment' }" class="text-white">
                             Effettua l'ordine
@@ -241,6 +245,7 @@ export default {
 .img_product {
     width: 100%;
     max-width: 700px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .back-arrow {
@@ -261,10 +266,23 @@ export default {
     background-color: #f9fafa;
 }
 
+.border_middle {
+    border: 1px solid #6b4658;
+}
+
 .card_payment {
     height: 600px;
     background-color: #fff;
     position: sticky;
     top: 2%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.bg_brown {
+    background-color: #6b4658;
+}
+
+.type_border {
+    border-radius: 12px;
 }
 </style>

@@ -84,9 +84,16 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
+{
+    // Carica l'ordine con i piatti e i relativi dati dalla tabella pivot 'dish_order'
+    $order = Order::with(['dishes' => function ($query) {
+        $query->withPivot('quantity'); // Carica il campo 'quantity' dalla tabella pivot
+    }])->find($id);
+
+    // Passa l'ordine alla vista 'show'
+    return view('orders.show', compact('order'));
+}
+
 
     /**
      * Show the form for editing the specified resource.
