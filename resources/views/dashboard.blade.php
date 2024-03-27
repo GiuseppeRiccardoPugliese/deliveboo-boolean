@@ -12,8 +12,12 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card mb-3">
-                                    <img src="{{ asset('storage/' . $restaurant->image) }}" style="height: 300px"
+                                @if ($restaurant->image)
+                                <img src="{{ asset('storage/' . $restaurant->image) }}" style="height: 300px"
                                         class="card-img-top" alt="Immagine del ristorante">
+                                    @else
+                                        <img src="{{ asset('https://i.kinja-img.com/image/upload/c_fill,h_900,q_60,w_1600/27d82f034c3f2ad3c7dff0ff95e6f233.jpg') }}" class="img-thumbnail-small" alt="Immagine di cortesia">
+                                    @endif
                                     <div class="card-body text-center">
                                         <h5 class="card-title">{{ $restaurant->name }}</h5>
                                         <p class="card-text">Indirizzo: {{ $restaurant->address }}</p>
