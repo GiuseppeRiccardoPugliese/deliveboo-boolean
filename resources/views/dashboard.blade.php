@@ -27,8 +27,8 @@
 
                             <div class="col-md-6">
                                 <div class="card mb-3">
-                                    <div class="card-body">
-                                        <canvas id="myChart_{{ $restaurant->id }}"></canvas>
+                                    <div class="chart-container" style="position: relative; height:60vh; width:100%">
+                                        <canvas id="myChart_{{ $restaurant->id }}" style="height:72px; width:100px "></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -143,11 +143,6 @@
         /* Altezza dell'immagine */
         object-fit: cover;
         /* Immagine adattata alla dimensione dell'elemento */
-    }
-
-    .card-body {
-        padding: 1.25rem;
-        /* Spaziatura interna */
     }
 
     .card-title {
