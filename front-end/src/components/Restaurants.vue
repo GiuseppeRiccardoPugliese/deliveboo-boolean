@@ -125,29 +125,31 @@ export default {
             </div>
 
             <div class="my-container">
-                <div class="my-card-container">
-                    <!-- Utilizza v-for per iterare sui ristoranti e mostrare i dati -->
-                    <div class="my-card" v-for="(ristorante, index) in ristoranti" :key="index">
-                        <router-link
-                            :to="{ name: 'Details', params: { index: originalRistoranti.indexOf(ristorante), restaurantName: slug(ristorante.name) } }"
-                            class="router-link">
-                            <div class="restaurant-image"
-                                :style="{ 'background-image': ristorante.image && ristorante.image.includes('images/') ? 'url(' + getImageUrl(ristorante) + ')' : 'url(' + ristorante.image + ')' }">
-                                <div class="tipology-container">
-                                    <!-- Utilizza v-for per iterare sulle tipologie del ristorante e mostrare le tipologie -->
-                                    <span class="tipology-pin" v-for="(tipologia, idx) in ristorante.tipologies"
-                                        :key="idx">{{ tipologia }}</span>
-                                </div>
-                            </div>
-                            <h6>{{ ristorante.name }}</h6>
-                            <p v-if="ristorante.visible" class="open-status d-none">
-                                Aperto
-                            </p>
-                            <p v-else class="closed-status d-none">Chiuso</p>
-                        </router-link>
+    <div class="my-card-container">
+        <!-- Utilizza v-for per iterare sui ristoranti e mostrare i dati -->
+        <div class="my-card" v-for="(ristorante, index) in ristoranti" :key="index">
+            <router-link
+                :to="{ name: 'Details', params: { index: originalRistoranti.indexOf(ristorante), restaurantName: slug(ristorante.name) } }"
+                class="router-link">
+                <div class="restaurant-image"
+                    :style="{ 
+                        'background-image': ristorante.image && ristorante.image.includes('images/') ? 'url(' + getImageUrl(ristorante) + ')' : (ristorante.image_cortesia ? 'url(' + asset(ristorante.image_cortesia) + ')' : 'url(https://i.kinja-img.com/image/upload/c_fill,h_900,q_60,w_1600/27d82f034c3f2ad3c7dff0ff95e6f233.jpg)')
+                    }">
+                    <div class="tipology-container">
+                        <!-- Utilizza v-for per iterare sulle tipologie del ristorante e mostrare le tipologie -->
+                        <span class="tipology-pin" v-for="(tipologia, idx) in ristorante.tipologies"
+                            :key="idx">{{ tipologia }}</span>
                     </div>
                 </div>
-            </div>
+                <h6>{{ ristorante.name }}</h6>
+                <p v-if="ristorante.visible" class="open-status d-none">
+                    Aperto
+                </p>
+                <p v-else class="closed-status d-none">Chiuso</p>
+            </router-link>
+        </div>
+    </div>
+</div>
         </section>
     </div>
 </template>
