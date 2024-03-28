@@ -272,11 +272,11 @@ export default {
 
                     <h2>IL TUO ORDINE</h2>
 
-                    <div class="dish-list" v-for="(order, index) in orderData.orders" :key="index">
+                    <div class="dish-list text-center ps-0" v-for="(order, index) in orderData.orders" :key="index">
                         <div class="list">
-                            <p><strong class="text-black-50">x{{ order.quantity }} |</strong> {{ order.name }}
-                                <strong>{{
-                    order.price.toFixed(2) }}€</strong>
+                            <p>
+                                <strong class="text-black-50">x{{ order.quantity }} |</strong> {{ order.name }}
+                                <strong>{{order.price.toFixed(2) }}€</strong>
                             </p>
                         </div>
                     </div>
