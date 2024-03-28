@@ -261,8 +261,9 @@ export default {
                 </div>
 
                 <div class="card_payment rounded col-12 col-md-4 text-center border pt-3">
-
+                    <h3 class="text-black-50">{{ ristoranti[this.$route.params.index].name }}</h3>
                     <h2>IL TUO ORDINE</h2>
+                    
 
                     <div class="dish-list text-center ps-0" v-for="(order, index) in orderData.orders" :key="index">
                         <div class="list">
