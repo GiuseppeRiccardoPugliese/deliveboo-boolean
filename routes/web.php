@@ -67,10 +67,11 @@ Route::middleware('auth')->group(function () {
     //Rotta DELETE DISH
     Route::delete('/dishes/{id}', [DishController::class, 'destroy'])->name('dish.destroy');
 
-     //Rotta INDEX ORDINI
-     Route::middleware(['auth'])->group(function () {
+    //Rotta INDEX ORDINI
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-});
+    
+    //Rotta SHOW ORDER
+    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('order.show');
 
 });
 

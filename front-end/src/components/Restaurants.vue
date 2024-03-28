@@ -10,7 +10,6 @@ export default {
             selectedTipology: [], //ARRAY PER IL FILTRO DELLE TIPOLOGIE SELEZIONATE
             clickedType: [], //ARRAY PER LE TIPOLOGIE CLICCATE
             originalRistoranti: [], // Array per memorizzare l'elenco originale dei ristoranti
-            // loaded: false,
         };
     },
     mounted() {
@@ -21,9 +20,6 @@ export default {
                 this.ristoranti = response.data;
                 // Assegna l'elenco originale dei ristoranti
                 this.originalRistoranti = response.data;
-
-                // Una volta ricevuti i dati dalla prima API, effettua la seconda chiamata
-                // this.fetchSecondApiData();
             })
             .catch((error) => {
                 console.error("Error fetching data from first API:", error);
@@ -37,26 +33,8 @@ export default {
             .catch((error) => {
                 console.error("Error fetching data from first API:", error);
             });
-
-        // setTimeout(() => {
-        //     this.loaded = true; // Imposta lo stato a true dopo un certo periodo di tempo
-        // }, 550);
     },
     methods: {
-        // fetchSecondApiData() {
-        //     // Effettua la seconda chiamata per ottenere i ristoranti dalla seconda API (file JSON simulato)
-        //     axios
-        //         .get("http://localhost:5174/server.json")
-        //         .then((response) => {
-        //             // Aggiungi i ristoranti dalla seconda API alla lista esistente
-        //             this.ristoranti = [...this.ristoranti, ...response.data];
-        //             // Salva l'elenco originale anche per i ristoranti della seconda API
-        //             this.originalRistoranti = [...this.originalRistoranti, ...response.data];
-        //         })
-        //         .catch((error) => {
-        //             console.error("Error fetching data from second API:", error);
-        //         });
-        // },
         goBack() {
             // Funzione per tornare alla pagina precedente
             this.$router.go(-1);
@@ -131,8 +109,6 @@ export default {
 }
 </script>
 
-
-
 <template>
     <div class="my-general-container">
         <!-- <section class="restaurant-container" :class="{ 'pop-up': loaded }"> -->
@@ -195,8 +171,8 @@ export default {
     display: flex;
 
     .tipo-card {
-        width: 120px;
-        margin-left: 10px;
+        width: 130px;
+        text-align: center;
 
         .tipo-img {
             width: 100%;
@@ -204,6 +180,10 @@ export default {
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
             transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .tipo-img:hover {
+            transform: scale(1.1);
         }
 
 
@@ -229,12 +209,6 @@ export default {
     }
 
 }
-
-// .my-general-container {
-//     height: 100%;
-//     //   min-height: calc(100vh - 60px - 500px);
-
-// }
 
 .my-card {
     position: relative;
@@ -264,9 +238,6 @@ export default {
 .tipology-pin:hover {
     background-color: #3367d6;
 }
-
-
-
 
 // ANIMAZIONE PER FILTRI TYPO
 

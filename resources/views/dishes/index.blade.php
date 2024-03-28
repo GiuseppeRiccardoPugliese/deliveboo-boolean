@@ -64,7 +64,7 @@
                                     <a href="{{ route('dish.edit', $dish->id) }}" class="btn btn-outline-primary sm rounded">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
-                                    <button type="button" class="btn btn btn-outline-danger sm rounded" onclick="confirmDelete('{{ $dish->id }}')">
+                                    <button type="button" class="btn btn-outline-danger sm rounded" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" onclick="confirmDelete('{{ $dish->id }}')">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                     </div>
@@ -81,18 +81,18 @@
 @endauth
 
 <!-- Modal di conferma eliminazione -->
-<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="confirmDeleteModalLabel">Conferma eliminazione</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 Sei sicuro di voler eliminare questo piatto?
             </div>
             <div class="modal-footer">
-            <button id="cancelButton" type="button" class="btn btn-secondary">Annulla</button>
+                <button id="cancelButton" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
                 <form id="delete-form" method="POST" style="display: inline;">
                     @csrf
                     @method('DELETE')
@@ -103,26 +103,22 @@
     </div>
 </div>
 
-
 <script>
-        function confirmDelete(dishId) {
-            jQuery('#delete-form').attr('action', "{{ route('dish.destroy', '') }}" + '/' + dishId);
-            jQuery('#confirmDeleteModal').modal('show');
+    document.getElementById('cancelButton').onclick = function() {
+        var modalElement = document.getElementById('confirmDeleteModal');
+        var modalInstance = bootstrap.Modal.getInstance(modalElement);
+        modalInstance.hide();
+    };
 
-        }
-        document.getElementById('cancelButton').onclick = function() {
-            var modalElement = document.getElementById('confirmDeleteModal');
-            var modalInstance = bootstrap.Modal.getInstance(modalElement);
-            modalInstance.hide();
-        };
+    function confirmDelete(dishId) {
+        var actionUrl = "{{ route('dish.destroy', '') }}" + '/' + dishId;
+        document.getElementById('delete-form').setAttribute('action', actionUrl);
+        var modalElement = document.getElementById('confirmDeleteModal');
+        var modalInstance = new bootstrap.Modal(modalElement);
+        modalInstance.show();
+    }
 </script>
 @endsection
-
-
-
-
-
-
 
 <style>
     .btn-create {
@@ -183,10 +179,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 
 

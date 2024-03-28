@@ -30,6 +30,11 @@ export default {
         this.totalPrice = storedData.orderData.price;
       }
       console.log('Contenuto di localStorage1:', storedData.orderData);
+
+      // Controlla se il carrello è vuoto e torna indietro se necessario
+      if (this.orderData.orders.length === 0) {
+        this.goBack(); // Torna alla pagina precedente
+      }
     }, 500);
   },
   methods: {
@@ -41,13 +46,15 @@ export default {
     },
 
     sendData() {
-      console.log("Dati prima dell'invio:", this.orderData);
-      if (this.orderData.guest_name && this.orderData.guest_email && this.orderData.guest_address) {
-        this.makeBtnPayment();
+      if (this.validateForm()) {
+        this.buttonClicked = true;
+        if (this.orderData.guest_name && this.orderData.guest_email && this.orderData.guest_address) {
+          this.makeBtnPayment();
+        }
       }
     },
 
-    makeDropIn() {
+    makeDropIn() { //FUNZIONE PER GENERARE IL FORM PER INSERIRE I DATI DELLA CARTA
       braintreeDropin.create({
         authorization: 'sandbox_bntx9z5d_y9fkzm9y4q49xcj9',
         selector: '#dropin-container',
@@ -59,26 +66,23 @@ export default {
         }
 
         this.braintreeInstance = instance; // Assegna l'istanza appena creata a braintreeInstance
-        this.makeBtnPayment();
+        // this.makeBtnPayment();
 
       });
     },
 
-    makeBtnPayment() {
+    makeBtnPayment() { //FUNZIONE PER RECUPERARE L'ISTANZA AL CLICK DEL BOTTONE
       if (!this.braintreeInstance) {
         console.error('Braintree instance not initialized.');
         return;
       }
-      let button = document.querySelector('#submit-button');
-      button.addEventListener('click', () => {
-        this.braintreeInstance.requestPaymentMethod((err, payload) => {
-          if (err) {
-            console.error('Error requesting payment method:', err);
-            return;
-          }
-          let paymentMethodNonce = payload.nonce;
-          this.makePayment(paymentMethodNonce); // Utilizza "this" per accedere alla funzione makePayment
-        });
+      this.braintreeInstance.requestPaymentMethod((err, payload) => {
+        if (err) {
+          console.error('Error requesting payment method:', err);
+          return;
+        }
+        let paymentMethodNonce = payload.nonce;
+        this.makePayment(paymentMethodNonce);
       });
     },
 
@@ -93,8 +97,6 @@ export default {
             productIds[dishId] = price;
           }
         });
-
-        console.log(productIds);
         // Invia i dati al server per elaborare il pagamento
         axios.post('http://localhost:8000/api/make/payment', {
           token: paymentMethodNonce,
@@ -104,8 +106,6 @@ export default {
           .then((response) => {
             let data = response.data;
             if (data.success) {
-              console.log('pagamento andato', this.orderData.orders);
-              // console.log(orders)
               const dataToSend = {
                 price: this.totalPrice,
                 guest_name: this.orderData.guest_name,
@@ -114,9 +114,15 @@ export default {
                 product_name: this.orderData.orders.map(order => ({ id: order.dishId, quantity: order.quantity })),
                 restaurant_id: this.orderData.restaurantId,
               };
+
               axios.post("http://127.0.0.1:8000/api/v1/orders", dataToSend)
                 .then(response => {
-                  console.log("Ordine inviato con successo:", response.data);
+                  this.orderData.restaurantIndex = "";
+                  this.orderData.restaurantId = "";
+                  this.orderData.price = 0;
+                  this.orderData.orders = [];
+                  this.localStorage();
+                  console.log('pagamento andato', dataToSend);
                   // Esegui il routing alla pagina di conferma dell'ordine
                   this.$router.push({ name: 'ThankYou' });
                 })
@@ -124,6 +130,7 @@ export default {
                   console.error("Errore durante l'invio dell'ordine:", error);
                   // Gestisci l'errore in base alle tue esigenze
                 });
+
             } else {
               alert(data.message); // Mostra un messaggio di errore
             }
@@ -135,15 +142,8 @@ export default {
         console.error('Nessun ordine trovato.');
       }
     },
-    submitForm() {
-      if (this.validateForm()) {
-        this.buttonClicked = true;
-        // Validazione allora
-        this.sendData();
-      }
-    },
     validateForm() {
-      console.log(this.orderData.guest_name);
+      // console.log(this.orderData.guest_name);
       if (this.orderData.guest_name === null || this.orderData.guest_address === null || this.isValidEmail(this.orderData.guest_email) === null) {
         return false;
       }
@@ -153,21 +153,13 @@ export default {
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailPattern.test(email);
     },
-  },
-  watch: {
-    orderData: {
-      handler(newOrderData) {
-        this.localStorage();
-      },
-      deep: true,
+    goBack() {
+      // Torna alla pagina precedente
+      this.$router.go(-1);
     },
   },
   mounted() {
-    document.querySelector('#dropin-container').innerHTML = '';
     this.makeDropIn();
-    this.orderData.guest_name = "";
-    this.orderData.guest_address = "";
-    this.orderData.guest_email = "";
   },
 }
 </script>
@@ -180,7 +172,7 @@ export default {
 
       <!-- DETTAGLI ORDINE -->
       <div class="order-details">
-        <h2 class="order-title">Riepilogo dell'ordine</h2>
+        <h2 class="order-title">Riepilogo dell'ordine:</h2>
         <div class="order-items">
           <div v-for="(order, index) in orderData.orders" :key="index" class="order-item">
             <p><strong class="text-black-50">x{{ order.quantity }} |</strong> {{ order.name }} {{
@@ -217,15 +209,20 @@ export default {
 
           <!-- DROPIN BRAINTREE PAYMENT -->
           <div id="dropin-container"></div>
-
-          <div>
-            <button class="confirm-button" id="submit-button" type="submit">Conferma e
-              Paga</button>
-          </div>
         </form>
       </div>
 
     </div>
+
+    <div>
+      <button class="confirm-button" id="submit-button" @click.prevent="sendData()" type="button">
+        Conferma e Paga
+      </button>
+      <button class="cancel-button" @click.prevent="goBack()" type="button">
+        Annulla
+      </button>
+    </div>
+
   </div>
 </template>
 
@@ -236,14 +233,13 @@ export default {
   max-width: 800px;
   margin: 2rem auto;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 40px;
+  box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.3);
   background-color: #fff;
 
   .my-container {
     display: flex;
     justify-content: space-around;
-    // align-items: center;
   }
 }
 
@@ -267,8 +263,12 @@ export default {
 }
 
 .order-item {
-  padding: 10px 0;
   border-bottom: 1px solid #eaeaea;
+
+  p {
+    margin: 0;
+    padding: 1rem 0;
+  }
 }
 
 .order-total {
@@ -281,18 +281,38 @@ export default {
   display: block;
   width: 100%;
   padding: 12px 0;
+  background-color: #0d6efd;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.confirm-button:hover {
+  background-color: #0037ff;
+}
+
+.cancel-button {
+  margin-top: 0.5rem;
+  display: block;
+  width: 100%;
+  padding: 12px 0;
   background-color: #ff5a5f;
   color: #fff;
   font-size: 18px;
   font-weight: bold;
   text-align: center;
   border: none;
-  border-radius: 4px;
+  border-radius: 100px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.confirm-button:hover {
-  background-color: #e75155;
+.cancel-button:hover {
+  background-color: #f82e34;
 }
 </style>
