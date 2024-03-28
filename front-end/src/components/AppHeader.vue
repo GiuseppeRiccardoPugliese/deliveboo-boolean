@@ -104,12 +104,12 @@ console.log(localStorage.cartData.orders);
 
           
           <div class="d-flex">
-            <button type="button" class="btn btn-primary position-relative mx-3">
+            <!-- <button type="button" class="btn btn-primary position-relative mx-3">
               <i class="fa-solid fa-cart-shopping"></i>
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 <span>{{ localStorage.cartData }}</span>
               </span>
-            </button>
+            </button> -->
           <!-- Pulsante Account -->
             <button class="btn btn-primary d-flex" type="button" data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
