@@ -276,25 +276,17 @@ export default {
                         <div class="list">
                             <p>
                                 <strong class="text-black-50">x{{ order.quantity }} |</strong> {{ order.name }}
-                                <strong>{{order.price.toFixed(2) }}€</strong>
+                                <strong>{{ order.price.toFixed(2) }}€</strong>
                             </p>
                         </div>
                     </div>
                     <p><strong>Totale: {{ totalPrice.toFixed(2) }}€</strong></p>
 
-                    <div v-if="totalPrice !== 0">
-                        <router-link :to="{ name: 'Payment' }" class="text-white">
-                            <button class="btn btn-success" type="button" style="width: 100%;">
-                                Effettua l'ordine
-                            </button>
-                        </router-link>
-                    </div>
-                        
-                    <button v-else class="btn btn-success" type="button" style="width: 100%;" disabled data-bs-toggle="button">
-                        <router-link :to="{ name: 'Payment' }" class="text-white text-decoration-none">
-                            Effettua l'ordine
-                        </router-link>
+                    <button class="btn btn-success" type="button" style="width: 100%;" :disabled="totalPrice === 0"
+                        @click="totalPrice !== 0 && makeOrder()">
+                        Effettua l'ordine
                     </button>
+
 
                     <button class="btn btn-danger mt-3" type="button" style="width: 100%;" :disabled="totalPrice === 0"
                         @click="openModalDelete()">
