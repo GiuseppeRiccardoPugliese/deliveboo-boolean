@@ -201,7 +201,7 @@ export default {
 
                 <div class="card_payment rounded col-12 col-md-4 text-center border pt-3">
 
-                    <h2>I TUOI ORDINI</h2>
+                    <h2>IL TUO ORDINE</h2>
 
                     <div v-for="(order, index) in orderData.orders" :key="index">
                         <p><strong class="text-black-50">x{{ order.quantity }} |</strong> {{ order.name }} <strong>{{
@@ -212,13 +212,13 @@ export default {
                     <div v-if="totalPrice !== 0">
                         <router-link :to="{ name: 'Payment' }" class="text-white">
                             <button class="btn btn-success" type="button" style="width: 100%;">
-                            Effettua l'ordine
-                        </button>
+                                Effettua l'ordine
+                            </button>
                         </router-link>
                     </div>
                         
                     <button v-else class="btn btn-success" type="button" style="width: 100%;" disabled data-bs-toggle="button">
-                        <router-link :to="{ name: 'Payment' }" class="text-white">
+                        <router-link :to="{ name: 'Payment' }" class="text-white text-decoration-none">
                             Effettua l'ordine
                         </router-link>
                     </button>
