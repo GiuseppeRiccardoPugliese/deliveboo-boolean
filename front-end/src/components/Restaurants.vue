@@ -171,8 +171,8 @@ export default {
     display: flex;
 
     .tipo-card {
-        width: 120px;
-        margin-left: 10px;
+        width: 130px;
+        text-align: center;
 
         .tipo-img {
             width: 100%;
@@ -180,6 +180,10 @@ export default {
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
             transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .tipo-img:hover {
+            transform: scale(1.1);
         }
 
 
