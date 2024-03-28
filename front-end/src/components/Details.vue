@@ -214,15 +214,9 @@ export default {
         <div class="row mx-3 mb-3" v-if="ristoranti[this.$route.params.index]">
 
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-4">
-                <img class="img_product rounded" :src="ristoranti[this.$route.params.index].image &&
-                    ristoranti[this.$route.params.index].image.includes(
-                        'images/'
-                    )
-                    ? getImageUrl(
-                        ristoranti[this.$route.params.index].image
-                    )
-                    : ristoranti[this.$route.params.index].image
-                    " alt="Ristorante Image" />
+                <img class="img_product rounded" v-if="ristoranti.image === NULL" src="https://i.kinja-img.com/image/upload/c_fill,h_900,q_60,w_1600/27d82f034c3f2ad3c7dff0ff95e6f233.jpg" alt="">
+                <img v-else :src="ristoranti[this.$route.params.index].image && ristoranti[this.$route.params.index].image.includes('images/') ? getImageUrl(ristoranti[this.$route.params.index].image) : ristoranti[this.$route.params.index].image" alt="Ristorante Image"/>
+                
             </div>
 
             <div class="col-12 col-md-6 text-center text-md-start mb-4">
