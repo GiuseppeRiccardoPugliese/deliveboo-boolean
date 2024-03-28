@@ -15,6 +15,8 @@ export default {
             },
             showModalCart: false,
             showModalDish: false,
+            showModalDelete: false,
+
         };
     },
     created() {
@@ -146,6 +148,21 @@ export default {
             this.$router.push({ name: 'Details', params: { index: this.orderData.restaurantIndex } });
             this.closeModalDish()
         },
+
+        // MODAL DELETE
+        openModalDelete() {
+            this.showModalDelete = true;
+            document.body.style.overflow = 'hidden';
+        },
+        closeModalDelete() {
+            this.showModalDelete = false;
+            document.body.style.overflow = '';
+        },
+        confirmModalDelete() {
+            this.deleteOrders();
+            this.closeModalDelete()
+        },
+
         deleteOrders() {
             this.totalPrice = 0;
             this.orderData.restaurantIndex = "";
@@ -271,7 +288,7 @@ export default {
                     </button>
 
                     <button class="btn btn-danger mt-3" type="button" style="width: 100%;" :disabled="totalPrice === 0"
-                        @click="deleteOrders()">
+                        @click="openModalDelete()">
                         Svuota il carrello
                     </button>
 
@@ -285,8 +302,10 @@ export default {
                     <div class="modal-content">
                         <button class="close" @click="closeModalCart">✖</button>
                         <img src="https://cdn-icons-png.flaticon.com/512/4290/4290854.png" alt="cookies-img" />
-                        <p>I piatti all'interno del carrello non appartengono a questo ristorante, vuoi confermare
-                            l'ordine?</p>
+                        <p>
+                            I piatti all'interno del carrello non appartengono a questo ristorante, vuoi confermare
+                            l'ordine?
+                        </p>
                         <div class="btn-container" style="display: flex; justify-content: center;">
                             <button class="accept" @click="confirmOrderCart">Conferma</button>
                             <button class="decline" @click="cancelOrderCart">Annulla</button>
@@ -299,11 +318,27 @@ export default {
                     <div class="modal-content">
                         <button class="close" @click="closeModalDish">✖</button>
                         <img src="https://cdn-icons-png.flaticon.com/512/4290/4290854.png" alt="cookies-img" />
-                        <p>Hai già un carrello aperto con un altro ristorante. Vuoi cancellarlo e proseguire oppure
-                            annulla?</p>
+                        <p>
+                            Hai già un carrello aperto con un altro ristorante. Vuoi cancellarlo e proseguire oppure
+                            annulla?
+                        </p>
                         <div class="btn-container" style="display: flex; justify-content: center;">
                             <button class="accept" @click="confirmModalDish">Prosegui</button>
                             <button class="decline" @click="cancelModalDish">Annulla</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal per quando l'utente vuole svuotare il carrello -->
+                <div v-if="showModalDelete" class="modal-overlay">
+                    <div class="modal-content">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4290/4290854.png" alt="cookies-img" />
+                        <p>
+                            Sei sicuro di voler svuotare il carrello?
+                        </p>
+                        <div class="btn-container" style="display: flex; justify-content: center;">
+                            <button class="accept" @click="confirmModalDelete">Conferma</button>
+                            <button class="decline" @click="closeModalDelete">Annulla</button>
                         </div>
                     </div>
                 </div>
