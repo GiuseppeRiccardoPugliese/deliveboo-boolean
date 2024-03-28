@@ -214,9 +214,7 @@ export default {
         <div class="row mx-3 mb-3" v-if="ristoranti[this.$route.params.index]">
 
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-4">
-                <img class="img_product rounded" v-if="ristoranti.image === NULL" src="https://i.kinja-img.com/image/upload/c_fill,h_900,q_60,w_1600/27d82f034c3f2ad3c7dff0ff95e6f233.jpg" alt="">
-                <img v-else :src="ristoranti[this.$route.params.index].image && ristoranti[this.$route.params.index].image.includes('images/') ? getImageUrl(ristoranti[this.$route.params.index].image) : ristoranti[this.$route.params.index].image" alt="Ristorante Image"/>
-                
+                <img class="img_product rounded" :src="ristoranti[this.$route.params.index].image && ristoranti[this.$route.params.index].image.includes('images/') ? getImageUrl(ristoranti[this.$route.params.index].image) : ristoranti[this.$route.params.index].image" alt="Ristorante Image"/>
             </div>
 
             <div class="col-12 col-md-6 text-center text-md-start mb-4">
@@ -270,17 +268,25 @@ export default {
                         <div class="list">
                             <p>
                                 <strong class="text-black-50">x{{ order.quantity }} |</strong> {{ order.name }}
-                                <strong>{{ order.price.toFixed(2) }}€</strong>
+                                <strong>{{order.price.toFixed(2) }}€</strong>
                             </p>
                         </div>
                     </div>
                     <p><strong>Totale: {{ totalPrice.toFixed(2) }}€</strong></p>
 
-                    <button class="btn btn-success" type="button" style="width: 100%;" :disabled="totalPrice === 0"
-                        @click="totalPrice !== 0 && makeOrder()">
-                        Effettua l'ordine
+                    <div v-if="totalPrice !== 0">
+                        <router-link :to="{ name: 'Payment' }" class="text-white">
+                            <button class="btn btn-success" type="button" style="width: 100%;">
+                                Effettua l'ordine
+                            </button>
+                        </router-link>
+                    </div>
+                        
+                    <button v-else class="btn btn-success" type="button" style="width: 100%;" disabled data-bs-toggle="button">
+                        <router-link :to="{ name: 'Payment' }" class="text-white text-decoration-none">
+                            Effettua l'ordine
+                        </router-link>
                     </button>
-
 
                     <button class="btn btn-danger mt-3" type="button" style="width: 100%;" :disabled="totalPrice === 0"
                         @click="openModalDelete()">
