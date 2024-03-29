@@ -24,9 +24,6 @@
                                 <th scope="col">Ora</th>
                                 <th scope="col">Identificativo</th>
                                 <th scope="col">Prezzo</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Indirizzo</th>
-                                <th scope="col">Email</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,17 +45,6 @@
                                         {{ $order->price }} <span>€</span>
                                     </td>
 
-                                    <td>
-                                        {{ $order->guest_name }}
-                                    </td>
-
-                                    <td>
-                                        {{ $order->guest_address }}
-                                    </td>
-
-                                    <td>
-                                        {{ $order->guest_email }}
-                                    </td>
                                     <td>
                                         <a href="{{ route('order.show', $order->id) }}" class="btn btn-sm btn-primary view-order">
                                         visualizza
