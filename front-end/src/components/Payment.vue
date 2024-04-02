@@ -315,4 +315,28 @@ export default {
 .cancel-button:hover {
   background-color: #f82e34;
 }
+
+@media (min-width: 374px) and (max-width: 576px) {
+  .order-card {
+    width: 95%;
+    margin: 3rem auto;
+
+    .my-container {
+      display: flex;
+      flex-wrap: wrap;
+
+      .card-details {
+        width: 90%;
+        padding-bottom: 3rem;
+        margin: 0 auto;
+      }
+
+      .order-details {
+        width: 90%;
+        margin: 0 auto;
+      }
+    }
+  }
+
+}
 </style>
