@@ -13,7 +13,7 @@
 
                             <div class="mb-4 row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('*Nome Utente') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Nome') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -72,10 +72,12 @@
                                 </div>
                             </div>
 
+                            <h2 class="mb-4">Il tuo ristorante</h2>
+
                             {{-- NOME RISTORANTE --}}
                             <div class="mb-4 row">
                                 <label for="restaurant_name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('*Nome ristorante') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Nome') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="restaurant_name" type="name"
@@ -93,7 +95,7 @@
                             {{-- INDIRIZZO RISTORANTE --}}
                             <div class="mb-4 row">
                                 <label for="restaurant_address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('*Indirizzo ristorante') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('*Indirizzo') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="restaurant_address" type="name"
@@ -177,7 +179,7 @@
                             <div class="mb-4 row">
                                 <span class="d-block">Tipo di file (jpg, png, jpeg): </span>
                                 <label for="image"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Immagine del Ristorante') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Immagine') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="image" type="file" name="image">
@@ -219,7 +221,7 @@
                                 };
 
                                 //creiamo con un evento che viene attivato solo quando la pagina è completamente carica
-                                document.addEventListener('DOMContentLoaded', function () {
+                                document.addEventListener('DOMContentLoaded', function() {
 
                                     //prendo le due password tramite dei getElementById 
                                     var firstPassword = document.getElementById('password');
@@ -227,7 +229,7 @@
 
                                     //creo una funzione dove dico che se la password è uguale lascio scorrere ma se è sbagliata 
                                     //faccio apparire un messaggio
-                                    function passwordValid(){
+                                    function passwordValid() {
                                         if (firstPassword.value === confirmPassword.value) {
                                             confirmPassword.setCustomValidity('');
                                         } else {
@@ -242,7 +244,7 @@
 
                                 //creiamo una funzione dove hai la possibilità di selezionare massimo due tipologie
                                 function limitTipologies() {
-                                    
+
                                     //ci ricaviamo solo gli input selezionati
                                     var checkbox = document.querySelectorAll('input[name="tipologie[]"]:checked');
 
@@ -267,7 +269,7 @@
                                         value="{{ $tipologia->id }}" onclick="limitTipologies()">
                                     <label for="tipologia{{ $tipologia->id }}">{{ $tipologia->name }}</label><br>
                                 @endforeach
-                                
+
                                 <div id="tipologyError" style="color: red;"></div>
                             </div>
 
