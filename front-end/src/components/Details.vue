@@ -211,10 +211,12 @@ export default {
             </span>
         </div>
 
-        <div class="row mx-3 mb-3" v-if="ristoranti[this.$route.params.index]">
+        <div class="row mx-3" v-if="ristoranti[this.$route.params.index]">
 
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-4">
-                <img class="img_product rounded" :src="ristoranti[this.$route.params.index].image && ristoranti[this.$route.params.index].image.includes('images/') ? getImageUrl(ristoranti[this.$route.params.index].image) : ristoranti[this.$route.params.index].image" alt="Ristorante Image"/>
+                <img class="img_product rounded"
+                    :src="ristoranti[this.$route.params.index].image && ristoranti[this.$route.params.index].image.includes('images/') ? getImageUrl(ristoranti[this.$route.params.index].image) : ristoranti[this.$route.params.index].image"
+                    alt="Ristorante Image" />
             </div>
 
             <div class="col-12 col-md-6 text-center text-md-start mb-4">
@@ -263,13 +265,13 @@ export default {
                 <div class="card_payment rounded col-12 col-md-4 text-center border pt-3">
                     <h3 class="text-black-50">{{ ristoranti[this.$route.params.index].name }}</h3>
                     <h2>IL TUO ORDINE</h2>
-                    
+
 
                     <div class="dish-list text-center ps-0" v-for="(order, index) in orderData.orders" :key="index">
                         <div class="list">
                             <p>
                                 <strong class="text-black-50">x{{ order.quantity }} |</strong> {{ order.name }}
-                                <strong>{{order.price.toFixed(2) }}€</strong>
+                                <strong>{{ order.price.toFixed(2) }}€</strong>
                             </p>
                         </div>
                     </div>
@@ -282,8 +284,9 @@ export default {
                             </button>
                         </router-link>
                     </div>
-                        
-                    <button v-else class="btn btn-success" type="button" style="width: 100%;" disabled data-bs-toggle="button">
+
+                    <button v-else class="btn btn-success" type="button" style="width: 100%;" disabled
+                        data-bs-toggle="button">
                         <router-link :to="{ name: 'Payment' }" class="text-white text-decoration-none">
                             Effettua l'ordine
                         </router-link>
