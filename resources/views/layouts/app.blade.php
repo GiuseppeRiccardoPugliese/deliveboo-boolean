@@ -19,7 +19,7 @@
     @vite(['resources/js/app.js'])
 </head>
 
-<body>
+<body class="ms_bg-light-grey">
     <div id="app">
 
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -129,6 +129,10 @@
 
     .ms_mt5px {
         margin-top: 5px
+    }
+
+    .ms_bg-light-grey {
+        background-color: #f8f6f6;
     }
 </style>
 
