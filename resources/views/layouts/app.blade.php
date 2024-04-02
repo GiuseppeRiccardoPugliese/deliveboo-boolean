@@ -22,7 +22,6 @@
 <body>
     <div id="app">
 
-
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('http://localhost:5174/') }}">
@@ -38,30 +37,33 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- dashboard -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="{{ url('/dashboard') }}" class="btn btn-sm btn-primary nav-link"><span
-                                    class="plus"></span>{{ __('Pannello Di Controllo') }}</a>
-                        </li>
-                    </ul>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    @auth
+                        <!-- dashboard -->
+                        <ul class="navbar-nav ms_mb5px ms_mt5px">
+                            <li class="nav-item">
+                                <a href="{{ url('/dashboard') }}" class="btn btn-sm btn-primary nav-link"><span
+                                        class="plus"></span>{{ __('Pannello Di Controllo') }}</a>
+                            </li>
+                        </ul>
 
-                    <!-- Ordini -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="{{ url('/orders') }}" class="btn btn-sm btn-primary nav-link"><span
-                                    class="plus"></span>{{ __('Ordini') }}</a>
-                        </li>
-                    </ul>
+                        <!-- Ordini -->
+                        <ul class="navbar-nav ms_mb5px">
+                            <li class="nav-item">
+                                <a href="{{ url('/orders') }}" class="btn btn-sm btn-primary nav-link"><span
+                                        class="plus"></span>{{ __('Ordini') }}</a>
+                            </li>
+                        </ul>
 
-                    <!-- menù -->
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a href="{{ url('/dishes') }}" class="btn btn-sm btn-primary nav-link"><span
-                                    class="plus"></span>{{ __('Menù') }}</a>
-                        </li>
-                    </ul>
+                        <!-- menù -->
+                        <ul class="navbar-nav me-auto ms_mb5px">
+                            <li class="nav-item">
+                                <a href="{{ url('/dishes') }}" class="btn btn-sm btn-primary nav-link"><span
+                                        class="plus"></span>{{ __('Menù') }}</a>
+                            </li>
+                        </ul>
+                    @endauth
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -119,6 +121,14 @@
         color: #fff;
         background: #13dbe6;
         margin-right: 10px;
+    }
+
+    .ms_mb5px {
+        margin-bottom: 5px
+    }
+
+    .ms_mt5px {
+        margin-top: 5px
     }
 </style>
 
