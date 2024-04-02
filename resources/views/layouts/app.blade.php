@@ -22,7 +22,6 @@
 <body>
     <div id="app">
 
-
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('http://localhost:5174/') }}">
@@ -40,7 +39,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- dashboard -->
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav ms_mb5px ms_mt5px">
                         <li class="nav-item">
                             <a href="{{ url('/dashboard') }}" class="btn btn-sm btn-primary nav-link"><span
                                     class="plus"></span>{{ __('Pannello Di Controllo') }}</a>
@@ -48,7 +47,7 @@
                     </ul>
 
                     <!-- Ordini -->
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav ms_mb5px">
                         <li class="nav-item">
                             <a href="{{ url('/orders') }}" class="btn btn-sm btn-primary nav-link"><span
                                     class="plus"></span>{{ __('Ordini') }}</a>
@@ -56,7 +55,7 @@
                     </ul>
 
                     <!-- menù -->
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav me-auto ms_mb5px">
                         <li class="nav-item">
                             <a href="{{ url('/dishes') }}" class="btn btn-sm btn-primary nav-link"><span
                                     class="plus"></span>{{ __('Menù') }}</a>
@@ -119,6 +118,14 @@
         color: #fff;
         background: #13dbe6;
         margin-right: 10px;
+    }
+
+    .ms_mb5px {
+        margin-bottom: 5px
+    }
+
+    .ms_mt5px {
+        margin-top: 5px
     }
 </style>
 

@@ -8,14 +8,14 @@ export default {
     return {
       isWide: false, // Inizialmente impostato su false
       ristoranti: [], // Array per fare il fetch dei ristoranti dal database
-            totalPrice: 0, // Variabile per calcolare il prezzo totale
-            orderData: {
-                restaurantIndex: "",
-                restaurantId: "",
-                price: 0,
-                orders: [],
-            },
-            cartQuantity: 0,
+      totalPrice: 0, // Variabile per calcolare il prezzo totale
+      orderData: {
+        restaurantIndex: "",
+        restaurantId: "",
+        price: 0,
+        orders: [],
+      },
+      cartQuantity: 0,
     };
   },
   watch: {
@@ -23,27 +23,27 @@ export default {
     '$route'() {
       this.verificaCambioRotta();
     },
-    orders: 
-        { // Un watcher per monitorare le modifiche agli ordini e salvare nel localStorage
-            handler(newOrders) {
-                this.orderData.orders = newOrders;
-                this.localStorage();
-            },
-            deep: true,
-        },
-        totalPrice: {
-            handler(newTotalPrice) {
-                this.orderData.price = newTotalPrice; // Aggiorna orderData.price con totalPrice
-                this.localStorage(); // Salva nel localStorage dopo l'aggiornamento
-            },
-            deep: true,
-        },
-        orderData: {
-            handler(newOrderData) {
-                this.localStorage();
-            },
-            deep: true,
-        },
+    orders:
+    { // Un watcher per monitorare le modifiche agli ordini e salvare nel localStorage
+      handler(newOrders) {
+        this.orderData.orders = newOrders;
+        this.localStorage();
+      },
+      deep: true,
+    },
+    totalPrice: {
+      handler(newTotalPrice) {
+        this.orderData.price = newTotalPrice; // Aggiorna orderData.price con totalPrice
+        this.localStorage(); // Salva nel localStorage dopo l'aggiornamento
+      },
+      deep: true,
+    },
+    orderData: {
+      handler(newOrderData) {
+        this.localStorage();
+      },
+      deep: true,
+    },
   },
   methods: {
     verificaCambioRotta() {
@@ -51,10 +51,10 @@ export default {
       this.isWide = this.$route.name === 'Restaurants';
     },
     localStorage() {
-            const dataToSave = {
-                orderData: this.orderData,
-            };
-            localStorage.setItem("orderData", JSON.stringify(dataToSave));
+      const dataToSave = {
+        orderData: this.orderData,
+      };
+      localStorage.setItem("orderData", JSON.stringify(dataToSave));
     },
     showQuantity() {
 
@@ -64,25 +64,25 @@ export default {
     // Esegui la funzione handleRouteChange al caricamento della pagina
     this.verificaCambioRotta();
     axios
-            .get("http://localhost:8000/api/v1/deliveboo")
-            .then((response) => {
-                this.ristoranti = response.data;
-                // Una volta ricevuti i dati dalla prima API, effettua la seconda chiamata
-            })
-            .catch((error) => {
-                console.error("Error fetching data from first API:", error);
-            });
-            const savedData = localStorage.getItem("orderData");
-  if (savedData) {
-    this.orderData = JSON.parse(savedData).orderData;
-    console.log(this.orderData.orders); // Accedi ai dati solo se sono stati correttamente caricati
-  } else {
-    console.log("Nessun dato salvato nel localStorage");
-  }
+      .get("http://localhost:8000/api/v1/deliveboo")
+      .then((response) => {
+        this.ristoranti = response.data;
+        // Una volta ricevuti i dati dalla prima API, effettua la seconda chiamata
+      })
+      .catch((error) => {
+        console.error("Error fetching data from first API:", error);
+      });
+    const savedData = localStorage.getItem("orderData");
+    if (savedData) {
+      this.orderData = JSON.parse(savedData).orderData;
+      console.log(this.orderData.orders); // Accedi ai dati solo se sono stati correttamente caricati
+    } else {
+      console.log("Nessun dato salvato nel localStorage");
+    }
   }
 }
 
-console.log(localStorage.cartData.orders);
+// console.log(localStorage.cartData.orders);
 
 </script>
 
@@ -100,9 +100,9 @@ console.log(localStorage.cartData.orders);
             </div>
           </router-link>
 
-          
 
-          
+
+
           <div class="d-flex">
             <!-- <button type="button" class="btn btn-primary position-relative mx-3">
               <i class="fa-solid fa-cart-shopping"></i>
@@ -110,7 +110,7 @@ console.log(localStorage.cartData.orders);
                 <span>{{ localStorage.cartData }}</span>
               </span>
             </button> -->
-          <!-- Pulsante Account -->
+            <!-- Pulsante Account -->
             <button class="btn btn-primary d-flex" type="button" data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
               <i class="fa-solid fa-bars fs-4"></i>
