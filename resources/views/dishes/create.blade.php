@@ -19,19 +19,19 @@
                 @method('POST')
 
                 <div class="input-group">
-                    <label for="name">*Nome</label>
+                    <label for="name">Nome*</label>
                     <input type="text" id="name" name="name">
                     <div id="nameError" style="color: red; display: none;"></div>
                 </div>
 
                 <div class="input-group">
-                    <label for="description">*Descrizione</label>
+                    <label for="description">Descrizione*</label>
                     <input type="text" id="description" name="description">
                     <div id="descriptionError" style="color: red; display: none;"></div>
                 </div>
 
                 <div class="input-group">
-                    <label for="price">*Prezzo</label>
+                    <label for="price">Prezzo*</label>
                     <input type="text" id="price" name="price" placeholder="inserisci il prezzo">
                     <div id="priceError" style="color: red; display: none;"></div>
                 </div>
@@ -52,6 +52,7 @@
                     <button type="submit" class="btn btn-primary btn-sm">CREA</button>
                 </div>
             </form>
+            <small>I campi contrassegnati con * sono <b>obbligatori</b>!</small>
         </div>
     </div>
     {{-- VALIDATION CLIENT-SIDE --}}
