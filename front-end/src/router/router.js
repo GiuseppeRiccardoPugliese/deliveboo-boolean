@@ -1,9 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-
-import AppHeader from '../components/AppHeader.vue'
-import App from '../components/AppHeader.vue'
-
 import Home from '../components/Home.vue'
 import Login from '../components/Login.vue'
 import Restaurants from '../components/Restaurants.vue'
@@ -11,6 +7,7 @@ import Details from '../components/Details.vue'
 import Carousel from '../components/Carousel.vue'
 import Payment from '../components/Payment.vue'
 import ThankYou from '../components/ThankYou.vue'
+import NotFound from '../components/NotFound.vue'
 
 // Routes
 const router = createRouter({
@@ -50,6 +47,11 @@ const router = createRouter({
             path: '/thank-you',
             component: ThankYou,
             name: 'ThankYou'
+        },
+        {
+            path: '/:catchAll(.*)',
+            component: NotFound,
+            name: 'NotFound',
         }
 
     ]
