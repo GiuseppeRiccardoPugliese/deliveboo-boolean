@@ -72,13 +72,14 @@ export default {
             .catch((error) => {
                 console.error("Error fetching data from first API:", error);
             });
+            
             const savedData = localStorage.getItem("orderData");
-  if (savedData) {
-    this.orderData = JSON.parse(savedData).orderData;
-    console.log(this.orderData.orders); // Accedi ai dati solo se sono stati correttamente caricati
-  } else {
-    console.log("Nessun dato salvato nel localStorage");
-  }
+            if (savedData) {
+              this.orderData = JSON.parse(savedData).orderData;
+              console.log(this.orderData.orders);
+            } else {
+              console.log("Nessun dato salvato nel localStorage");
+            }
   }
 }
 
@@ -107,7 +108,7 @@ console.log(localStorage.cartData.orders);
             <!-- <button type="button" class="btn btn-primary position-relative mx-3">
               <i class="fa-solid fa-cart-shopping"></i>
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                <span>{{ localStorage.cartData }}</span>
+                <span v-for="(order, index) in orderData.orders" :key="index">{{ order.quantity }}</span>
               </span>
             </button> -->
           <!-- Pulsante Account -->

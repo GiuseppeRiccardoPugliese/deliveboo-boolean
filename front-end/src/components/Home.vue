@@ -19,7 +19,7 @@ export default {
 
             <div class="advanced-search">
                 <div class="advanced-input">
-                    <div>
+                    <div class="text-center">
                         <span> Dai un'occhiata ai ristoranti nella città di
                             Milano <i class="fa-solid fa-location-dot"></i>
                         </span>
