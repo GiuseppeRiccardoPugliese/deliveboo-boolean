@@ -117,8 +117,8 @@ export default {
             <!-- TIPOLOGIE -->
             <div class="tipology row d-flex justify-content-center">
                 <div class="tipo-card" v-for="(tipologia, index) in tipologie" :key="index">
-                    <div class="tipo-img" @click=" getTipology(tipologia.name)"> <!-- Click prende la tipologia -->
-                        <img :src="tipologia.image" alt="" @click="toggleActive(index)"> <!-- Click opacity -->
+                    <div class="tipo-img" style="height: 80px;" @click=" getTipology(tipologia.name)"> <!-- Click prende la tipologia -->
+                        <img class="h-100" :src="tipologia.image" alt="" @click="toggleActive(index)"> <!-- Click opacity -->
                     </div>
                     <span> {{ tipologia.name }} </span>
                 </div>
