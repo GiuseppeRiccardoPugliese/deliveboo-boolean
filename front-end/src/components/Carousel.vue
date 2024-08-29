@@ -24,7 +24,7 @@ export default {
 };
 </script>
 <template>
-    <div>
+    <div class="carousel-container">
         <swiper
             :spaceBetween="30"
             :centeredSlides="true"
@@ -46,7 +46,7 @@ export default {
                     spaceBetween: 10,
                 },
                 '1300': {
-                    slidesPerView: 4,
+                    slidesPerView: 5,
                     spaceBetween: 0,
                 },
             }"
@@ -122,6 +122,11 @@ img {
     border-radius: 20px;
 }
 
+.carousel-container {
+    height: 100%;
+    padding: 24px 0;
+}
+
 @media screen and (max-width: 900px) {
     img {
         width: 100%;
@@ -131,8 +136,8 @@ img {
 
 @media screen and (min-width: 1400px) {
     img {
-        width: 350px;
-        height: 250px;
+        width: 300px;
+        height: 200px;
         margin-left: 20px;
         margin-right: 20px;
     }

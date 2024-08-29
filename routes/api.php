@@ -2,8 +2,12 @@
 
 use App\Http\Controllers\Api\ApiDataController;
 use App\Http\Controllers\Api\DishesApiController;
+use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\RestaurantsApiController;
 use App\Http\Controllers\Api\TipologiesApiController;
+use App\Http\Controllers\OrderController;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,17 +31,25 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     Route::get('/restaurants', [RestaurantsApiController::class, 'index']);
 // });
 
+
 Route::group(['prefix' => 'v1'], function () {
+    //ROTTA PIATTI
     Route::get('/details', [DishesApiController::class, 'index']);
-});
 
-Route::group(['prefix' => 'v1'], function () {
+    //ROTTA TIPOLOGIE
     Route::get('/tipologies', [TipologiesApiController::class, 'index']);
-});
 
-Route::group(['prefix' => 'v1'], function () {
+    //ROTTA DB
     Route::get('/deliveboo', [ApiDataController::class, 'Data']);
 
     //ROTTA PER I FILTRI SULLE TIPOLOGIE
     Route::post('filtered', [ApiDataController::class, 'filteredTipology']);
+    Route::post('/orders', [OrderController::class, 'store']);
 });
+
+//Rotte per il pagamento
+Route::get('generate', [PaymentController::class, 'generate']); //PRENDO IL TOKEN
+Route::post('make/payment', [PaymentController::class, 'makePayment']); //MANDO IL PAGAMENTO
+Route::get('products', [ProductController::class, 'index']);
+
+// Route::put('/orders/{id}', [OrderController::class, 'update']);

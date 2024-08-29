@@ -45,7 +45,7 @@ export default {
     height: 500px;
     background-image: url(../../public/img/jumbotron2.jpg);
     background-size: cover;
-
+    padding: 0;
 
     .jumbotron {
         width: 100%;
@@ -53,13 +53,14 @@ export default {
         display: flex;
         align-items: center;
         padding: 30px;
+        background: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
 
         .jumbo-title {
             width: 50%;
             padding: 50px;
             display: flex;
             justify-content: center;
-            background-color: rgba(0, 0, 0, 0);
+            animation: slideInFromRight 1.2s ease forwards;
             }
 
             span {
@@ -119,6 +120,17 @@ export default {
                 }
 
             }
+        }
+    }
+
+    @keyframes slideInFromRight {
+        0% {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        100% {
+            transform: translateX(0);
+            opacity: 1;
         }
     }
 

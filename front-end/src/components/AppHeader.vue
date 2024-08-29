@@ -42,12 +42,12 @@ export default {
           </router-link>
 
           <!-- Pulsante Account -->
-          <!-- <div>
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-              aria-controls="offcanvasRight">
-              Accedi
+          <div>
+            <button class="btn btn-primary d-flex" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+              <i class="fa-solid fa-bars fs-4"></i>
             </button>
-          </div> -->
+          </div>
 
         </section>
       </nav>
@@ -62,9 +62,13 @@ export default {
     </div>
     <div class="offcanvas-body">
       <!-- Rotta per la Login page -->
-      <router-link :to="{ name: 'Login' }">
-        <h5 class="offcanvas-title" id="offcanvasRightLabel">Accedi o Registrati!</h5>
-      </router-link>
+      <!-- <router-link :to="{ name: 'Login' }"> -->
+      <a href="http://localhost:8000/register" class="offcanvas-title d-block mb-3" id="offcanvasRightLabel">Registrati
+        come
+        ristoratore! </a>
+      <a href="http://localhost:8000/login" class="offcanvas-title" id="offcanvasRightLabel">Accedi come
+        ristoratore!</a>
+      <!-- </router-link> -->
     </div>
   </div>
 </template>

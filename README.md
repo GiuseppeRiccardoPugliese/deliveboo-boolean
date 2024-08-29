@@ -14,4 +14,5 @@ comand image
 
 Img setup command
 php artisan storage:link 
+composer require braintree/braintree_php
 -->
